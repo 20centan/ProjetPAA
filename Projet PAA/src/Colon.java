@@ -22,4 +22,12 @@ public class Colon {
     public void ajoutRessource(Ressource ressource){
         this.ressource = ressource;
     }
+
+    public char getNom() {
+        return nom;
+    }
+
+    public void setNom(char nom) {
+        this.nom = nom;
+    }
 }

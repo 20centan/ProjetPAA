@@ -17,4 +17,20 @@ public class Colonie {
         }
     }
 
+    public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
+        for(Colon c : colonie){
+            if(c.getNom() == nom) {
+                return c;
+            }
+        }
+        System.out.println("Le colon n'existe pas dans la colonie");
+        return null;
+    }
+
+    public int getNbColons(){
+        return nbColons;
+    }
+
+
+
 }
