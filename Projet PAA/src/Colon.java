@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 
 public class Colon {
-    private String nom;
+    private char nom;
     private ArrayList<Colon> ennemis;
     private ArrayList<Ressource> preference;
     private Ressource ressource;
 
-    public Colon(String nom, ArrayList<Ressource> preference){
+    public Colon(char nom, ArrayList<Ressource> preference){
         this.nom = nom;
         this.preference = preference;
 
