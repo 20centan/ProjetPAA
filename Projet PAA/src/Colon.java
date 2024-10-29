@@ -15,7 +15,7 @@ public class Colon {
     }
 
     public void aimePas(Colon c){
-        enemis.add(c);
+        ennemis.add(c);
         c.aimePas(this);
     }
 
