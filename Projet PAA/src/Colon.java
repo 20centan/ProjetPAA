@@ -14,9 +14,9 @@ public class Colon {
         this.ennemis = new ArrayList<Colon>();
     }
 
-    public void aimePas(Colon c){
+    public void ajoutRessource(Colon c){
         ennemis.add(c);
-        c.aimePas(this);
+        c.ajoutRessource(this);
     }
 
     public void ajoutRessource(Ressource ressource){
