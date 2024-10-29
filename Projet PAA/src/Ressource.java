@@ -1,3 +1,11 @@
-public enum Ressource {
-    RESSOURCE1,RESSOURCE2,RESSOURCE3,RESSOURCE4;
+public class Ressource {
+    private static int id = 0;
+
+    public Ressource(){
+        id++;
+    }
+
+    public static int getId() {
+        return id;
+    }   
 }
