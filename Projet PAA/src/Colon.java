@@ -18,9 +18,7 @@ public class Colon {
         c.aimePas(this);
     }
 
-    public void ajoutRessource(){
-
+    public void ajoutRessource(Ressource ressource){
+        this.ressource = ressource;
     }
-
-
 }
