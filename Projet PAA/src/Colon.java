@@ -15,8 +15,11 @@ public class Colon {
     }
 
     public void ajoutEnnemi(Colon c){
-        ennemis.add(c);
-        c.ajoutEnnemi(this);
+        if(!ennemis.contains(c)){
+            ennemis.add(c);
+            
+            c.ajoutEnnemi(this);
+        }
     }
 
     public void ajoutRessource(Ressource ressource){
@@ -37,7 +40,7 @@ public class Colon {
         Colon colon3 = new Colon('C', null);
 
         colon1.ajoutEnnemi(colon2);
-        System.out.println(colon1.ennemis);
-        System.out.println(colon2.ennemis);
+        System.out.println(colon1.ennemis.get(0).nom);
+        System.out.println(colon2.ennemis.get(0).nom);
     }
 }
