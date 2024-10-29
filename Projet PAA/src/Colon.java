@@ -11,7 +11,7 @@ public class Colon {
         this.nom = nom;
         this.preference = preference;
 
-        ArrayList<Colon> ennemis = new ArrayList<Colon>();
+        this.ennemis = new ArrayList<Colon>();
     }
 
     public void aimePas(Colon c){
