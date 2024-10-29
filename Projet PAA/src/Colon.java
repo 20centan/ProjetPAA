@@ -15,8 +15,8 @@ public class Colon {
 
     }
 
-    public void ajoutRessource(){
-
+    public void ajoutRessource(Ressource ressource){
+        this.ressource = ressource;
     }
 
 
