@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+
+
 public class Colon {
     private String nom;
     private List<Colon> ennemis;
@@ -12,7 +14,8 @@ public class Colon {
     }
 
     public void aimePas(Colon c){
-
+        enemis.add(c);
+        c.aimePas(this);
     }
 
     public void ajoutRessource(){
