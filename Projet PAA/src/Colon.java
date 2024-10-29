@@ -30,4 +30,14 @@ public class Colon {
     public void setNom(char nom) {
         this.nom = nom;
     }
+
+    public static void main(String [] args){
+        Colon colon1 = new Colon('A', null);
+        Colon colon2 = new Colon('B', null);
+        Colon colon3 = new Colon('C', null);
+
+        colon1.ajoutEnnemi(colon2);
+        System.out.println(colon1.ennemis);
+        System.out.println(colon2.ennemis);
+    }
 }
