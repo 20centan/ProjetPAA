@@ -1,16 +1,17 @@
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Colon {
     private String nom;
-    private List<Colon> ennemis;
+    private ArrayList<Colon> ennemis;
+    private ArrayList<Ressource> preference;
     private Ressource ressource;
 
-    public Colon(String nom,Ressource ressource){
+    public Colon(String nom, ArrayList<Ressource> preference){
         this.nom = nom;
-        this.ressource = ressource;
-        List<Colon> ennemis = new ArrayList<Colon>();
+        this.preference = preference;
+
+        ArrayList<Colon> ennemis = new ArrayList<Colon>();
     }
 
     public void aimePas(Colon c){
