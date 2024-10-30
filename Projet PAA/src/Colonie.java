@@ -34,6 +34,12 @@ public class Colonie {
         return nbColons;
     }
 
+    public static void main(String [] args){
+        Colonie colonie = new Colonie(5);
 
+        Colon c = colonie.getColon('B');
+
+        System.out.println(c.getNom());
+    }
 
 }
