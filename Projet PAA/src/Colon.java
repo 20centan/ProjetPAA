@@ -25,6 +25,11 @@ public class Colon {
     public void ajoutRessource(Ressource ressource){
         this.ressource = ressource;
     }
+    
+    
+    public void ajoutPreference(Ressource ressource) {
+    	this.preference.add(ressource);
+    }
 
     public char getNom() {
         return nom;

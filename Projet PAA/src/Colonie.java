@@ -1,11 +1,14 @@
 import java.util.List;
 import java.util.ArrayList;
+
 public class Colonie {
+	
     private List<Colon> colonie;
     private int nbColons;
 
     public Colonie(int nbColons){
         this.nbColons = nbColons;
+        colonie = new ArrayList<>();
         initialisationColons();
     }
 
@@ -23,7 +26,7 @@ public class Colonie {
                 return c;
             }
         }
-        System.out.println("Le colon n'existe pas dans la colonie");
+        System.out.println("Le colon "+ nom +" n'existe pas dans la colonie");
         return null;
     }
 
