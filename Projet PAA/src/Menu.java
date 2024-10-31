@@ -1,13 +1,14 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu {
     public static void ajoutRelation(Colonie colonie, Scanner sc) {
 		Colon colon1 = null, colon2 = null;
-		
+		String [] relation; 
+
 		System.out.println("Veuillez specifiez les deux colons qui ne s'aiment pas (format: A B) :");
-		
-		String [] relation = sc.nextLine().split(" ");
+		relation = sc.nextLine().split(" ");
 		
 		//Verif que les colons existent
         while(colon1 == null || colon2 == null){
@@ -16,40 +17,47 @@ public class Menu {
         }
 	}
 	
-	public static void ajoutPreference(Colonie c, ArrayList<Ressource> r) {
-		//a finir
-		Scanner entree =   new Scanner(System.in);
-		
-		System.out.println("Veuillez specifiez les préférences du colon (format: A:1:2:3...) :");
-		
-		String entree1 = entree.next();
-		String [] entree2 = entree1.split(":");
-		
-		//Verification que le bon nombre de ressources a été mis
-		if((entree2.length)-1!=c.getNbColons()) {
-			
-			System.out.println("Le nombre de ressources mises ne correspond pas au nombre de ressources attendu (Le nombre de ressource = le nombre de colons)");
-			System.out.println("Veuillez ressayer avec le bon nombre.");
-		}else {
-			
-			Colon a = c.getColon(entree2[0].charAt(0));
-			
-			//verification que le colon existe
-			if(a!=null) {
-				
-				//On mets maitenant les préférence dans le tableau preference du colon
-				for(int i = 0; i < r.size() ; i ++){
-					String indice = entree2[i+1];
-					int ind = Integer.valueOf(indice);
-					a.ajoutPreference(r.get(ind-1));
-				}
-			}else {
-				System.out.println("Veuillez ressayer avec des colons existant.");
-			}
-		}
-		entree.close();
+	public static void ajoutPreference(Colonie colonie, ArrayList<Ressource> r, Scanner sc) {
+		String [] input;
+        
+        ArrayList<String> preference;
+        Colon colon;
+
+        while(true){
+            System.out.println("Veuillez spécifiez les préférences du colon (format: A 1 2 3 ...) :");
+            input = sc.nextLine().split(" ");
+            
+            preference = new ArrayList<>(Arrays.asList(input));
+            preference.remove(0);
+            
+            if(preference.size() != colonie.getNbColons()) {
+                System.out.println("Le nombre de ressources mises ne correspond pas au nombre de ressources attendu (Le nombre de ressource = le nombre de colons)");
+                System.out.println("Veuillez ré-essayer avec le bon nombre.");
+                
+                continue;
+            }
+
+            colon = colonie.getColon(input[0].charAt(0));
+
+            if(colon == null) {
+                System.out.println("Veuillez ressayer avec des colons existant.");
+                
+                continue;
+            }
+
+            // vérifier si un élément fait partie de la liste des préférences.
+        
+            break;
+        }
+
+        //On mets maitenant les préférence dans le tableau preference du colon
+        for(String element : preference){
+            int index = Integer.valueOf(element);
+            
+            colon.ajoutPreference(r.get(index));
+        }
 	}
-	
+
 	public static void verifListePref(Colonie c) {
 		//to do
 	}
@@ -128,11 +136,11 @@ public class Menu {
 				
 			switch(commande) {
 			    case 1: 
-                    ajoutRelation(colonie);
+                    ajoutRelation(colonie, scanner);
 			        break;
                     
                 case 2: 
-                    ajoutPreference(colonie, ressources);
+                    ajoutPreference(colonie, ressources, scanner);
                     break;
                 
                 case 3: 
