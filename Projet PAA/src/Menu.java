@@ -1,11 +1,10 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Menu {
-	
-	public static void ajoutRelation(Colonie c) {
-		
+    public static void ajoutRelation(Colonie c) {
 		Colon a,b;
-		java.util.Scanner entree =   new java.util.Scanner(System.in);
+		Scanner entree = new Scanner(System.in);
 		
 		//je dis a l'utilisateur de mettre un ":" au lieu d'un espace car avec .split() je n'arrive à utiliser le délimiteur espace du coup je vais utiliser le ":"
 		System.out.println("Veuillez specifiez les deux colons qui ne s'aiment pas (format: A:B) :");
@@ -28,9 +27,9 @@ public class Menu {
 		entree.close();
 	}
 	
-	public static void ajoutPreference(Colonie c,ArrayList<Ressource> r) {
+	public static void ajoutPreference(Colonie c, ArrayList<Ressource> r) {
 		//a finir
-		java.util.Scanner entree =   new java.util.Scanner(System.in);
+		Scanner entree =   new Scanner(System.in);
 		
 		System.out.println("Veuillez specifiez les préférences du colon (format: A:1:2:3...) :");
 		
@@ -69,7 +68,7 @@ public class Menu {
 	public static void echangeRessource(Colonie c) {
 		//a finir
 		
-		java.util.Scanner entree =   new java.util.Scanner(System.in);
+		Scanner entree =   new Scanner(System.in);
 		System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
 		
 		System.out.println("Colon numéro 1 :");
@@ -81,23 +80,38 @@ public class Menu {
 		//Verifier que ce colon existe
 		
 		//si les deux colons existent alors echanger leurs ressources sinon gerer erreur
-		
 	}
-	
-	public static void main(String []args) {
-		
-		java.util.Scanner entree =   new java.util.Scanner(System.in);
-		
 
-		System.out.println("De combien de colons dispose votre colonie ? (<=26)");
-			
-		int nbColons = entree.nextInt();
-		//coder exception 26<nb
-			
+    // public int inserer_int(String message, String messageErreur, Scanner sc){    }
+
+	public void construction(){
+		Scanner scanner = new Scanner(System.in);
+        Integer nbColons;
+
+        while(true){
+            System.out.println("De combien de colons dispose votre colonie ? (<=26)");
+
+            try {
+                nbColons = Integer.parseInt(scanner.nextLine()); 
+
+                if(nbColons <= 0){
+                    System.out.println("Erreur de syntaxe - Veuillez entrer un nombre >= 1. \n");
+                }
+    
+                else if(26 < nbColons){
+                    System.out.println("Erreur de syntaxe - Veuillez entrer un nombre <= 26. \n");
+                }
+
+                break;
+    
+            } catch (NumberFormatException e) {
+                System.out.println("Erreur de syntaxe - Veuillez entrer un entier. \n");
+            }
+        }
+
 		System.out.println("Initialisation de la colonie...");
 		Colonie colonie = new Colonie(nbColons);
 			
-		//on crée les ressources en fonction de nbColons
 		System.out.println("Initialisation des ressources...");
 
 		ArrayList<Ressource> ressources = new ArrayList<>();
@@ -105,45 +119,61 @@ public class Menu {
 			ressources.add(new Ressource());
 		}
 			
-		boolean stop = false;
+        Integer commande;
+		boolean run = true;
 			
-		while(!(stop)) {
+		while(run) {
 			System.out.println("Choisir une option:");
-			System.out.println("[1] Ajouter une relation entre deux colons \n[2] Ajouter les préférences d'un colon \n[3] fin");
-			int option = entree.nextInt();
-				
-			switch(option) {
-			case 1: ajoutRelation(colonie);
-			break;
-			case 2: ajoutPreference(colonie, ressources);
-			break;
-			case 3: //to do;
-			break;
-			default: System.out.println("Commande invalide, veuillez ressayer.");
+			System.out.println("[1] Ajouter une relation entre deux colons \n" + 
+                                "[2] Ajouter les préférences d'un colon \n" + 
+                                "[3] fin");
 			
-			//erreur a corriger dans la boucle while qu'une boucle possible après ca me mets une erreur sur le .nextInt()
-			}
+            try {
+                commande = Integer.parseInt(scanner.nextLine()); 
+    
+            } catch (NumberFormatException e) {
+                System.out.println("Erreur de syntaxe - Veuillez entrer un entier. \n");
+                
+                continue;
+            }
+				
+			switch(commande) {
+			    case 1: 
+                    ajoutRelation(colonie);
+			        break;
+                    
+                case 2: 
+                    ajoutPreference(colonie, ressources);
+                    break;
+                
+                case 3: 
+                    //to do;
+                    
+                    run = false;
+                    break;
+                
+                default: 
+                    System.out.println("Commande invalide, veuillez ressayer.");
+                }
 		}		
-		stop = false;
-			
-			/**while(!(stop)) {
-				System.out.println("Choisir une option:");
-				System.out.println("[1] Echanger les ressources de deux colons \n [2] Afficher le nombre de colons jaloux \n [3] fin");
-				option = entree.nextInt();
-				
-				switch(option) {
-				case 1: echangeRessource(colonie);
-				break;
-				case 2: colonie.afficheJaloux();
-				break;
-				case 3: return;
-				break;
-				default: System.out.println("Commande invalide, veuillez ressayer.");
-				}
-				
-				colonie.afficheRessources();
-		}**/
-		
-		entree.close();
+        scanner.close();
 	}
 }
+
+/**while(!(stop)) {
+    System.out.println("Choisir une option:");
+    System.out.println("[1] Echanger les ressources de deux colons \n [2] Afficher le nombre de colons jaloux \n [3] fin");
+    option = entree.nextInt();
+    
+    switch(option) {
+    case 1: echangeRessource(colonie);
+    break;
+    case 2: colonie.afficheJaloux();
+    break;
+    case 3: return;
+    break;
+    default: System.out.println("Commande invalide, veuillez ressayer.");
+    }
+    
+    colonie.afficheRessources();
+}**/
