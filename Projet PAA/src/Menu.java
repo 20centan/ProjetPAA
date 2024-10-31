@@ -2,29 +2,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    public static void ajoutRelation(Colonie c) {
-		Colon a,b;
-		Scanner entree = new Scanner(System.in);
+    public static void ajoutRelation(Colonie colonie, Scanner sc) {
+		Colon colon1 = null, colon2 = null;
 		
-		//je dis a l'utilisateur de mettre un ":" au lieu d'un espace car avec .split() je n'arrive à utiliser le délimiteur espace du coup je vais utiliser le ":"
-		System.out.println("Veuillez specifiez les deux colons qui ne s'aiment pas (format: A:B) :");
+		System.out.println("Veuillez specifiez les deux colons qui ne s'aiment pas (format: A B) :");
 		
-		String entree1 = entree.next();
-		String [] entree2 = entree1.split(":");
+		String [] relation = sc.nextLine().split(" ");
 		
 		//Verif que les colons existent
-		a = c.getColon(entree2[0].charAt(0));
-		b = c.getColon(entree2[1].charAt(0));
-		
-		//si les deux colons existent alors set leurs relation sinon gerer erreur
-		if(a!=null && b!=null) {
-			a.ajoutEnnemi(b);
-			System.out.println("Relation ajoutée avec succès !");
-		}else {
-			System.out.println("Veuillez ressayer avec des colons existant.");
-		}
-		
-		entree.close();
+        while(colon1 == null || colon2 == null){
+            colon1 = colonie.getColon(relation[0].charAt(0));
+            colon2 = colonie.getColon(relation[1].charAt(0));
+        }
 	}
 	
 	public static void ajoutPreference(Colonie c, ArrayList<Ressource> r) {
