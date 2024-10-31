@@ -17,9 +17,8 @@ public class Colonie {
     public void initialisationColons(){
         for(int i = 0; i < nbColons; i++){
             char nomColon = (char) ('A' + i);
-            ArrayList<Ressource> preferences = new ArrayList<>();
 
-            colonie.add(new Colon(nomColon, preferences));
+            colonie.add(new Colon(nomColon));
         }
     }
 
