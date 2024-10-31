@@ -7,11 +7,11 @@ public class Colon {
     private ArrayList<Ressource> preference;
     private Ressource ressource;
 
-    public Colon(char nom, ArrayList<Ressource> preference){
+    public Colon(char nom){
         this.nom = nom;
-        this.preference = preference;
 
         this.ennemis = new ArrayList<Colon>();
+        this.preference = new ArrayList<Ressource>();
     }
 
     public void ajoutEnnemi(Colon c){
@@ -28,21 +28,14 @@ public class Colon {
     
     
     public void ajoutPreference(Ressource ressource) {
-    	this.preference.add(ressource);
+    	preference.add(ressource);
     }
 
-    public char getNom() {
-        return nom;
-    }
-
-    public void setNom(char nom) {
-        this.nom = nom;
-    }
 
     public static void main(String [] args){
-        Colon colon1 = new Colon('A', null);
-        Colon colon2 = new Colon('B', null);
-        Colon colon3 = new Colon('C', null);
+        Colon colon1 = new Colon('A');
+        Colon colon2 = new Colon('B');
+        Colon colon3 = new Colon('C');
 
         colon1.ajoutEnnemi(colon2);
         System.out.println(colon1.ennemis.get(0).nom);
