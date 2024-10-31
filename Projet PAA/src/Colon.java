@@ -32,6 +32,10 @@ public class Colon {
     }
 
 
+    public char getNom() {
+        return nom;
+    }
+
     public static void main(String [] args){
         Colon colon1 = new Colon('A');
         Colon colon2 = new Colon('B');
