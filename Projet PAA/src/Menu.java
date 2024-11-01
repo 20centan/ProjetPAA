@@ -24,7 +24,7 @@ public class Menu {
         }
 	}
 	
-	public static void ajoutPreference(Colonie colonie, Scanner sc) {
+	public static void ajoutPreferences(Colonie colonie, Scanner sc) {
 		String [] input;
         
         ArrayList<String> preference;
@@ -181,7 +181,7 @@ public class Menu {
 			        break;
                     
                 case 2: 
-                    ajoutPreference(colonie, scanner);
+                    ajoutPreferences(colonie, scanner);
                     break;
                 
                 case 3: 
