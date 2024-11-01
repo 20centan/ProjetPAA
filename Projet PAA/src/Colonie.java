@@ -36,6 +36,10 @@ public class Colonie {
         return null;
     }
 
+    public List<Ressource> getRessources(){
+        return ressources;
+    }
+
     public int getNbColons(){
         return nbColons;
     }

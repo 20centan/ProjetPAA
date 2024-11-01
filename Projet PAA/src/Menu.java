@@ -24,7 +24,7 @@ public class Menu {
         }
 	}
 	
-	public static void ajoutPreference(Colonie colonie, ArrayList<Ressource> r, Scanner sc) {
+	public static void ajoutPreference(Colonie colonie, Scanner sc) {
 		String [] input;
         
         ArrayList<String> preference;
@@ -65,7 +65,7 @@ public class Menu {
         for(String element : preference){
             int index = Integer.valueOf(element);
             
-            colon.ajoutPreference(r.get(index));
+            colon.ajoutPreference(colonie.getRessources().get(index));
         }
 	}
 
