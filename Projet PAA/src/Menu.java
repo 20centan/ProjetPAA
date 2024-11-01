@@ -58,8 +58,8 @@ public class Menu {
 		System.out.println("Initialisation des ressources...");
 		Colonie colonie = new Colonie(nbColons);
 			
-		boolean run = true;
-		while(run) {
+		boolean lancer = true;
+		while(lancer) {
 			System.out.println("Choisir une option:");
 			System.out.println("[1] Ajouter une relation entre deux colons \n" + 
                                 "[2] Ajouter les préférences d'un colon \n" + 
@@ -79,7 +79,7 @@ public class Menu {
                         System.out.println("Les préférences d'un colon sont manquantes.");
                     }
                     else{
-                        run = false;
+                        lancer = false;
                     }
                     break;
                 
