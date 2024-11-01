@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -45,7 +47,7 @@ public abstract class UserInput{
     }
 
     // format
-    public String [] saisirSuite(String format){
+    public ArrayList<String> saisirSuite(String format){
         String input;
         String [] trim_input;
         
@@ -63,7 +65,7 @@ public abstract class UserInput{
             break;
         }
 
-        return trim_input;
+        return new ArrayList<String>(Arrays.asList(trim_input));
     }
 
     public void closeUserInput(){

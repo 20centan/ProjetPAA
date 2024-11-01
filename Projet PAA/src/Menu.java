@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu {
@@ -15,29 +14,19 @@ public class Menu {
 	}
 	
 	public static void ajoutPreferences(Colonie colonie, MenuInput mi) {
-        String [] colon_preferences = mi.saisirPreferences(colonie);
-        
-        Colon colon = colonie.getColon(colon_preferences[0].charAt(0));
+        ArrayList<String> colon_preferences = mi.saisirPreferences(colonie);
+
+        Colon colon = colonie.getColon(colon_preferences.get(0).charAt(0));
 
         //On mets maitenant les préférence dans le tableau preference du colon
-        for(String element : colon_preferences[1:]){
+        for(String element : colon_preferences.subList(1, colon_preferences.size())){
             int index = Integer.valueOf(element) - 1;
             
             colon.ajoutPreference(colonie.getRessources().get(index));
         }
 	}
 
-	public static boolean verifListePref(ArrayList<String> preference) {
-		int somme = 0;
-
-        for(String element : preference){
-            somme += Integer.parseInt(element);
-        }
-
-        int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
 	
-        return somme_attendu - somme == 0;
-    }
 	
 	public static void echangeRessource(Colonie colonie, MenuInput mi) {
         Colon colon1, colon2;
@@ -63,8 +52,7 @@ public class Menu {
     }
 
 	public static void construction(){
-		Scanner scanner = new Scanner(System.in);
-        MenuInput mi = new MenuInput(scanner);
+        MenuInput mi = new MenuInput(new Scanner(System.in));
         
         Integer nbColons;
 
@@ -110,7 +98,7 @@ public class Menu {
                     System.out.println("Commande invalide, veuillez ressayer.");
                 }
 		}		
-        scanner.close();
+        mi.closeUserInput();
 	}
 }
 

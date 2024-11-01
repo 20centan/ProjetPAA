@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -23,18 +24,23 @@ public class MenuInput extends UserInput{
         return colonie.getColon(character);
     }
 
-    public String [] saisirPreferences(Colonie colonie){
-        String [] colon_preferences;
+    public ArrayList<String> saisirPreferences(Colonie colonie){
+        ArrayList<String> colon_preferences;
     
         while(true){
             colon_preferences = saisirSuite("[a-zA-Z](\\s+\\d+)+");
 
-            if(colonie.appartientColonie(colon_preferences[0].charAt(0))){
+            if(colonie.appartientColonie(colon_preferences.get(0).charAt(0))){
                 System.out.println("Erreur - Entrez un colon existant.");
                 continue;
             } 
-            if(colon_preferences.length - 1 != colonie.getNbColons()){
+            if(colon_preferences.size() - 1 != colonie.getNbColons()){
                 System.out.println("Erreur - Entrez le bon nombre de préférence.");
+                continue;
+            }
+
+            if(preferenceValide(colon_preferences)){
+                System.out.println("Erreur - Entrez les bonnes préférences.");
                 continue;
             }
             break;
@@ -43,19 +49,31 @@ public class MenuInput extends UserInput{
         return colon_preferences;
     }
 
+    public static boolean preferenceValide(ArrayList<String> preference) {
+		int somme = 0;
+
+        for(String element : preference.subList(1, preference.size())){
+            somme += Integer.parseInt(element);
+        }
+
+        int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
+	
+        return somme_attendu - somme == 0;
+    }
+
     public char [] saisirRelation(Colonie colonie){
-        String [] colon_colon;
+        ArrayList<String> colon_colon;
 
         while(true){
             colon_colon = saisirSuite("[a-zA-Z]\\s+[a-zA-Z]");
 
-            if(colonie.appartientColonie(colon_colon[0].charAt(0)) ||
-            colonie.appartientColonie(colon_colon[1].charAt(0))){
+            if(colonie.appartientColonie(colon_colon.get(0).charAt(0)) ||
+            colonie.appartientColonie(colon_colon.get(1).charAt(0))){
                 System.out.println("Erreur - Entrez des colons existants.");
                 continue;
             }  
            
-            if(colon_colon[0] == colon_colon[1]){
+            if(colon_colon.get(0) == colon_colon.get(1)){
                 System.out.println("Erreur - Entrez des colons distincts.");
                 continue;
             } 
@@ -63,6 +81,6 @@ public class MenuInput extends UserInput{
             break;
         }
 
-        return new char[] {colon_colon[0].charAt(0), colon_colon[1].charAt(0)};
+        return new char[] {colon_colon.get(0).charAt(0), colon_colon.get(1).charAt(0)};
     }
 }
