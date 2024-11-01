@@ -76,7 +76,7 @@ public class Menu {
             somme += Integer.parseInt(element);
         }
 
-        int somme_attendu = (preference.size() * (preference.size() - 1)) / 2;
+        int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
 	
         return somme_attendu - somme == 0;
     }
@@ -132,7 +132,7 @@ public class Menu {
 
     // public int inserer_int(String message, String messageErreur, Scanner sc){    }
 
-	public void construction(){
+	public static void construction(){
 		Scanner scanner = new Scanner(System.in);
         Integer nbColons;
 
