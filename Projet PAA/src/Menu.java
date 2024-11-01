@@ -26,8 +26,6 @@ public class Menu {
         }
 	}
 
-	
-	
 	public static void echangeRessource(Colonie colonie, MenuInput mi) {
         Colon colon1, colon2;
 
