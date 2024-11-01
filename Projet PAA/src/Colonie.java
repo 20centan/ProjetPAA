@@ -3,13 +3,13 @@ import java.util.ArrayList;
 
 public class Colonie {
 	
-    private List<Colon> colonie;
     private int nbColons;
+    private List<Colon> colons;
 
     public Colonie(int nbColons){
         this.nbColons = nbColons;
 
-        colonie = new ArrayList<>();
+        colons = new ArrayList<>();
 
         initialisationColons();
     }
@@ -18,12 +18,12 @@ public class Colonie {
         for(int i = 0; i < nbColons; i++){
             char nomColon = (char) ('A' + i);
 
-            colonie.add(new Colon(nomColon));
+            colons.add(new Colon(nomColon));
         }
     }
 
     public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
-        for(Colon c : colonie){
+        for(Colon c : colons){
             if(c.getNom() == nom) {
                 return c;
             }
