@@ -40,40 +40,12 @@ public class Menu {
     }
 	
 	public static void echangeRessource(Colonie colonie, MenuInput mi) {
-		String input;
         Colon colon1, colon2;
 
         System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
 	
-        Colon colon1 = mi.saisirColon();
-
-		//Verifier que ce colon existe
-        while(true){
-            System.out.println("Colon numéro 1 :");
-            input = sc.nextLine();
-            colon1 = colonie.getColon(input.charAt(0));
-            
-            if(colon1 == null){
-                System.out.println("Veuillez ré-essayer avec des colons existant.");
-                continue;
-            }
-
-            break;
-        }
-
-        //Verifier que ce colon existe
-        while(true){
-            System.out.println("Colon numéro 2 :");
-            input = sc.nextLine();
-            colon2 = colonie.getColon(input.charAt(0));
-            
-            if(colon2 == null){
-                System.out.println("Veuillez ré-essayer avec des colons existant.");
-                continue;
-            }
-
-            break;
-        }
+        colon1 = mi.saisirColon(colonie);
+        colon2 = mi.saisirColon(colonie);
         
         Ressource tmp = colon1.getRessource();
         colon1.ajoutRessource(colon2.getRessource());
