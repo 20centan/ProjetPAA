@@ -1,5 +1,5 @@
 public class Ressource {
-    private static int id = 0;
+    private static int id = 1;
 
     public Ressource(){
         id++;
