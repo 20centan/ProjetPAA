@@ -1,11 +1,12 @@
 public class Ressource {
-    private static int id = 1;
+    private int id;
+    private static int compteur = 0;
 
     public Ressource(){
-        id++;
+        id = ++compteur;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }   
 }

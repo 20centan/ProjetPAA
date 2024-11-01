@@ -10,27 +10,20 @@ public class Colonie {
     public Colonie(int nbColons){
         this.nbColons = nbColons;
 
-        initialisationColons();
-        initialisationRessources();
+        initialisationColonie();
     }
 
-    public void initialisationColons(){
+    public void initialisationColonie(){
         colons = new ArrayList<>();
-
-        for(int i = 0; i < nbColons; i++){
-            char nomColon = (char) ('A' + i);
-
-            colons.add(new Colon(nomColon));
-        }
-    }
-
-    public void initialisationRessources(){
         ressources = new ArrayList<>();
 
         for(int i = 0; i < nbColons; i++){
+            colons.add(new Colon((char) ('A' + i)));
+
             ressources.add(new Ressource());
         }
     }
+
 
     public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
         for(Colon c : colons){
@@ -50,9 +43,7 @@ public class Colonie {
     public static void main(String [] args){
         Colonie colonie = new Colonie(5);
 
-        Colon c = colonie.getColon('B');
-
-        System.out.println(c.getNom());
+        System.out.println(colonie.ressources.get(1).getId());
     }
 
 }
