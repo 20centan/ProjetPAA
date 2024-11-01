@@ -7,13 +7,20 @@ public class Menu {
 		Colon colon1 = null, colon2 = null;
 		String [] relation; 
 
-		System.out.println("Veuillez specifiez les deux colons qui ne s'aiment pas (format: A B) :");
-		relation = sc.nextLine().split(" ");
-		
 		//Verif que les colons existent
-        while(colon1 == null || colon2 == null){
+        while(true){
+            System.out.println("Veuillez specifiez les deux colons qui ne s'aiment pas (format: A B) :");
+            relation = sc.nextLine().split(" ");
+
             colon1 = colonie.getColon(relation[0].charAt(0));
             colon2 = colonie.getColon(relation[1].charAt(0));
+        
+            if(colon1 == null || colon2 == null){
+                System.out.println("Erreur - Entrez un colon existant");
+                continue;
+            }
+
+            break;
         }
 	}
 	
