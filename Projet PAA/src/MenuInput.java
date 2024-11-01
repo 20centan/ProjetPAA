@@ -7,20 +7,20 @@ public class MenuInput extends UserInput{
         super(sc);
     }
 
-    public char saisirColon(){
+    public Colon saisirColon(Colonie colonie){
         char character;
         
         while(true){
             character = saisirChar("Entrez un colon: ", "Erreur - Veuillez entrez un lettre.");
             character = Character.toUpperCase(character);
 
-            if(character == 'A'){
+            if(colonie.appartientColonie(character)){
                 break;
             }
             System.out.println("Erreur - Entrez un colon existant");
         }
 
-        return character;
+        return colonie.getColon(character);
     }
 
     public String [] saisirPreferences(Colonie colonie){

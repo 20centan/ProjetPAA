@@ -3,66 +3,24 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu {
-    public static void ajoutRelation(Colonie colonie, Scanner sc) {
-		Colon colon1 = null, colon2 = null;
-		String [] relation; 
+    public static void ajoutRelation(Colonie colonie, MenuInput mi) {
+		char [] relation; 
 
-		//Verif que les colons existent
-        while(true){
-            System.out.println("Veuillez spécifiez les deux colons qui ne s'aiment pas (format: A B) :");
-            relation = sc.nextLine().split(" ");
+        relation = mi.saisirRelation(colonie);
+		
+        Colon colon1 = colonie.getColon(relation[0]);
+        Colon colon2 = colonie.getColon(relation[1]);
 
-            colon1 = colonie.getColon(relation[0].charAt(0));
-            colon2 = colonie.getColon(relation[1].charAt(0));
-        
-            if(colon1 == null || colon2 == null){
-                System.out.println("Erreur - Entrez un colon existant");
-                continue;
-            }
-
-            break;
-        }
+        colon1.ajoutEnnemi(colon2);
 	}
 	
-	public static void ajoutPreferences(Colonie colonie, Scanner sc) {
-		String [] input;
+	public static void ajoutPreferences(Colonie colonie, MenuInput mi) {
+        String [] colon_preferences = mi.saisirPreferences(colonie);
         
-        ArrayList<String> preference;
-        Colon colon;
-
-        while(true){
-            System.out.println("Veuillez spécifiez les préférences du colon (format: A 1 2 3 ...) :");
-            input = sc.nextLine().split(" ");
-            
-            preference = new ArrayList<>(Arrays.asList(input));
-            preference.remove(0);
-            
-            if(preference.size() != colonie.getNbColons()) {
-                System.out.println("Le nombre de ressources mises ne correspond pas au nombre de ressources attendu (Le nombre de ressource = le nombre de colons)");
-                System.out.println("Veuillez ré-essayer avec le bon nombre.");
-                
-                continue;
-            }
-
-            colon = colonie.getColon(input[0].charAt(0));
-
-            if(colon == null) {
-                System.out.println("Veuillez ré-essayer avec des colons existant.");
-                
-                continue;
-            }
-
-            if(!verifListePref(preference)){
-                System.out.println("Veuillez ré-essayer avec les bonnes préférences.");
-
-                continue;
-            }
-        
-            break;
-        }
+        Colon colon = colonie.getColon(colon_preferences[0].charAt(0));
 
         //On mets maitenant les préférence dans le tableau preference du colon
-        for(String element : preference){
+        for(String element : colon_preferences[1:]){
             int index = Integer.valueOf(element) - 1;
             
             colon.ajoutPreference(colonie.getRessources().get(index));
@@ -81,12 +39,14 @@ public class Menu {
         return somme_attendu - somme == 0;
     }
 	
-	public static void echangeRessource(Colonie colonie, Scanner sc) {
+	public static void echangeRessource(Colonie colonie, MenuInput mi) {
 		String input;
         Colon colon1, colon2;
 
         System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
-		
+	
+        Colon colon1 = mi.saisirColon();
+
 		//Verifier que ce colon existe
         while(true){
             System.out.println("Colon numéro 1 :");
@@ -134,27 +94,17 @@ public class Menu {
 
 	public static void construction(){
 		Scanner scanner = new Scanner(System.in);
+        MenuInput mi = new MenuInput(scanner);
+        
         Integer nbColons;
 
         while(true){
-            System.out.println("De combien de colons dispose votre colonie ? (<=26)");
+            nbColons = mi.saisirInt("De combien de colons dispose votre colonie ? (<=26)");
 
-            try {
-                nbColons = Integer.parseInt(scanner.nextLine()); 
-
-                if(nbColons <= 0){
-                    System.out.println("Erreur de syntaxe - Veuillez entrer un nombre >= 1. \n");
-                }
-    
-                else if(26 < nbColons){
-                    System.out.println("Erreur de syntaxe - Veuillez entrer un nombre <= 26. \n");
-                }
-
-                break;
-    
-            } catch (NumberFormatException e) {
-                System.out.println("Erreur de syntaxe - Veuillez entrer un entier. \n");
+            if(nbColons < 0 || 26 < nbColons){
+                continue;
             }
+            break;
         }
 
 		System.out.println("Initialisation de la colonie...");
@@ -167,25 +117,14 @@ public class Menu {
 			ressources.add(new Ressource());
 		}
 			
-        Integer commande;
 		boolean run = true;
-			
 		while(run) {
 			System.out.println("Choisir une option:");
 			System.out.println("[1] Ajouter une relation entre deux colons \n" + 
                                 "[2] Ajouter les préférences d'un colon \n" + 
                                 "[3] fin");
 			
-            try {
-                commande = Integer.parseInt(scanner.nextLine()); 
-    
-            } catch (NumberFormatException e) {
-                System.out.println("Erreur de syntaxe - Veuillez entrer un entier. \n");
-                
-                continue;
-            }
-				
-			switch(commande) {
+			switch(mi.saisirInt("")) {
 			    case 1: 
                     ajoutRelation(colonie, scanner);
 			        break;
