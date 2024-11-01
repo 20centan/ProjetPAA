@@ -27,7 +27,7 @@ public abstract class UserInput{
         return input;
     }
 
-    public char saisirChar(String message, String messageError){
+    public char saisirChar(String message){
         String input;
 
         while(true){
@@ -35,7 +35,7 @@ public abstract class UserInput{
             input = sc.nextLine();
 
             if(input.length() != 1 || !Character.isLetter(input.charAt(0))){
-                System.out.println(messageError);
+                System.out.println("Erreur - Veuillez entrez un lettre.");
                 continue;
             }
             break;

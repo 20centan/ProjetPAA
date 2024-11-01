@@ -11,7 +11,7 @@ public class MenuInput extends UserInput{
         char character;
         
         while(true){
-            character = saisirChar("Entrez un colon: ", "Erreur - Veuillez entrez un lettre.");
+            character = saisirChar("Entrez un colon: ");
             character = Character.toUpperCase(character);
 
             if(colonie.appartientColonie(character)){

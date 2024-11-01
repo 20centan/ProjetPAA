@@ -80,9 +80,9 @@ public class Menu {
         }
 
 		System.out.println("Initialisation de la colonie...");
+		System.out.println("Initialisation des ressources...");
 		Colonie colonie = new Colonie(nbColons);
 			
-		System.out.println("Initialisation des ressources...");
 
 		ArrayList<Ressource> ressources = new ArrayList<>();
 		for(int i = 0; i < nbColons ; i ++){
