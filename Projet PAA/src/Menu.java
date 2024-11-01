@@ -159,7 +159,7 @@ public class Menu {
 			        break;
                     
                 case 2: 
-                    ajoutPreference(colonie, ressources, scanner);
+                    ajoutPreference(colonie, scanner);
                     break;
                 
                 case 3: 
