@@ -47,13 +47,4 @@ public class Colon {
     public List<Ressource> getPreference() {
         return preference;
     }
-
-    public static void main(String [] args){
-        Colon colon1 = new Colon('A');
-        Colon colon2 = new Colon('B');
-
-        colon1.ajoutEnnemi(colon2);
-        System.out.println(colon1.ennemis.get(0).nom);
-        System.out.println(colon2.ennemis.get(0).nom);
-    }
 }
