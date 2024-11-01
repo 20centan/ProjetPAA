@@ -52,17 +52,15 @@ public class Menu {
         colon2.ajoutRessource(tmp);
 	}
 
-    public static boolean verifPrefColonie(Colonie colonie){
+    public static boolean preferenceVide(Colonie colonie){
         for(Colon colon : colonie.getColons()){
             if(colon.getPreference().isEmpty()){
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
-
-    // public int inserer_int(String message, String messageErreur, Scanner sc){    }
 
 	public static void construction(){
 		Scanner scanner = new Scanner(System.in);
@@ -83,12 +81,6 @@ public class Menu {
 		System.out.println("Initialisation des ressources...");
 		Colonie colonie = new Colonie(nbColons);
 			
-
-		ArrayList<Ressource> ressources = new ArrayList<>();
-		for(int i = 0; i < nbColons ; i ++){
-			ressources.add(new Ressource());
-		}
-			
 		boolean run = true;
 		while(run) {
 			System.out.println("Choisir une option:");
@@ -106,8 +98,8 @@ public class Menu {
                     break;
                 
                 case 3: 
-                    if(!verifPrefColonie(colonie)){
-                        System.out.println("Les préférences d'un colon est manquantes.");
+                    if(preferenceVide(colonie)){
+                        System.out.println("Les préférences d'un colon sont manquantes.");
                     }
                     else{
                         run = false;
