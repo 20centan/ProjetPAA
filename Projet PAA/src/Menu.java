@@ -9,7 +9,7 @@ public class Menu {
 
 		//Verif que les colons existent
         while(true){
-            System.out.println("Veuillez specifiez les deux colons qui ne s'aiment pas (format: A B) :");
+            System.out.println("Veuillez spécifiez les deux colons qui ne s'aiment pas (format: A B) :");
             relation = sc.nextLine().split(" ");
 
             colon1 = colonie.getColon(relation[0].charAt(0));
