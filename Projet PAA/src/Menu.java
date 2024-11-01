@@ -47,12 +47,16 @@ public class Menu {
             colon = colonie.getColon(input[0].charAt(0));
 
             if(colon == null) {
-                System.out.println("Veuillez ressayer avec des colons existant.");
+                System.out.println("Veuillez ré-essayer avec des colons existant.");
                 
                 continue;
             }
 
-            // vérifier si un élément fait partie de la liste des préférences.
+            if(!verifListePref(preference)){
+                System.out.println("Veuillez ré-essayer avec les bonnes préférences.");
+
+                continue;
+            }
         
             break;
         }
@@ -65,9 +69,17 @@ public class Menu {
         }
 	}
 
-	public static void verifListePref(Colonie c) {
-		//to do
-	}
+	public static boolean verifListePref(ArrayList<String> preference) {
+		int somme = 0;
+
+        for(String element : preference){
+            somme += Integer.parseInt(element);
+        }
+
+        int somme_attendu = (preference.size() * (preference.size() - 1)) / 2;
+	
+        return somme_attendu - somme == 0;
+    }
 	
 	public static void echangeRessource(Colonie c) {
 		//a finir
