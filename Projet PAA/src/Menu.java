@@ -120,6 +120,16 @@ public class Menu {
         colon2.ajoutRessource(tmp);
 	}
 
+    public static boolean verifPrefColonie(Colonie colonie){
+        for(Colon colon : colonie.getColons()){
+            if(colon.getPreference().isEmpty()){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // public int inserer_int(String message, String messageErreur, Scanner sc){    }
 
 	public void construction(){
@@ -185,9 +195,13 @@ public class Menu {
                     break;
                 
                 case 3: 
-                    //to do;
+                    if(!verifPrefColonie(colonie)){
+                        System.out.println("Les préférences d'un colon est manquantes.");
+                    }
+                    else{
+                        run = false;
+                    }
                     
-                    run = false;
                     break;
                 
                 default: 

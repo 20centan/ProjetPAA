@@ -1,10 +1,10 @@
+import java.util.List;
 import java.util.ArrayList;
-
 
 public class Colon {
     private char nom;
-    private ArrayList<Colon> ennemis;
-    private ArrayList<Ressource> preference;
+    private List<Colon> ennemis;
+    private List<Ressource> preference;
     private Ressource ressource;
 
     public Colon(char nom){
@@ -38,6 +38,14 @@ public class Colon {
 
     public Ressource getRessource(){
         return ressource;
+    }
+
+    public List<Colon> getEnnemis() {
+        return ennemis;
+    }
+
+    public List<Ressource> getPreference() {
+        return preference;
     }
 
     public static void main(String [] args){
