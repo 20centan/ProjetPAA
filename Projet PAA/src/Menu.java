@@ -63,7 +63,7 @@ public class Menu {
 
         //On mets maitenant les préférence dans le tableau preference du colon
         for(String element : preference){
-            int index = Integer.valueOf(element);
+            int index = Integer.valueOf(element) - 1;
             
             colon.ajoutPreference(colonie.getRessources().get(index));
         }
