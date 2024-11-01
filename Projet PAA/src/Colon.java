@@ -36,10 +36,13 @@ public class Colon {
         return nom;
     }
 
+    public Ressource getRessource(){
+        return ressource;
+    }
+
     public static void main(String [] args){
         Colon colon1 = new Colon('A');
         Colon colon2 = new Colon('B');
-        Colon colon3 = new Colon('C');
 
         colon1.ajoutEnnemi(colon2);
         System.out.println(colon1.ennemis.get(0).nom);

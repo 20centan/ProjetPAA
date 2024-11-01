@@ -81,21 +81,43 @@ public class Menu {
         return somme_attendu - somme == 0;
     }
 	
-	public static void echangeRessource(Colonie c) {
-		//a finir
+	public static void echangeRessource(Colonie colonie, Scanner sc) {
+		String input;
+        Colon colon1, colon2;
+
+        System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
 		
-		Scanner entree =   new Scanner(System.in);
-		System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
-		
-		System.out.println("Colon numéro 1 :");
-		String entree1 = entree.next();
 		//Verifier que ce colon existe
-		
-		System.out.println("Colon numéro 2 :");
-		String entree2 = entree.next();
-		//Verifier que ce colon existe
-		
-		//si les deux colons existent alors echanger leurs ressources sinon gerer erreur
+        while(true){
+            System.out.println("Colon numéro 1 :");
+            input = sc.nextLine();
+            colon1 = colonie.getColon(input.charAt(0));
+            
+            if(colon1 == null){
+                System.out.println("Veuillez ré-essayer avec des colons existant.");
+                continue;
+            }
+
+            break;
+        }
+
+        //Verifier que ce colon existe
+        while(true){
+            System.out.println("Colon numéro 2 :");
+            input = sc.nextLine();
+            colon2 = colonie.getColon(input.charAt(0));
+            
+            if(colon2 == null){
+                System.out.println("Veuillez ré-essayer avec des colons existant.");
+                continue;
+            }
+
+            break;
+        }
+        
+        Ressource tmp = colon1.getRessource();
+        colon1.ajoutRessource(colon2.getRessource());
+        colon2.ajoutRessource(tmp);
 	}
 
     // public int inserer_int(String message, String messageErreur, Scanner sc){    }
