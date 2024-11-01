@@ -24,6 +24,13 @@ public class Colonie {
         }
     }
 
+    public boolean appartientColonie(Colon colon){
+        return getColon(colon.getNom()) != null;
+    }
+
+    public boolean appartientColonie(char nom){
+        return getColon(nom) != null;
+    }
 
     public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
         for(Colon c : colons){
