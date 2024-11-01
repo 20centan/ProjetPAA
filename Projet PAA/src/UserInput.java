@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 
-public class UserInput{
+public abstract class UserInput{
     private Scanner sc;
 
     public UserInput(Scanner sc){
@@ -65,7 +65,6 @@ public class UserInput{
 
         return trim_input;
     }
-
 
     public void closeUserInput(){
         sc.close();
