@@ -5,20 +5,30 @@ public class Colonie {
 	
     private int nbColons;
     private List<Colon> colons;
+    private List<Ressource> ressources; 
 
     public Colonie(int nbColons){
         this.nbColons = nbColons;
 
-        colons = new ArrayList<>();
-
         initialisationColons();
+        initialisationRessources();
     }
 
     public void initialisationColons(){
+        colons = new ArrayList<>();
+
         for(int i = 0; i < nbColons; i++){
             char nomColon = (char) ('A' + i);
 
             colons.add(new Colon(nomColon));
+        }
+    }
+
+    public void initialisationRessources(){
+        ressources = new ArrayList<>();
+
+        for(int i = 0; i < nbColons; i++){
+            ressources.add(new Ressource());
         }
     }
 
