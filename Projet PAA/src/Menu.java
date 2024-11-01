@@ -39,15 +39,6 @@ public class Menu {
         colon2.ajoutRessource(tmp);
 	}
 
-    public static boolean preferenceVide(Colonie colonie){
-        for(Colon colon : colonie.getColons()){
-            if(colon.getPreference().isEmpty()){
-                return true;
-            }
-        }
-
-        return false;
-    }
 
 	public static void construction(){
         MenuInput mi = new MenuInput(new Scanner(System.in));
@@ -84,7 +75,7 @@ public class Menu {
                     break;
                 
                 case 3: 
-                    if(preferenceVide(colonie)){
+                    if(colonie.preferenceVide()){
                         System.out.println("Les préférences d'un colon sont manquantes.");
                     }
                     else{

@@ -39,7 +39,7 @@ public class MenuInput extends UserInput{
                 continue;
             }
 
-            if(preferenceValide(colon_preferences)){
+            if(colonie.preferenceValide(colon_preferences)){
                 System.out.println("Erreur - Entrez les bonnes préférences.");
                 continue;
             }
@@ -47,18 +47,6 @@ public class MenuInput extends UserInput{
         }
         
         return colon_preferences;
-    }
-
-    public static boolean preferenceValide(ArrayList<String> preference) {
-		int somme = 0;
-
-        for(String element : preference.subList(1, preference.size())){
-            somme += Integer.parseInt(element);
-        }
-
-        int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
-	
-        return somme_attendu - somme == 0;
     }
 
     public char [] saisirRelation(Colonie colonie){
