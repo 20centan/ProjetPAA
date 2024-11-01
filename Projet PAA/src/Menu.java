@@ -98,11 +98,11 @@ public class Menu {
 			
 			switch(mi.saisirInt("")) {
 			    case 1: 
-                    ajoutRelation(colonie, scanner);
+                    ajoutRelation(colonie, mi);
 			        break;
                     
                 case 2: 
-                    ajoutPreferences(colonie, scanner);
+                    ajoutPreferences(colonie, mi);
                     break;
                 
                 case 3: 
@@ -112,7 +112,6 @@ public class Menu {
                     else{
                         run = false;
                     }
-                    
                     break;
                 
                 default: 
