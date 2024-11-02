@@ -17,6 +17,7 @@ public abstract class UserInput{
         while(true){
             System.out.println(message);
 
+            // ça vérifie si l'utilisateur a bien écrit un nombre
             try {
                 input = Integer.parseInt(sc.nextLine()); 
                 break;
@@ -36,6 +37,7 @@ public abstract class UserInput{
             System.out.println(message);
             input = sc.nextLine();
 
+            // ça vérifie si l'utilisateur a bien écrit une lettre
             if(input.length() != 1 || !Character.isLetter(input.charAt(0))){
                 System.out.println("Erreur - Veuillez entrez un lettre.");
                 continue;
@@ -46,7 +48,6 @@ public abstract class UserInput{
         return input.charAt(0);
     }
 
-    // format
     public ArrayList<String> saisirSuite(String format){
         String input;
         ArrayList<String> trim_input;
@@ -54,7 +55,8 @@ public abstract class UserInput{
         while(true){
             input = sc.nextLine();
             input = input.trim();
-
+            
+            // format = regex (expression régulière). ça vérifie si l'utilisateur a bien écrit l'input.
             if(!input.matches(format)){
                 System.out.println("Erreur - Entrez le bon format.");
                 continue;
@@ -69,6 +71,7 @@ public abstract class UserInput{
         return trim_input;
     }
 
+    // permet de fermer le Scanner
     public void closeUserInput(){
         sc.close();
     }

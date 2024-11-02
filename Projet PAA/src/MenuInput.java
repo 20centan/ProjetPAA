@@ -15,10 +15,12 @@ public class MenuInput extends UserInput{
             character = saisirChar("Entrez un colon: ");
             character = Character.toUpperCase(character);
 
-            if(colonie.appartientColonie(character)){
-                break;
+            if(!colonie.appartientColonie(character)){
+                System.out.println("Erreur - Entrez un colon existant");
+                continue;
             }
-            System.out.println("Erreur - Entrez un colon existant");
+            
+            break;
         }
 
         return colonie.getColon(character);
@@ -30,41 +32,44 @@ public class MenuInput extends UserInput{
         while(true){
             colon_preferences = saisirSuite("[a-zA-Z](\\s+\\d+)+");
 
-            System.out.println(colon_preferences.toString());
-            System.out.println(colonie.getColons().toString());
-            System.out.println(colonie.appartientColonie(colon_preferences.get(0).charAt(0)));
-
+            // ça vérifie si colon existe
             if(!colonie.appartientColonie(colon_preferences.get(0).charAt(0))){
                 System.out.println("Erreur - Entrez un colon existant.");
                 continue;
             } 
+
+            // ça vérifie si une préférence n'est pas oublié
             if(colon_preferences.size() - 1 != colonie.getNbColons()){
                 System.out.println("Erreur - Entrez le bon nombre de préférence.");
                 continue;
             }
 
+            //ça vérifie si les préférences sont toutes distinctes (ex: "B 1 1 2" non)
             if(colonie.preferenceValide(colon_preferences)){
                 System.out.println("Erreur - Entrez les bonnes préférences.");
                 continue;
             }
+
             break;
         }
         
         return colon_preferences;
     }
 
-    public char [] saisirRelation(Colonie colonie){
+    public ArrayList<String> saisirRelation(Colonie colonie){
         ArrayList<String> colon_colon;
 
         while(true){
             colon_colon = saisirSuite("[a-zA-Z]\\s+[a-zA-Z]");
 
+            // ça vérifie si les deux colons existent
             if(colonie.appartientColonie(colon_colon.get(0).charAt(0)) ||
             colonie.appartientColonie(colon_colon.get(1).charAt(0))){
                 System.out.println("Erreur - Entrez des colons existants.");
                 continue;
             }  
            
+            // ça vérifie si les deux colons sont distincts
             if(colon_colon.get(0) == colon_colon.get(1)){
                 System.out.println("Erreur - Entrez des colons distincts.");
                 continue;
@@ -73,6 +78,6 @@ public class MenuInput extends UserInput{
             break;
         }
 
-        return new char[] {colon_colon.get(0).charAt(0), colon_colon.get(1).charAt(0)};
+        return colon_colon;
     }
 }
