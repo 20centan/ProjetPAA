@@ -42,15 +42,17 @@ public class Colonie {
         return false;
     }
 
-    public boolean preferenceValide(ArrayList<String> preference) {
+    public boolean preferenceValide(ArrayList<String> colon_preference) {
+        List<String> preference = colon_preference.subList(1, colon_preference.size());
 		int somme = 0;
 
-        for(String element : preference.subList(1, preference.size())){
+        for(String element : preference){
             somme += Integer.parseInt(element);
         }
-
+        
         int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
-	
+        
+        System.out.println(somme_attendu - somme == 0);
         return somme_attendu - somme == 0;
     }
 

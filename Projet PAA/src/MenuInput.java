@@ -46,7 +46,7 @@ public class MenuInput extends UserInput{
             }
 
             //ça vérifie si les préférences sont toutes distinctes (ex: "B 1 1 2" non)
-            if(colonie.preferenceValide(colon_preferences)){
+            if(!colonie.preferenceValide(colon_preferences)){
                 System.out.println("Erreur - Entrez les bonnes préférences.");
                 continue;
             }
