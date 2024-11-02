@@ -65,12 +65,10 @@ public class Menu {
 
 		boolean lancer = true;
 		while(lancer) {
-			System.out.println("Choisir une option:");
-			System.out.println("[1] Ajouter une relation entre deux colons \n" + 
+			switch(mi.saisirInt("Choisir une option: \n" +
+                                "[1] Ajouter une relation entre deux colons \n" + 
                                 "[2] Ajouter les préférences d'un colon \n" + 
-                                "[3] fin");
-			
-			switch(mi.saisirInt("")) {
+                                "[3] fin")) {
 			    case 1: 
                     System.out.println();
                     ajoutRelation(colonie, mi);

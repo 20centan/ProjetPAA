@@ -47,4 +47,8 @@ public class Colon {
     public List<Ressource> getPreference() {
         return preference;
     }
+
+    public String toString(){
+        return "("+ nom + ": " + ressource + ")";
+    }
 }

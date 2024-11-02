@@ -54,7 +54,6 @@ public class Colonie {
         return somme_attendu - somme == 0;
     }
 
-
     public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
         for(Colon c : colons){
             if(c.getNom() == nom) {
