@@ -19,7 +19,7 @@ public class MenuInput extends UserInput{
                 System.out.println("Erreur - Entrez un colon existant");
                 continue;
             }
-            
+
             break;
         }
 
@@ -70,7 +70,7 @@ public class MenuInput extends UserInput{
             }  
            
             // ça vérifie si les deux colons sont distincts
-            if(colon_colon.get(0) == colon_colon.get(1)){
+            if(colon_colon.get(0).equals(colon_colon.get(1))){
                 System.out.println("Erreur - Entrez des colons distincts.");
                 continue;
             } 
