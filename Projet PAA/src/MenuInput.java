@@ -30,7 +30,8 @@ public class MenuInput extends UserInput{
         ArrayList<String> colon_preferences;
     
         while(true){
-            colon_preferences = saisirSuite("[a-zA-Z](\\s+\\d+)+");
+            colon_preferences = saisirSuite("Entrez les préférences d'une colon (format: A 1 2 ...)", 
+                                            "[a-zA-Z](\\s+\\d+)+");
 
             // ça vérifie si colon existe
             if(!colonie.appartientColonie(colon_preferences.get(0).charAt(0))){
@@ -60,7 +61,8 @@ public class MenuInput extends UserInput{
         ArrayList<String> colon_colon;
 
         while(true){
-            colon_colon = saisirSuite("[a-zA-Z]\\s+[a-zA-Z]");
+            colon_colon = saisirSuite("Entrez les deux colons qui ne s'aime pas (format: A B)",
+                                    "[a-zA-Z]\\s+[a-zA-Z]");
 
             // ça vérifie si les deux colons existent
             if(colonie.appartientColonie(colon_colon.get(0).charAt(0)) ||

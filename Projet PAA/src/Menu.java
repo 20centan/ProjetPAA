@@ -5,6 +5,7 @@ public class Menu {
     public static void ajoutRelation(Colonie colonie, MenuInput mi) {
 		ArrayList<String> relation; 
 
+        System.out.println("Colons: " + colonie.getColons().toString());
         relation = mi.saisirRelation(colonie);
 		
         Colon colon1 = colonie.getColon(relation.get(0).charAt(0));
@@ -14,6 +15,9 @@ public class Menu {
 	}
 	
 	public static void ajoutPreferences(Colonie colonie, MenuInput mi) {
+        System.out.println("Colons: " + colonie.getColons().toString());
+        System.out.println("Ressources: " + colonie.getRessources().toString());
+
         ArrayList<String> colon_preferences = mi.saisirPreferences(colonie);
 
         // On récupère le colon
@@ -53,10 +57,12 @@ public class Menu {
             break;
         }
 
+        System.out.println();
 		System.out.println("Initialisation de la colonie...");
 		System.out.println("Initialisation des ressources...");
 		Colonie colonie = new Colonie(nbColons);
-			
+        System.out.println();
+
 		boolean lancer = true;
 		while(lancer) {
 			System.out.println("Choisir une option:");

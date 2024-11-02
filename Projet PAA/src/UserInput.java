@@ -15,7 +15,8 @@ public abstract class UserInput{
         int input;
 
         while(true){
-            System.out.println(message);
+            System.out.printf(message);
+            System.out.print("> ");
 
             // ça vérifie si l'utilisateur a bien écrit un nombre
             try {
@@ -35,6 +36,7 @@ public abstract class UserInput{
 
         while(true){
             System.out.println(message);
+            System.out.print("> ");
             input = sc.nextLine();
 
             // ça vérifie si l'utilisateur a bien écrit une lettre
@@ -48,12 +50,15 @@ public abstract class UserInput{
         return input.charAt(0);
     }
 
-    public ArrayList<String> saisirSuite(String format){
+    public ArrayList<String> saisirSuite(String message, String format){
         String input;
         ArrayList<String> trim_input;
         
         while(true){
+            System.out.println(message);
+            System.out.print("> ");
             input = sc.nextLine();
+
             input = input.trim();
             
             // format = regex (expression régulière). ça vérifie si l'utilisateur a bien écrit l'input.
