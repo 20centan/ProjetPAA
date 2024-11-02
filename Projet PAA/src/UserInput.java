@@ -15,7 +15,7 @@ public abstract class UserInput{
         int input;
 
         while(true){
-            System.out.printf(message);
+            System.out.println(message);
             System.out.print("> ");
 
             // ça vérifie si l'utilisateur a bien écrit un nombre

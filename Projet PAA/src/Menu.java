@@ -72,10 +72,12 @@ public class Menu {
 			
 			switch(mi.saisirInt("")) {
 			    case 1: 
+                    System.out.println();
                     ajoutRelation(colonie, mi);
 			        break;
                     
                 case 2: 
+                    System.out.println();
                     ajoutPreferences(colonie, mi);
                     break;
                 
@@ -91,6 +93,7 @@ public class Menu {
                 default: 
                     System.out.println("Commande invalide, veuillez ressayer.");
                 }
+                System.out.println();
 		}		
         mi.closeUserInput();
 	}

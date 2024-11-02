@@ -65,8 +65,8 @@ public class MenuInput extends UserInput{
                                     "[a-zA-Z]\\s+[a-zA-Z]");
 
             // ça vérifie si les deux colons existent
-            if(colonie.appartientColonie(colon_colon.get(0).charAt(0)) ||
-            colonie.appartientColonie(colon_colon.get(1).charAt(0))){
+            if(!colonie.appartientColonie(colon_colon.get(0).charAt(0)) ||
+            !colonie.appartientColonie(colon_colon.get(1).charAt(0))){
                 System.out.println("Erreur - Entrez des colons existants.");
                 continue;
             }  
