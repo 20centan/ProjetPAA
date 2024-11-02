@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -49,23 +49,24 @@ public abstract class UserInput{
     // format
     public ArrayList<String> saisirSuite(String format){
         String input;
-        String [] trim_input;
+        ArrayList<String> trim_input;
         
         while(true){
             input = sc.nextLine();
+            input = input.trim();
 
-            // format: A 1 2 3
-            if(!input.trim().matches(format)){
+            if(!input.matches(format)){
                 System.out.println("Erreur - Entrez le bon format.");
                 continue;
             }
         
-            trim_input = Stream.of(input.split(" ")).filter(w -> !w.isEmpty()).toArray(String[]::new);
+            // Permet de retirer les espaces inutils (ex input:" B 1   3   2  " -> {B, 1, 3, 2})
+            trim_input = Stream.of(input.split(" ")).filter(w -> !w.isEmpty()).collect(Collectors.toCollection(ArrayList::new));;
         
             break;
         }
 
-        return new ArrayList<String>(Arrays.asList(trim_input));
+        return trim_input;
     }
 
     public void closeUserInput(){

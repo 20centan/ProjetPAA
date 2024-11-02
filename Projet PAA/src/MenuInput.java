@@ -30,7 +30,11 @@ public class MenuInput extends UserInput{
         while(true){
             colon_preferences = saisirSuite("[a-zA-Z](\\s+\\d+)+");
 
-            if(colonie.appartientColonie(colon_preferences.get(0).charAt(0))){
+            System.out.println(colon_preferences.toString());
+            System.out.println(colonie.getColons().toString());
+            System.out.println(colonie.appartientColonie(colon_preferences.get(0).charAt(0)));
+
+            if(!colonie.appartientColonie(colon_preferences.get(0).charAt(0))){
                 System.out.println("Erreur - Entrez un colon existant.");
                 continue;
             } 

@@ -77,11 +77,4 @@ public class Colonie {
     public int getNbColons(){
         return nbColons;
     }
-
-    public static void main(String [] args){
-        Colonie colonie = new Colonie(5);
-
-        System.out.println(colonie.ressources.get(1).getId());
-    }
-
 }

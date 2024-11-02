@@ -48,7 +48,7 @@ public class Menu {
         while(true){
             nbColons = mi.saisirInt("De combien de colons dispose votre colonie ? (<=26)");
 
-            if(nbColons < 0 || 26 < nbColons){
+            if(nbColons <= 0 || 26 < nbColons){
                 continue;
             }
             break;
