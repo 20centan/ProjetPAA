@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Menu.construction();
+        Colonie colonie = new Colonie();
+        Menu.construction(colonie);
     }
 }

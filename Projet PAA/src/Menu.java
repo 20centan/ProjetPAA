@@ -43,10 +43,10 @@ public class Menu {
 	}
 
 
-	public static void construction(){
+	public static void construction(Colonie colonie){
         MenuInput mi = new MenuInput(new Scanner(System.in));
         
-        Integer nbColons;
+        int nbColons;
 
         while(true){
             nbColons = mi.saisirInt("De combien de colons dispose votre colonie ? (<=26)");
@@ -60,7 +60,7 @@ public class Menu {
         System.out.println();
 		System.out.println("Initialisation de la colonie...");
 		System.out.println("Initialisation des ressources...");
-		Colonie colonie = new Colonie(nbColons);
+		colonie.initialisationColonie(nbColons);
         System.out.println();
 
 		boolean lancer = true;

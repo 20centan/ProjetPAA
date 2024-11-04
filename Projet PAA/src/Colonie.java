@@ -7,13 +7,8 @@ public class Colonie {
     private List<Colon> colons;
     private List<Ressource> ressources; 
 
-    public Colonie(int nbColons){
+    public void initialisationColonie(int nbColons){
         this.nbColons = nbColons;
-
-        initialisationColonie();
-    }
-
-    public void initialisationColonie(){
         colons = new ArrayList<>();
         ressources = new ArrayList<>();
 
@@ -51,8 +46,7 @@ public class Colonie {
         }
         
         int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
-        
-        System.out.println(somme_attendu - somme == 0);
+
         return somme_attendu - somme == 0;
     }
 
