@@ -37,7 +37,7 @@ public class MenuInput extends UserInput{
             if(!colonie.appartientColonie(colon_preferences.get(0).charAt(0))){
                 System.out.println("Erreur - Entrez un colon existant.");
                 continue;
-            } 
+            }
 
             // ça vérifie si une préférence n'est pas oublié
             if(colon_preferences.size() - 1 != colonie.getNbColons()){

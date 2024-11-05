@@ -51,4 +51,8 @@ public class Colon {
     public String toString(){
         return "("+ nom + ": " + ressource + ")";
     }
+
+    public void setRessource(Ressource r){
+        this.ressource = r;
+    }
 }

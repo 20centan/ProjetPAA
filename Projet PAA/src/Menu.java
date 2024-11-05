@@ -43,6 +43,7 @@ public class Menu {
 	}
 
 
+
 	public static void construction(Colonie colonie){
         MenuInput mi = new MenuInput(new Scanner(System.in));
         
@@ -92,10 +93,41 @@ public class Menu {
                     System.out.println("Commande invalide, veuillez ressayer.");
                 }
                 System.out.println();
-		}		
+		}
+
+
         mi.closeUserInput();
 	}
+
+    public static void actions(Colonie colonie){
+        MenuInput mi = new MenuInput(new Scanner(System.in));
+
+        boolean lancer = true;
+        while(lancer) {
+            switch(mi.saisirInt("Choisir une option: \n" +
+                    "[1] Echanger les ressources de deux colons \n" +
+                    "[2] Afficher le nombre de colons jaloux \n" +
+                    "[3] fin")) {
+                case 1:
+                    System.out.println();
+                    echangeRessource(colonie,mi);
+                    break;
+
+                case 2:
+                    System.out.println();
+                    //colonie.afficheJaloux();
+                    break;
+
+                case 3:
+                    return;
+                //break;
+                default: System.out.println("Commande invalide, veuillez ressayer.");
+            }
+
+        }
+    }
 }
+
 
 /**while(!(stop)) {
     System.out.println("Choisir une option:");

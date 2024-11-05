@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -33,7 +34,6 @@ public class Colonie {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -71,5 +71,28 @@ public class Colonie {
 
     public int getNbColons(){
         return nbColons;
+    }
+
+    public void distribution() {
+        for (Colon c : colons) {
+            boolean attribuer = false;
+            int i = 0;
+            while (!(attribuer)) {
+                if (ressources.contains(c.getPreference().get(i))) {
+                    Iterator<Ressource> it = ressources.iterator();
+                    boolean trouver = false;
+                    while(it.hasNext() && !(trouver)){
+                        Ressource r = it.next();
+                        if (r.equals(c.getPreference().get(i))) {
+                            c.setRessource(r);
+                            attribuer = true;
+                            ressources.remove(r);
+                            trouver = true;
+                        }
+                    }
+                }
+                i++;
+            }
+        }
     }
 }
