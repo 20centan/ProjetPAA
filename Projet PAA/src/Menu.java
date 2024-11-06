@@ -91,6 +91,7 @@ public class Menu {
                     }
                     else{
                         lancer = false;
+                        colonie.distribution();
                     }
                     break;
                 
@@ -100,11 +101,41 @@ public class Menu {
                 System.out.println();
 		}
 
+        lancer = true;
+
+        while(lancer) {
+            switch(mi.saisirInt("Choisir une option: \n" +
+                    "[1] Echanger les ressources de deux colons \n" +
+                    "[2] Afficher le nombre de colons jaloux \n" +
+                    "[3] fin")) {
+                case 1:
+                    colonie.afficheColonie();
+                    System.out.println();
+                    echangeRessource(colonie,mi);
+                    break;
+
+                case 2:
+                    System.out.println();
+                    afficheJaloux(colonie);
+                    break;
+
+                case 3:
+                    lancer = false;
+                    break;
+                default:
+                    System.out.println("Commande invalide, veuillez ressayer.");
+            }
+
+        }
 
         mi.closeUserInput();
 	}
 
-    public static void actions(Colonie colonie){
+    
+}
+
+
+/**public static void actions(Colonie colonie){
         MenuInput mi = new MenuInput(new Scanner(System.in));
 
         boolean lancer = true;
@@ -131,24 +162,6 @@ public class Menu {
             }
 
         }
-    }
-}
-
-
-/**while(!(stop)) {
-    System.out.println("Choisir une option:");
-    System.out.println("[1] Echanger les ressources de deux colons \n [2] Afficher le nombre de colons jaloux \n [3] fin");
-    option = entree.nextInt();
-    
-    switch(option) {
-    case 1: echangeRessource(colonie);
-    break;
-    case 2: colonie.afficheJaloux();
-    break;
-    case 3: return;
-    break;
-    default: System.out.println("Commande invalide, veuillez ressayer.");
-    }
-    
-    colonie.afficheRessources();
-}**/
+        
+        mi.closeUserInput();
+    } */

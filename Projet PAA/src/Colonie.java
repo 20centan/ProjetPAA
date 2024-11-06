@@ -1,6 +1,6 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
 
 public class Colonie {
 	
@@ -48,6 +48,15 @@ public class Colonie {
         int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
 
         return somme_attendu - somme == 0;
+    }
+
+    public void afficheColonie(){
+        StringBuilder str = new StringBuilder("");
+        for(Colon c: colons){
+            str.append(c.toString());
+            str.append("\n");
+        }
+        System.out.println("Affichage colonie :\n"+str.toString());
     }
 
     public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
@@ -110,13 +119,26 @@ public class Colonie {
             List<Colon> ennemis = c.getEnnemis();
             int rangRessource = preference.indexOf(ressource);
 
-            for(Colon ennemi : ennemis){
-                Ressource ressourceEnnemi = ennemi.getRessource();
-                int rangRessourceEnnemi = ennemi.getPreference().indexOf(ressourceEnnemi);
+            //Si le colon recois sa premiere ressource on ne rentre pas dans le if car il ne sera jamais jaloux
+            if(ressource != preference.get(0)){
+                Boolean stop = false;
+                int i = 0;
 
-                if(rangRessourceEnnemi < rangRessource){
-                    nbJaloux++;
-                }
+                while(!(stop) && i<ennemis.size()){
+                    Colon ennemi = ennemis.get(i);
+                    Ressource ressourceEnnemi = ennemi.getRessource();
+                    int rangRessourceEnnemi = ennemi.getPreference().indexOf(ressourceEnnemi);
+
+                    int j = 0;
+                    while(!(stop) && j<=rangRessource){
+                        if(ressourceEnnemi.equals(preference.get(j)) && rangRessourceEnnemi < rangRessource){
+                            nbJaloux++;
+                            stop = true;
+                        }
+                        j++;
+                    }
+                    i++;
+                }        
             }
         }
         return nbJaloux;
