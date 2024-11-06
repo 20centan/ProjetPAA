@@ -40,7 +40,12 @@ public class Menu {
         Ressource tmp = colon1.getRessource();
         colon1.ajoutRessource(colon2.getRessource());
         colon2.ajoutRessource(tmp);
+
 	}
+
+    public static void afficheJaloux(Colonie colonie){
+        System.out.println("Le nombre actuel de colons jaloux dans votre colonie est de "+ colonie.calculJaloux() +"\n");
+    }
 
 
 
@@ -115,13 +120,14 @@ public class Menu {
 
                 case 2:
                     System.out.println();
-                    //colonie.afficheJaloux();
+                    afficheJaloux(colonie);
                     break;
 
                 case 3:
-                    return;
-                //break;
-                default: System.out.println("Commande invalide, veuillez ressayer.");
+                    lancer = false;
+                    break;
+                default:
+                    System.out.println("Commande invalide, veuillez ressayer.");
             }
 
         }

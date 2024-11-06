@@ -74,6 +74,9 @@ public class Colonie {
     }
 
     public void distribution() {
+        System.out.println();
+        System.out.println("Début de la distribution des ressources dans la colonie...");
+
         for (Colon c : colons) {
             boolean attribuer = false;
             int i = 0;
@@ -94,5 +97,29 @@ public class Colonie {
                 i++;
             }
         }
+
+        System.out.println();
+        System.out.println("Fin de la distribution des ressources dans la colonie");
     }
+
+    public int calculJaloux(){
+        int nbJaloux = 0;
+        for(Colon c : colons){
+            Ressource ressource = c.getRessource();
+            List<Ressource> preference = c.getPreference();
+            List<Colon> ennemis = c.getEnnemis();
+            int rangRessource = preference.indexOf(ressource);
+
+            for(Colon ennemi : ennemis){
+                Ressource ressourceEnnemi = ennemi.getRessource();
+                int rangRessourceEnnemi = ennemi.getPreference().indexOf(ressourceEnnemi);
+
+                if(rangRessourceEnnemi < rangRessource){
+                    nbJaloux++;
+                }
+            }
+        }
+        return nbJaloux;
+    }
+
 }
