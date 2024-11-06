@@ -127,11 +127,10 @@ public class Colonie {
                 while(!(stop) && i<ennemis.size()){
                     Colon ennemi = ennemis.get(i);
                     Ressource ressourceEnnemi = ennemi.getRessource();
-                    int rangRessourceEnnemi = ennemi.getPreference().indexOf(ressourceEnnemi);
 
                     int j = 0;
                     while(!(stop) && j<=rangRessource){
-                        if(ressourceEnnemi.equals(preference.get(j)) && rangRessourceEnnemi < rangRessource){
+                        if(ressourceEnnemi.equals(preference.get(j))){
                             nbJaloux++;
                             stop = true;
                         }
