@@ -13,4 +13,4 @@ EXECUTION
 
 
 DROITS
-Vincent TAN, Ismaël BOUARFA, Roland CHEN
+Roland CHEN, Vincent TAN, Ismaël BOUARFA
