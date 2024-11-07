@@ -1,3 +1,6 @@
+package system.entity;
+
+
 public class Ressource {
     private int id;
     private static int compteur = 0;

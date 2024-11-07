@@ -1,7 +1,19 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+package system.operation;
 
-public class Menu {
+
+import java.util.ArrayList;
+
+import graphic.Menu;
+import graphic.MenuInput;
+
+import system.entity.Colon;
+import system.entity.Colonie;
+
+public abstract class ConstructionColonie {
+    public static void run(Colonie colonie, Menu menu){
+        construction(colonie, menu.getMi());
+    }
+
     public static void ajoutRelation(Colonie colonie, MenuInput mi) {
 		ArrayList<String> relation; 
 
@@ -31,27 +43,8 @@ public class Menu {
         }
 	}
 
-	public static void echangeRessource(Colonie colonie, MenuInput mi) {
-        System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
-	
-        Colon colon1 = mi.saisirColon(colonie);
-        Colon colon2 = mi.saisirColon(colonie);
-        
-        Ressource tmp = colon1.getRessource();
-        colon1.ajoutRessource(colon2.getRessource());
-        colon2.ajoutRessource(tmp);
 
-	}
-
-    public static void afficheJaloux(Colonie colonie){
-        System.out.println("Le nombre actuel de colons jaloux dans votre colonie est de "+ colonie.calculJaloux() +"\n");
-    }
-
-
-
-	public static void construction(Colonie colonie){
-        MenuInput mi = new MenuInput(new Scanner(System.in));
-        
+	public static void construction(Colonie colonie, MenuInput mi){
         int nbColons;
 
         while(true){
@@ -91,77 +84,13 @@ public class Menu {
                     }
                     else{
                         lancer = false;
-                        colonie.distribution();
                     }
                     break;
                 
                 default: 
                     System.out.println("Commande invalide, veuillez ressayer.");
-                }
-                System.out.println();
-		}
-
-        lancer = true;
-
-        while(lancer) {
-            switch(mi.saisirInt("Choisir une option: \n" +
-                    "[1] Echanger les ressources de deux colons \n" +
-                    "[2] Afficher le nombre de colons jaloux \n" +
-                    "[3] fin")) {
-                case 1:
-                    colonie.afficheColonie();
-                    System.out.println();
-                    echangeRessource(colonie,mi);
-                    break;
-
-                case 2:
-                    System.out.println();
-                    afficheJaloux(colonie);
-                    break;
-
-                case 3:
-                    lancer = false;
-                    break;
-                default:
-                    System.out.println("Commande invalide, veuillez ressayer.");
             }
-
+            System.out.println();
         }
-
-        mi.closeUserInput();
-	}
-
-    
+    }
 }
-
-
-/**public static void actions(Colonie colonie){
-        MenuInput mi = new MenuInput(new Scanner(System.in));
-
-        boolean lancer = true;
-        while(lancer) {
-            switch(mi.saisirInt("Choisir une option: \n" +
-                    "[1] Echanger les ressources de deux colons \n" +
-                    "[2] Afficher le nombre de colons jaloux \n" +
-                    "[3] fin")) {
-                case 1:
-                    System.out.println();
-                    echangeRessource(colonie,mi);
-                    break;
-
-                case 2:
-                    System.out.println();
-                    afficheJaloux(colonie);
-                    break;
-
-                case 3:
-                    lancer = false;
-                    break;
-                default:
-                    System.out.println("Commande invalide, veuillez ressayer.");
-            }
-
-        }
-        
-        mi.closeUserInput();
-    } */
