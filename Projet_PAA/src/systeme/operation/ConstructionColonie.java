@@ -68,14 +68,12 @@ public abstract class ConstructionColonie {
                                 "[2] Ajouter les préférences d'un colon \n" + 
                                 "[3] fin")) {
 			    case 1: 
-                    System.out.println();
                     menu.afficherRelation(colonie);
                     
                     ajoutRelation(colonie, mi);
 			        break;
                     
                 case 2: 
-                    System.out.println();
                     menu.afficherPreference(colonie);
                    
                     ajoutPreferences(colonie, mi);

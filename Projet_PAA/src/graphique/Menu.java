@@ -17,7 +17,7 @@ public class Menu {
     }
 
     public void afficherRelation(Colonie colonie){
-        StringBuffer buffer = new StringBuffer("Colon & Enemis: \n");
+        StringBuffer buffer = new StringBuffer("\nColon & Enemis: \n");
 
         for(Colon colon : colonie.getColons()){
             buffer.append(colon + ": " + colon.getEnnemis().toString() + "\n");
@@ -31,7 +31,7 @@ public class Menu {
     }
 
     public void afficherPreference(Colonie colonie){
-        StringBuffer buffer = new StringBuffer("Colon & Preference: \n");
+        StringBuffer buffer = new StringBuffer("\nColon & Preference: \n");
 
         for(Colon colon : colonie.getColons()){
             buffer.append(colon + ": " + colon.getPreference().toString() + "\n");
@@ -45,7 +45,7 @@ public class Menu {
     }
 
     public void afficherRessource(Colonie colonie){
-        StringBuffer buffer = new StringBuffer("Colon & Ressource: \n");
+        StringBuffer buffer = new StringBuffer("\nColon & Ressource: \n");
 
         for(Colon colon : colonie.getColons()){
             buffer.append(colon + ": " + colon.getRessource().toString() + "\n");

@@ -91,7 +91,7 @@ public abstract class DistributionColonie {
     }
 
     public static void afficheJaloux(Colonie colonie){
-        System.out.println("Le nombre actuel de colons jaloux dans votre colonie est de " + calculJaloux(colonie) +"\n");
+        System.out.println("\nLe nombre actuel de colons jaloux dans votre colonie est de " + calculJaloux(colonie) +"\n");
     }
 
     public static void distribution(Colonie colonie, Menu menu){
@@ -103,7 +103,7 @@ public abstract class DistributionColonie {
 
         while(lancer) {
             menu.afficherSeparateur();
-            
+
             switch(mi.saisirInt("Choisir une option: \n" +
             "[1] Echanger les ressources de deux colons \n" +
             "[2] Afficher le nombre de colons jaloux \n" +
@@ -117,7 +117,6 @@ public abstract class DistributionColonie {
                     break;
 
                 case 2:
-                    System.out.println();
                     afficheJaloux(colonie);
                     break;
 
