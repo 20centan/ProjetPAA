@@ -1,13 +1,13 @@
-package system.operation;
+package systeme.operation;
 
 import java.util.Iterator;
 import java.util.List;
 
-import graphic.Menu;
-import graphic.MenuInput;
-import system.entite.Colon;
-import system.entite.Colonie;
-import system.entite.Ressource;
+import graphique.Menu;
+import graphique.MenuInput;
+import systeme.entite.Colon;
+import systeme.entite.Colonie;
+import systeme.entite.Ressource;
 
 public abstract class DistributionColonie {
     public static void run(Colonie colonie, Menu menu){

@@ -1,4 +1,4 @@
-package system.entite;
+package systeme.entite;
 
 import java.util.List;
 import java.util.ArrayList;

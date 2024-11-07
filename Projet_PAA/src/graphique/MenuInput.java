@@ -1,10 +1,10 @@
-package graphic;
+package graphique;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import system.entite.Colon;
-import system.entite.Colonie;
+import systeme.entite.Colon;
+import systeme.entite.Colonie;
 
 
 public class MenuInput extends UserInput{

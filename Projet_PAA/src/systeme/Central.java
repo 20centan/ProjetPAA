@@ -1,15 +1,15 @@
-package system;
+package systeme;
 
 
-import graphic.Menu;
-import system.entite.Colonie;
-import system.operation.ConstructionColonie;
-import system.operation.DistributionColonie;
+import graphique.Menu;
+import systeme.entite.Colonie;
+import systeme.operation.ConstructionColonie;
+import systeme.operation.DistributionColonie;
 
-public class Core {
+public class Central {
     private Colonie colonie;
     
-    public Core(){
+    public Central(){
         colonie = new Colonie();
     }
 

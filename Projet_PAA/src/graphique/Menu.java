@@ -1,8 +1,8 @@
-package graphic;
+package graphique;
 
 import java.util.Scanner;
 
-import system.entite.Colonie;
+import systeme.entite.Colonie;
 
 public class Menu {
     private MenuInput mi;

@@ -1,4 +1,4 @@
-package system.entite;
+package systeme.entite;
 
 
 public class Ressource {

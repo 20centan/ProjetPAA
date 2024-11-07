@@ -1,12 +1,12 @@
-package system.operation;
+package systeme.operation;
 
 
 import java.util.ArrayList;
 
-import graphic.Menu;
-import graphic.MenuInput;
-import system.entite.Colon;
-import system.entite.Colonie;
+import graphique.Menu;
+import graphique.MenuInput;
+import systeme.entite.Colon;
+import systeme.entite.Colonie;
 
 public abstract class ConstructionColonie {
     public static void run(Colonie colonie, Menu menu){

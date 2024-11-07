@@ -1,13 +1,13 @@
-import graphic.Menu;
-import system.Core;
+import graphique.Menu;
+import systeme.Central;
 
 public class Application {
     private Menu menu;
-    private Core core;
+    private Central core;
 
     public Application(){
         menu = new Menu();
-        core = new Core();
+        core = new Central();
     }
 
     public void run(){
@@ -27,7 +27,7 @@ public class Application {
         return menu;
     }
 
-    public Core getcore() {
+    public Central getcore() {
         return core;
     }
 }
