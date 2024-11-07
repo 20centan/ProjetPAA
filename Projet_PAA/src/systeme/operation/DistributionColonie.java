@@ -5,10 +5,9 @@ import java.util.List;
 
 import graphic.Menu;
 import graphic.MenuInput;
-
-import system.entity.Colon;
-import system.entity.Colonie;
-import system.entity.Ressource;
+import system.entite.Colon;
+import system.entite.Colonie;
+import system.entite.Ressource;
 
 public abstract class DistributionColonie {
     public static void run(Colonie colonie, Menu menu){

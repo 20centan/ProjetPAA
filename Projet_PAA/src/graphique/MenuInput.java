@@ -3,8 +3,8 @@ package graphic;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import system.entity.Colon;
-import system.entity.Colonie;
+import system.entite.Colon;
+import system.entite.Colonie;
 
 
 public class MenuInput extends UserInput{

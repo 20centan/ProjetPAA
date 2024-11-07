@@ -2,7 +2,7 @@ package graphic;
 
 import java.util.Scanner;
 
-import system.entity.Colonie;
+import system.entite.Colonie;
 
 public class Menu {
     private MenuInput mi;

@@ -2,8 +2,7 @@ package system;
 
 
 import graphic.Menu;
-
-import system.entity.Colonie;
+import system.entite.Colonie;
 import system.operation.ConstructionColonie;
 import system.operation.DistributionColonie;
 

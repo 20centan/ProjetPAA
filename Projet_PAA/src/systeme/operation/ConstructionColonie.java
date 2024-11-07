@@ -5,9 +5,8 @@ import java.util.ArrayList;
 
 import graphic.Menu;
 import graphic.MenuInput;
-
-import system.entity.Colon;
-import system.entity.Colonie;
+import system.entite.Colon;
+import system.entite.Colonie;
 
 public abstract class ConstructionColonie {
     public static void run(Colonie colonie, Menu menu){
