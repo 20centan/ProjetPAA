@@ -10,13 +10,12 @@ import systeme.entite.Colonie;
 
 public abstract class ConstructionColonie {
     public static void run(Colonie colonie, Menu menu){
-        construction(colonie, menu.getMi());
+        construction(colonie, menu);
     }
 
     public static void ajoutRelation(Colonie colonie, MenuInput mi) {
 		ArrayList<String> relation; 
 
-        System.out.println("Colons: " + colonie.getColons().toString());
         relation = mi.saisirRelation(colonie);
 		
         Colon colon1 = colonie.getColon(relation.get(0).charAt(0));
@@ -26,9 +25,6 @@ public abstract class ConstructionColonie {
 	}
 	
 	public static void ajoutPreferences(Colonie colonie, MenuInput mi) {
-        System.out.println("Colons: " + colonie.getColons().toString());
-        System.out.println("Ressources: " + colonie.getRessources().toString());
-
         ArrayList<String> colon_preferences = mi.saisirPreferences(colonie);
 
         // On récupère le colon
@@ -43,7 +39,9 @@ public abstract class ConstructionColonie {
 	}
 
 
-	public static void construction(Colonie colonie, MenuInput mi){
+	public static void construction(Colonie colonie, Menu menu){
+        MenuInput mi = menu.getMi();
+
         int nbColons;
 
         while(true){
@@ -69,11 +67,15 @@ public abstract class ConstructionColonie {
                                 "[3] fin")) {
 			    case 1: 
                     System.out.println();
+                    menu.afficherRelation(colonie);
+                    
                     ajoutRelation(colonie, mi);
 			        break;
                     
                 case 2: 
                     System.out.println();
+                    menu.afficherPreference(colonie);
+                   
                     ajoutPreferences(colonie, mi);
                     break;
                 

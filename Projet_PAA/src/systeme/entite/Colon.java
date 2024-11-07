@@ -52,7 +52,7 @@ public class Colon {
 
     @Override
     public String toString(){
-        return "("+ nom + ": " + ressource + ")";
+        return String.valueOf(nom);
     }
 
     public void setRessource(Ressource r){
