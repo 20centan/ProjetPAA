@@ -50,6 +50,7 @@ public class Colon {
         return preference;
     }
 
+    @Override
     public String toString(){
         return "("+ nom + ": " + ressource + ")";
     }
