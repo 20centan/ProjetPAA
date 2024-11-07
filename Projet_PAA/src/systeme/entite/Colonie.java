@@ -53,15 +53,6 @@ public class Colonie {
         return somme_attendu - somme == 0;
     }
 
-    public void afficheColonie(){
-        StringBuilder str = new StringBuilder("");
-        for(Colon c: colons){
-            str.append(c.toString());
-            str.append("\n");
-        }
-        System.out.println("Affichage colonie :\n"+str.toString());
-    }
-
     public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
         for(Colon c : colons){
             if(c.getNom() == nom) {

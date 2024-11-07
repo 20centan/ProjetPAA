@@ -17,41 +17,49 @@ public class Menu {
     }
 
     public void afficherRelation(Colonie colonie){
-        StringBuffer buffer = new StringBuffer("Colon & Enemis: ");
-
-        buffer.append("[");
+        StringBuffer buffer = new StringBuffer("Colon & Enemis: \n");
 
         for(Colon colon : colonie.getColons()){
-            buffer.append(colon + ": " + colon.getEnnemis().toString());
-            buffer.append(", ");
+            buffer.append(colon + ": " + colon.getEnnemis().toString() + "\n");
         }
         
         if(!colonie.getColons().isEmpty()){
-            buffer.setLength(buffer.length() - 2);
+            buffer.setLength(buffer.length() - 1);
         }
 
-        buffer.append("]");
-
-        System.out.println(buffer.toString());
+        System.out.println(buffer.toString() + "\n");
     }
 
     public void afficherPreference(Colonie colonie){
-        StringBuffer buffer = new StringBuffer("Colon & Preference: ");
-
-        buffer.append("(");
+        StringBuffer buffer = new StringBuffer("Colon & Preference: \n");
 
         for(Colon colon : colonie.getColons()){
-            buffer.append(colon + ": " + colon.getPreference().toString());
-            buffer.append(", ");
+            buffer.append(colon + ": " + colon.getPreference().toString() + "\n");
         }
         
         if(!colonie.getColons().isEmpty()){
-            buffer.setLength(buffer.length() - 2);
+            buffer.setLength(buffer.length() - 1);
         }
 
-        buffer.append("]");
+        System.out.println(buffer.toString() + "\n");
+    }
 
-        System.out.println(buffer.toString());
+    public void afficherRessource(Colonie colonie){
+        StringBuffer buffer = new StringBuffer("Colon & Ressource: \n");
+
+        for(Colon colon : colonie.getColons()){
+            buffer.append(colon + ": " + colon.getRessource().toString() + "\n");
+        }
+        
+        if(!colonie.getColons().isEmpty()){
+            buffer.setLength(buffer.length() - 1);
+        }
+
+        System.out.println(buffer.toString() + "\n");
+    }
+
+    public void afficherSeparateur(){
+        System.out.println("====================[]====================\n");
     }
 
     public void close(){

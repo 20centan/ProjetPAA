@@ -11,7 +11,7 @@ import systeme.entite.Ressource;
 
 public abstract class DistributionColonie {
     public static void run(Colonie colonie, Menu menu){
-        distribution(colonie, menu.getMi());
+        distribution(colonie, menu);
     }
 
     public static void echangeRessource(Colonie colonie, MenuInput mi) {
@@ -94,20 +94,26 @@ public abstract class DistributionColonie {
         System.out.println("Le nombre actuel de colons jaloux dans votre colonie est de " + calculJaloux(colonie) +"\n");
     }
 
-    public static void distribution(Colonie colonie, MenuInput mi){
+    public static void distribution(Colonie colonie, Menu menu){
+        MenuInput mi = menu.getMi();
+        
         distribuer(colonie, mi);
 
         boolean lancer = true;
 
         while(lancer) {
+            menu.afficherSeparateur();
+            
             switch(mi.saisirInt("Choisir une option: \n" +
-                    "[1] Echanger les ressources de deux colons \n" +
-                    "[2] Afficher le nombre de colons jaloux \n" +
-                    "[3] fin")) {
+            "[1] Echanger les ressources de deux colons \n" +
+            "[2] Afficher le nombre de colons jaloux \n" +
+            "[3] fin")) {
                 case 1:
-                    colonie.afficheColonie();
-                    System.out.println();
-                    echangeRessource(colonie,mi);
+                    menu.afficherRessource(colonie);
+                    
+                    echangeRessource(colonie, mi);
+
+                    menu.afficherRessource(colonie);
                     break;
 
                 case 2:

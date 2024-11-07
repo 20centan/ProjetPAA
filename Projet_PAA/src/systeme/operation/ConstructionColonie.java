@@ -61,7 +61,9 @@ public abstract class ConstructionColonie {
 
 		boolean lancer = true;
 		while(lancer) {
-			switch(mi.saisirInt("Choisir une option: \n" +
+            menu.afficherSeparateur();
+
+            switch(mi.saisirInt("Choisir une option: \n" +
                                 "[1] Ajouter une relation entre deux colons \n" + 
                                 "[2] Ajouter les préférences d'un colon \n" + 
                                 "[3] fin")) {
