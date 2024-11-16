@@ -1,4 +1,4 @@
-# Gestion d'une colonie spaciale
+# Gestion d'une colonie spatiale
 
 PACKAGE
 
