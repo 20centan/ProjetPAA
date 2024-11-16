@@ -22,7 +22,6 @@ Ainsi le but est de trouver une distribution de ressources qui permet de minimis
 
 ## <a name="technologie">⚙️ Technologie<a/> 
 - Java
-- Git
 
 ## <a name="fonctionnalité">🔋 Fonctionnalités<a/> 
 👉 ... <br>
