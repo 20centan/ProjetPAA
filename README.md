@@ -34,10 +34,10 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 **Prérequis**<br>
 ...
 
-**Cloner le projet**<br>
+**Cloner le Projet**<br>
 ...
 
-**Compiler le code**<br>
+**Compiler le Code**<br>
 ...
 
 **Lancer le Projet**<br>
