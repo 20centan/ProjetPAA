@@ -1,0 +1,44 @@
+Gestion d'une Colonie Spatiale
+Gère les ressources d'une colonie spatiale et détermine une distribution optimale afin de conserver l'harmonie de la colonie !
+
+## 📋 Table des matières
+1. Introduction
+2. Topo
+3. Technologie
+4. Fonctionnalité
+5. Essayer dès maintenant
+6. Droits
+   
+## 🤖 Introduction 
+Gestion d'une colonie spatiale est une application développée en Java par 3 développeurs dans le cadre d'un projet scolaire. Ce projet applique les principes de la Programmation Orienté Objet (POO) et de la gestion d'un projet en équipe.
+
+## 🧑‍🚀 Topo 
+L'application permet de distribuer les différentes ressources parmi une population d'astronautes. Chaque astronaute possède des préférences uniques pour chaque ressource, et chaque astronaute est en relation d'hostilité avec d'autres astronautes.
+
+Ainsi, le but est de trouver une distribution de ressources qui permet de minimiser le nombre d'astronautes jaloux.
+
+## ⚙️ Technologie 
+- Java
+
+## 🔋 Fonctionnalités 
+👉 ... 
+
+👉 ... 
+
+👉 ... 
+
+## 🤸 Essayer dès maintenant 
+Prérequis
+...
+
+Cloner le Projet
+...
+
+Compiler le Code
+...
+
+Lancer le Projet
+...
+
+## Droits
+Les principaux contributeurs: Roland CHEN, Vincent TAN, Ismaël BOUARFA
