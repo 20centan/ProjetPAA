@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://github.com/20centan/ProjetPAA/blob/main/Projet_PAA/public/banner.png" alt="Bannière du projet">
 <h3>Gestion d'une Colonie Spatiale</h3>
-<p>Gère les ressources d'une colonie spatiale et détermine une distribution optimale afin de conserver l'harmonie de la colonie !</p>
+<p max-width=30ch>Gère les ressources d'une colonie spatiale et détermine une distribution optimale afin de conserver l'harmonie de la colonie !</p>
 </div>
 
 ## 📋 Table des matières
