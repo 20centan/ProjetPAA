@@ -27,12 +27,10 @@ public abstract class DistributionColonie {
 	}
 
     public static void distribuer(Colonie colonie, MenuSaisir ms) {
-        System.out.println("Début de la distribution des ressources dans la colonie...");
-
         for (Colon colon : colonie.getColons()) {
             boolean attribuer = false;
             int i = 0;
-
+            
             while (!(attribuer)) {
                 if (colonie.getRessources().contains(colon.getPreference().get(i))) {
                     Iterator<Ressource> it = colonie.getRessources().iterator();
@@ -52,9 +50,6 @@ public abstract class DistributionColonie {
                 i++;
             }
         }
-
-        System.out.println();
-        System.out.println("Fin de la distribution des ressources dans la colonie");
     }
 
     public static int calculJaloux(Colonie colonie){
@@ -91,18 +86,20 @@ public abstract class DistributionColonie {
     }
 
     public static void afficheJaloux(Colonie colonie){
-        System.out.println("\nLe nombre actuel de colons jaloux dans votre colonie est de " + calculJaloux(colonie) +"\n");
+        System.out.println("\nLe nombre actuel de colons jaloux dans votre colonie est de " + calculJaloux(colonie) + ".");
     }
 
     public static void distribution(Colonie colonie, Menu menu){
         MenuSaisir ms = menu.getMs();
         
+        System.out.println("\nDébut de la distribution des ressources dans la colonie...");        
         distribuer(colonie, ms);
+        System.out.println("Fin de la distribution des ressources dans la colonie.");
 
+        int tour = 0;
         boolean lancer = true;
-
         while(lancer) {
-            menu.afficherSeparateur();
+            menu.afficherSeparateur(tour);
 
             switch(ms.saisirInt("Choisir une option: \n" +
             "[1] Echanger les ressources de deux colons \n" +
@@ -110,6 +107,7 @@ public abstract class DistributionColonie {
             "[3] fin")) {
                 case 1:
                     menu.afficherRessource(colonie);
+                    System.out.println();
                     
                     echangeRessource(colonie, ms);
 
@@ -127,6 +125,7 @@ public abstract class DistributionColonie {
                     System.out.println("Commande invalide, veuillez ressayer.");
             }
 
+            tour++;
         }
     } 
 }

@@ -53,15 +53,14 @@ public abstract class ConstructionColonie {
             break;
         }
 
-        System.out.println();
-		System.out.println("Initialisation de la colonie...");
+		System.out.println("\nInitialisation de la colonie...");
 		System.out.println("Initialisation des ressources...");
 		colonie.initialisationColonie(nbColons);
-        System.out.println();
 
+        int tour = 0;
 		boolean lancer = true;
 		while(lancer) {
-            menu.afficherSeparateur();
+            menu.afficherSeparateur(tour);
 
             switch(mi.saisirInt("Choisir une option: \n" +
                                 "[1] Ajouter une relation entre deux colons \n" + 
@@ -91,7 +90,10 @@ public abstract class ConstructionColonie {
                 default: 
                     System.out.println("Commande invalide, veuillez ressayer.");
             }
-            System.out.println();
+
+            tour++;
         }
+
+        System.out.println("\nFin de la construction.");
     }
 }

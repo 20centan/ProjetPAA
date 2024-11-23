@@ -27,7 +27,7 @@ public class Menu {
             buffer.setLength(buffer.length() - 1);
         }
 
-        System.out.println(buffer.toString() + "\n");
+        System.out.println(buffer.toString());
     }
 
     public void afficherPreference(Colonie colonie){
@@ -41,7 +41,7 @@ public class Menu {
             buffer.setLength(buffer.length() - 1);
         }
 
-        System.out.println(buffer.toString() + "\n");
+        System.out.println(buffer.toString());
     }
 
     public void afficherRessource(Colonie colonie){
@@ -55,11 +55,11 @@ public class Menu {
             buffer.setLength(buffer.length() - 1);
         }
 
-        System.out.println(buffer.toString() + "\n");
+        System.out.println(buffer.toString());
     }
 
-    public void afficherSeparateur(){
-        System.out.println("====================[]====================\n");
+    public void afficherSeparateur(int tour){
+        System.out.println("\n====================[" + tour + "]====================\n");
     }
 
     public void close(){
