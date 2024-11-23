@@ -3,19 +3,19 @@ import systeme.Central;
 
 public class Application {
     private Menu menu;
-    private Central core;
+    private Central central;
 
     public Application(){
         menu = new Menu();
-        core = new Central();
+        central = new Central();
     }
 
     public void run(){
         boolean running = true;
         while(running){
-            core.construireColonie(menu);
+            central.construireColonie(menu);
 
-            core.distribuerColonie(menu);
+            central.distribuerColonie(menu);
 
             running = false;
         }
@@ -27,7 +27,7 @@ public class Application {
         return menu;
     }
 
-    public Central getcore() {
-        return core;
+    public Central getCentral() {
+        return central;
     }
 }
