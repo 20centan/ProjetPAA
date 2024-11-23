@@ -6,10 +6,10 @@ import systeme.entite.Colon;
 import systeme.entite.Colonie;
 
 public class Menu {
-    private MenuInput mi;
+    private MenuSaisir ms;
 
     public Menu(){
-        this.mi = new MenuInput(new Scanner(System.in)); 
+        this.ms = new MenuSaisir(new Scanner(System.in)); 
     }
 
     public void afficherColonie(Colonie colonie){
@@ -63,10 +63,10 @@ public class Menu {
     }
 
     public void close(){
-        mi.closeUserInput();
+        ms.closeSaisir();
     }
 
-    public MenuInput getMi() {
-        return mi;
+    public MenuSaisir getMs() {
+        return ms;
     }
 }

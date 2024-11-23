@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import graphique.Menu;
-import graphique.MenuInput;
+import graphique.MenuSaisir;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
 import systeme.entite.Ressource;
@@ -14,11 +14,11 @@ public abstract class DistributionColonie {
         distribution(colonie, menu);
     }
 
-    public static void echangeRessource(Colonie colonie, MenuInput mi) {
+    public static void echangeRessource(Colonie colonie, MenuSaisir ms) {
         System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
 	
-        Colon colon1 = mi.saisirColon(colonie);
-        Colon colon2 = mi.saisirColon(colonie);
+        Colon colon1 = ms.saisirColon(colonie);
+        Colon colon2 = ms.saisirColon(colonie);
         
         Ressource tmp = colon1.getRessource();
         colon1.ajoutRessource(colon2.getRessource());
@@ -26,7 +26,7 @@ public abstract class DistributionColonie {
 
 	}
 
-    public static void distribuer(Colonie colonie, MenuInput mi) {
+    public static void distribuer(Colonie colonie, MenuSaisir ms) {
         System.out.println("Début de la distribution des ressources dans la colonie...");
 
         for (Colon colon : colonie.getColons()) {
@@ -95,23 +95,23 @@ public abstract class DistributionColonie {
     }
 
     public static void distribution(Colonie colonie, Menu menu){
-        MenuInput mi = menu.getMi();
+        MenuSaisir ms = menu.getMs();
         
-        distribuer(colonie, mi);
+        distribuer(colonie, ms);
 
         boolean lancer = true;
 
         while(lancer) {
             menu.afficherSeparateur();
 
-            switch(mi.saisirInt("Choisir une option: \n" +
+            switch(ms.saisirInt("Choisir une option: \n" +
             "[1] Echanger les ressources de deux colons \n" +
             "[2] Afficher le nombre de colons jaloux \n" +
             "[3] fin")) {
                 case 1:
                     menu.afficherRessource(colonie);
                     
-                    echangeRessource(colonie, mi);
+                    echangeRessource(colonie, ms);
 
                     menu.afficherRessource(colonie);
                     break;

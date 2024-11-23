@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public abstract class UserInput{
+public abstract class Saisir{
     private Scanner sc;
 
-    public UserInput(Scanner sc){
+    public Saisir(Scanner sc){
         this.sc = sc;
     }
 
@@ -79,7 +79,7 @@ public abstract class UserInput{
     }
 
     // permet de fermer le Scanner
-    public void closeUserInput(){
+    public void closeSaisir(){
         sc.close();
     }
 }

@@ -4,7 +4,7 @@ package systeme.operation;
 import java.util.ArrayList;
 
 import graphique.Menu;
-import graphique.MenuInput;
+import graphique.MenuSaisir;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
 
@@ -13,7 +13,7 @@ public abstract class ConstructionColonie {
         construction(colonie, menu);
     }
 
-    public static void ajoutRelation(Colonie colonie, MenuInput mi) {
+    public static void ajoutRelation(Colonie colonie, MenuSaisir mi) {
 		ArrayList<String> relation; 
 
         relation = mi.saisirRelation(colonie);
@@ -24,7 +24,7 @@ public abstract class ConstructionColonie {
         colon1.ajoutEnnemi(colon2);
 	}
 	
-	public static void ajoutPreferences(Colonie colonie, MenuInput mi) {
+	public static void ajoutPreferences(Colonie colonie, MenuSaisir mi) {
         ArrayList<String> colon_preferences = mi.saisirPreferences(colonie);
 
         // On récupère le colon
@@ -40,7 +40,7 @@ public abstract class ConstructionColonie {
 
 
 	public static void construction(Colonie colonie, Menu menu){
-        MenuInput mi = menu.getMi();
+        MenuSaisir mi = menu.getMs();
 
         int nbColons;
 

@@ -7,8 +7,8 @@ import systeme.entite.Colon;
 import systeme.entite.Colonie;
 
 
-public class MenuInput extends UserInput{
-    public MenuInput(Scanner sc){
+public class MenuSaisir extends Saisir{
+    public MenuSaisir(Scanner sc){
         super(sc);
     }
 
