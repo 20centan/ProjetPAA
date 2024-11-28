@@ -15,8 +15,6 @@ public abstract class DistributionColonie {
     }
 
     public static void echangeRessource(Colonie colonie, MenuSaisir ms) {
-        System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
-	
         Colon colon1 = ms.saisirColon(colonie);
         Colon colon2 = ms.saisirColon(colonie);
         
@@ -109,6 +107,7 @@ public abstract class DistributionColonie {
                     menu.afficherRessource(colonie);
                     System.out.println();
                     
+                    System.out.println("Veuillez specifiez les deux colons échangeant leurs ressources:");
                     echangeRessource(colonie, ms);
 
                     menu.afficherRessource(colonie);
