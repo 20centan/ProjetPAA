@@ -13,19 +13,19 @@ public abstract class ConstructionColonie {
         construction(colonie, menu);
     }
 
-    public static void ajoutRelation(Colonie colonie, MenuSaisir mi) {
+    public static void ajoutRelation(Colonie colonie, MenuSaisir ms) {
 		ArrayList<String> relation; 
 
-        relation = mi.saisirRelation(colonie);
+        relation = ms.saisirRelation(colonie);
 		
         Colon colon1 = colonie.getColon(relation.get(0).charAt(0));
         Colon colon2 = colonie.getColon(relation.get(1).charAt(0));
-        
+
         colon1.ajoutEnnemi(colon2);
 	}
 	
-	public static void ajoutPreferences(Colonie colonie, MenuSaisir mi) {
-        ArrayList<String> colon_preferences = mi.saisirPreferences(colonie);
+	public static void ajoutPreferences(Colonie colonie, MenuSaisir ms) {
+        ArrayList<String> colon_preferences = ms.saisirPreferences(colonie);
 
         // On récupère le colon
         Colon colon = colonie.getColon(colon_preferences.get(0).charAt(0));
@@ -40,12 +40,12 @@ public abstract class ConstructionColonie {
 
 
 	public static void construction(Colonie colonie, Menu menu){
-        MenuSaisir mi = menu.getMs();
+        MenuSaisir ms = menu.getMs();
 
         int nbColons;
 
         while(true){
-            nbColons = mi.saisirInt("De combien de colons dispose votre colonie ? (<=26)");
+            nbColons = ms.saisirInt("De combien de colons dispose votre colonie ? (<=26)");
 
             if(nbColons <= 0 || 26 < nbColons){
                 continue;
@@ -62,20 +62,20 @@ public abstract class ConstructionColonie {
 		while(lancer) {
             menu.afficherSeparateur(tour);
 
-            switch(mi.saisirInt("Choisir une option: \n" +
+            switch(ms.saisirInt("Choisir une option: \n" +
                                 "[1] Ajouter une relation entre deux colons \n" + 
                                 "[2] Ajouter les préférences d'un colon \n" + 
                                 "[3] fin")) {
 			    case 1: 
                     menu.afficherRelation(colonie);
                     
-                    ajoutRelation(colonie, mi);
+                    ajoutRelation(colonie, ms);
 			        break;
                     
                 case 2: 
                     menu.afficherPreference(colonie);
                    
-                    ajoutPreferences(colonie, mi);
+                    ajoutPreferences(colonie, ms);
                     break;
                 
                 case 3: 
