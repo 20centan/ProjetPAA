@@ -20,7 +20,7 @@ public abstract class ConstructionColonie {
 		
         Colon colon1 = colonie.getColon(relation.get(0).charAt(0));
         Colon colon2 = colonie.getColon(relation.get(1).charAt(0));
-
+        
         colon1.ajoutEnnemi(colon2);
 	}
 	
