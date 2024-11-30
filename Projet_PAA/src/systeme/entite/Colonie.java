@@ -19,7 +19,7 @@ public class Colonie {
         for(int i = 0; i < nbColons; i++){
             colons.add(new Colon(String.valueOf((char) ('A' + i))));
 
-            ressources.add(new Ressource());
+            ressources.add(new Ressource(String.valueOf(i)));
         }
     }
 

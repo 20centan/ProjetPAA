@@ -2,28 +2,25 @@ package systeme.entite;
 
 
 public class Ressource {
-    private int id;
-    private static int compteur = 0;
+    private String nom;
 
-    public Ressource(){
-        id = ++compteur;
+    public Ressource(String nom){
+        this.nom = nom;
     }
 
-    public int getId() {
-        return id;
+    public String getNom() {
+        return nom;
     }
 
-    public void setId(int id){
-        this.id = id;
+    public void setId(String nom){
+        this.nom = nom;
     }
 
-    @Override
-    public String toString(){
-        return String.valueOf(id);
+    public boolean equals(Ressource ressource){
+        return nom.equals(ressource.getNom());
     }
 
-    public boolean equals(Ressource r){
-        return this.id == r.getId();
+    public boolean equals(String nomRessource){
+        return nom.equals(nomRessource);
     }
-
 }
