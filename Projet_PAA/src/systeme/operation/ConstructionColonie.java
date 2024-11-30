@@ -18,8 +18,8 @@ public abstract class ConstructionColonie {
 
         relation = ms.saisirRelation(colonie);
 		
-        Colon colon1 = colonie.getColon(relation.get(0).charAt(0));
-        Colon colon2 = colonie.getColon(relation.get(1).charAt(0));
+        Colon colon1 = colonie.getColon(relation.get(0));
+        Colon colon2 = colonie.getColon(relation.get(1));
 
         colon1.ajoutEnnemi(colon2);
 	}
@@ -28,7 +28,7 @@ public abstract class ConstructionColonie {
         ArrayList<String> colon_preferences = ms.saisirPreferences(colonie);
 
         // On récupère le colon
-        Colon colon = colonie.getColon(colon_preferences.get(0).charAt(0));
+        Colon colon = colonie.getColon(colon_preferences.get(0));
 
         //On mets maitenant les préférence dans le tableau preference du colon
         for(String element : colon_preferences.subList(1, colon_preferences.size())){
@@ -45,7 +45,8 @@ public abstract class ConstructionColonie {
         int nbColons;
 
         while(true){
-            nbColons = ms.saisirInt("De combien de colons dispose votre colonie ? (<=26)");
+            nbColons = ms.saisirInt("De combien de colons dispose votre colonie ? (<=26)",
+                                    "Erreur - Veuillez entrez un bon nombre de colons.");
 
             if(nbColons <= 0 || 26 < nbColons){
                 continue;
@@ -65,7 +66,8 @@ public abstract class ConstructionColonie {
             switch(ms.saisirInt("Choisir une option: \n" +
                                 "[1] Ajouter une relation entre deux colons \n" + 
                                 "[2] Ajouter les préférences d'un colon \n" + 
-                                "[3] fin")) {
+                                "[3] fin",
+                                "Erreur - Commande invalide.")) {
 			    case 1: 
                     menu.afficherRelation(colonie);
                     
@@ -88,7 +90,7 @@ public abstract class ConstructionColonie {
                     break;
                 
                 default: 
-                    System.out.println("Commande invalide, veuillez ressayer.");
+                    break;
             }
 
             tour++;

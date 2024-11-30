@@ -13,12 +13,12 @@ public abstract class Saisir{
         this.sc = sc;
     }
 
-    public int saisirInt(String message){
+    public int saisirInt(String message, String messageErreur){
         int input;
 
         while(true){
             System.out.println(message);
-            System.out.print("> ");
+            System.out.print(">");
 
             // ça vérifie si l'utilisateur a bien écrit un nombre
             try {
@@ -26,24 +26,24 @@ public abstract class Saisir{
                 break;
     
             } catch (NumberFormatException e) {
-                System.out.println("Erreur de syntaxe - Veuillez entrer un entier. \n");
+                System.out.println(messageErreur + "\n");
             }
         }
 
         return input;
     }
 
-    public char saisirChar(String message){
+    public char saisirChar(String message, String messageErreur){
         String input;
 
         while(true){
             System.out.println(message);
-            System.out.print("> ");
+            System.out.print(">");
             input = sc.nextLine();
 
             // ça vérifie si l'utilisateur a bien écrit une lettre
             if(input.length() != 1 || !Character.isLetter(input.charAt(0))){
-                System.out.println("Erreur - Veuillez entrez un lettre.");
+                System.out.println(messageErreur + "\n");
                 continue;
             }
             break;
@@ -52,20 +52,42 @@ public abstract class Saisir{
         return input.charAt(0);
     }
 
-    public ArrayList<String> saisirSuite(String message, String format){
+    public String saisirString(String message, String messageErreur){
+        String input;
+        
+        while(true){
+            System.out.println(message);
+            System.out.print(">");
+            input = sc.nextLine();
+
+            input = input.trim();
+            
+            // format = regex (expression régulière). ça vérifie si l'utilisateur a bien écrit l'input.
+            if(input.split(" ").length > 1){
+                System.out.println(messageErreur + "\n");
+                continue;
+            }
+        
+            break;
+        }
+
+        return input;
+    }
+
+    public ArrayList<String> saisirSuite(String format, String message, String messageErreur){
         String input;
         ArrayList<String> trim_input;
         
         while(true){
             System.out.println(message);
-            System.out.print("> ");
+            System.out.print(">");
             input = sc.nextLine();
 
             input = input.trim();
             
             // format = regex (expression régulière). ça vérifie si l'utilisateur a bien écrit l'input.
             if(!input.matches(format)){
-                System.out.println("Erreur - Entrez le bon format.");
+                System.out.println(messageErreur + "\n");
                 continue;
             }
         

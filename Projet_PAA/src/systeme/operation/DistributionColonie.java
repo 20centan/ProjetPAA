@@ -102,7 +102,8 @@ public abstract class DistributionColonie {
             switch(ms.saisirInt("Choisir une option: \n" +
             "[1] Echanger les ressources de deux colons \n" +
             "[2] Afficher le nombre de colons jaloux \n" +
-            "[3] fin")) {
+            "[3] fin", 
+            "Erreur - Commande invalide.")) {
                 case 1:
                     menu.afficherRessource(colonie);
                     System.out.println();
@@ -120,8 +121,9 @@ public abstract class DistributionColonie {
                 case 3:
                     lancer = false;
                     break;
+
                 default:
-                    System.out.println("Commande invalide, veuillez ressayer.");
+                    break;
             }
 
             tour++;

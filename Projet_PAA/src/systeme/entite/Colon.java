@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Colon {
-    private char nom;
+    private String nom;
     private List<Colon> ennemis;
     private List<Ressource> preference;
     private Ressource ressource;
 
-    public Colon(char nom){
+    public Colon(String nom){
         this.nom = nom;
 
         this.ennemis = new ArrayList<Colon>();
@@ -34,7 +34,7 @@ public class Colon {
     }
 
 
-    public char getNom() {
+    public String getNom() {
         return nom;
     }
 

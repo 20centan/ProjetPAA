@@ -17,7 +17,7 @@ public class Colonie {
         this.nbColons = nbColons;
 
         for(int i = 0; i < nbColons; i++){
-            colons.add(new Colon((char) ('A' + i)));
+            colons.add(new Colon(String.valueOf((char) ('A' + i))));
 
             ressources.add(new Ressource());
         }
@@ -27,7 +27,7 @@ public class Colonie {
         return getColon(colon.getNom()) != null;
     }
 
-    public boolean appartientColonie(char nom){
+    public boolean appartientColonie(String nom){
         return getColon(nom) != null;
     }
 
@@ -53,10 +53,10 @@ public class Colonie {
         return somme_attendu - somme == 0;
     }
 
-    public Colon getColon(char nom){ //Vérifie si le colon existe dans la colonie
-        for(Colon c : colons){
-            if(c.getNom() == nom) {
-                return c;
+    public Colon getColon(String nom){ //Vérifie si le colon existe dans la colonie
+        for(Colon colon : colons){
+            if(colon.getNom().equals(nom)) {
+                return colon;
             }
         }
         System.out.println("Le colon " + nom + " n'existe pas dans la colonie");
