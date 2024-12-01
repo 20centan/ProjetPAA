@@ -24,7 +24,7 @@ public abstract class Saisir{
                 break;
     
             } catch (NumberFormatException e) {
-                System.out.println(messageErreur + "\n");
+                System.out.println(messageErreur);
             }
         }
 
@@ -41,7 +41,7 @@ public abstract class Saisir{
 
             // ça vérifie si l'utilisateur a bien écrit une lettre
             if(input.length() != 1 || !Character.isLetter(input.charAt(0))){
-                System.out.println(messageErreur + "\n");
+                System.out.println(messageErreur);
                 continue;
             }
             break;
@@ -62,7 +62,7 @@ public abstract class Saisir{
             
             // format = regex (expression régulière). ça vérifie si l'utilisateur a bien écrit l'input.
             if(input.split(" ").length > 1){
-                System.out.println(messageErreur + "\n");
+                System.out.println(messageErreur);
                 continue;
             }
         
@@ -85,7 +85,7 @@ public abstract class Saisir{
             
             // format = regex (expression régulière). ça vérifie si l'utilisateur a bien écrit l'input.
             if(!input.matches(format)){
-                System.out.println(messageErreur + "\n");
+                System.out.println(messageErreur);
                 continue;
             }
         
