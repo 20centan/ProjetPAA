@@ -23,4 +23,8 @@ public class Ressource {
     public boolean equals(String nomRessource){
         return nom.equals(nomRessource);
     }
+
+    public String toString(){
+        return nom;
+    }
 }

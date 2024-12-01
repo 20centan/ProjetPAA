@@ -5,9 +5,16 @@ public class Application {
     private Menu menu;
     private Central central;
 
-    public Application(){
-        menu = new Menu();
-        central = new Central();
+    private String fichier;
+
+    public Application(String [] args){
+        if(args.length == 0){
+            menu = new Menu();
+            central = new Central();
+        }
+        else{
+            fichier = args[0];
+        }
     }
 
     public void run(){

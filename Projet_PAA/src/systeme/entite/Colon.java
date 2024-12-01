@@ -33,6 +33,10 @@ public class Colon {
     	preference.add(ressource);
     }
 
+    public void viderPreference(){
+        preference.clear();
+    }
+
 
     public String getNom() {
         return nom;

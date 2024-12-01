@@ -1,40 +1,64 @@
 package systeme.operation;
 
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import graphique.Menu;
 import graphique.MenuSaisir;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
+import systeme.entite.Ressource;
 
 public abstract class ConstructionColonie {
     public static void run(Colonie colonie, Menu menu){
         construction(colonie, menu);
     }
 
-    public static void ajoutRelation(Colonie colonie, MenuSaisir ms) {
-		ArrayList<String> relation; 
+    public static void optionRelation(Menu menu, MenuSaisir ms, Colonie colonie){
+        menu.afficherRelation(colonie);
 
+        String [] relation;
+    
         relation = ms.saisirRelation(colonie);
-		
-        Colon colon1 = colonie.getColon(relation.get(0));
-        Colon colon2 = colonie.getColon(relation.get(1));
 
+        Colon colon1 = colonie.getColon(relation[0]);
+        Colon colon2 = colonie.getColon(relation[1]);
+
+        ajoutRelation(colon1, colon2);
+    }
+
+    public static void optionPreference(Menu menu, MenuSaisir ms, Colonie colonie){
+        menu.afficherPreference(colonie);
+
+        String [] colon_preferences = ms.saisirPreferences(colonie);
+
+        // On récupère le colon
+        Colon colon = colonie.getColon(colon_preferences[0]);
+
+        // Si l'utilisateur veut refaire les préférences d'un colon
+        if(!colon.getPreference().isEmpty()){
+            colon.viderPreference();
+        }
+
+        String [] preference = Arrays.copyOfRange(colon_preferences, 1, colon_preferences.length);
+
+        ajoutPreferences(colon, preference, colonie.getRessources());
+    }
+
+    public static void ajoutRelation(Colon colon1, Colon colon2) {
         colon1.ajoutEnnemi(colon2);
 	}
 	
-	public static void ajoutPreferences(Colonie colonie, MenuSaisir ms) {
-        ArrayList<String> colon_preferences = ms.saisirPreferences(colonie);
-
-        // On récupère le colon
-        Colon colon = colonie.getColon(colon_preferences.get(0));
-
-        //On mets maitenant les préférence dans le tableau preference du colon
-        for(String element : colon_preferences.subList(1, colon_preferences.size())){
-            int index = Integer.valueOf(element) - 1;
+	public static void ajoutPreferences(Colon colon, String [] preference, List<Ressource>colonieRessource) {
+        Ressource objet;
+        
+        for(String nomRessource : preference){
+            objet = colonieRessource.stream().filter(ressource -> nomRessource.equals(ressource.getNom()))
+            .findFirst()
+            .orElse(null);
             
-            colon.ajoutPreference(colonie.getRessources().get(index));
+            colon.ajoutPreference(objet);
         }
 	}
 
@@ -69,15 +93,11 @@ public abstract class ConstructionColonie {
                                 "[3] fin",
                                 "Erreur - Commande invalide.")) {
 			    case 1: 
-                    menu.afficherRelation(colonie);
-                    
-                    ajoutRelation(colonie, ms);
+                    optionRelation(menu, ms, colonie);
 			        break;
                     
                 case 2: 
-                    menu.afficherPreference(colonie);
-                   
-                    ajoutPreferences(colonie, ms);
+                    optionPreference(menu, ms, colonie);
                     break;
                 
                 case 3: 
@@ -98,4 +118,6 @@ public abstract class ConstructionColonie {
 
         System.out.println("\nFin de la construction.");
     }
+
+
 }

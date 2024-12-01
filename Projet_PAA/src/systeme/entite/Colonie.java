@@ -1,7 +1,10 @@
 package systeme.entite;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Colonie {
     private int nbColons;
@@ -19,7 +22,7 @@ public class Colonie {
         for(int i = 0; i < nbColons; i++){
             colons.add(new Colon(String.valueOf((char) ('A' + i))));
 
-            ressources.add(new Ressource(String.valueOf(i)));
+            ressources.add(new Ressource(String.valueOf(i + 1)));
         }
     }
 
@@ -40,17 +43,16 @@ public class Colonie {
         return false;
     }
 
-    public boolean preferenceValide(ArrayList<String> colon_preference) {
-        List<String> preference = colon_preference.subList(1, colon_preference.size());
-		int somme = 0;
+    public boolean preferenceValide(String [] preferences) {
+        Set<String> setPreference = new HashSet<>(Arrays.asList(preferences));
 
-        for(String element : preference){
-            somme += Integer.parseInt(element);
+        for(Ressource ressource : ressources){
+            if(!setPreference.contains(ressource.getNom())){
+                return false;
+            }
         }
-        
-        int somme_attendu = (preference.size() * (preference.size() + 1)) / 2;
 
-        return somme_attendu - somme == 0;
+        return true;
     }
 
     public Colon getColon(String nom){ //Vérifie si le colon existe dans la colonie

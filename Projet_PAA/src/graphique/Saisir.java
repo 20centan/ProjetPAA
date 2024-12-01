@@ -1,8 +1,6 @@
 package graphique;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -74,9 +72,9 @@ public abstract class Saisir{
         return input;
     }
 
-    public ArrayList<String> saisirSuite(String format, String message, String messageErreur){
+    public String [] saisirSuite(String format, String message, String messageErreur){
         String input;
-        ArrayList<String> trim_input;
+        String [] trim_input;
         
         while(true){
             System.out.println(message);
@@ -92,7 +90,7 @@ public abstract class Saisir{
             }
         
             // Permet de retirer les espaces inutils (ex input:" B 1   3   2  " -> {B, 1, 3, 2})
-            trim_input = Stream.of(input.split(" ")).filter(w -> !w.isEmpty()).collect(Collectors.toCollection(ArrayList::new));;
+            trim_input = Stream.of(input.split(" ")).filter(w -> !w.isEmpty()).toArray(String[]::new);
         
             break;
         }
