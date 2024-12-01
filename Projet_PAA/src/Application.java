@@ -22,12 +22,4 @@ public class Application {
 
         menu.close();
     }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public Central getCentral() {
-        return central;
-    }
 }
