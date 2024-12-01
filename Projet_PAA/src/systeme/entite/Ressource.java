@@ -12,7 +12,7 @@ public class Ressource {
         return nom;
     }
 
-    public void setId(String nom){
+    public void setNom(String nom){
         this.nom = nom;
     }
 
