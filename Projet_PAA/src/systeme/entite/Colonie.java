@@ -16,6 +16,15 @@ public class Colonie {
         ressources = new ArrayList<>();
     }
 
+    //public Colon ajouterColon(nom)
+    //  return new Colon(nom);
+
+    //public void initialiserColonie
+    //  for i in range nbColon:
+    //      colons.add(ajouterColon(nom))
+
+    //public void ajoutRessources
+
     public void initialisationColonie(int nbColons){
         this.nbColons = nbColons;
 
