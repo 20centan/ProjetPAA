@@ -1,0 +1,11 @@
+colon(nom_colon_1).
+colon(nom_colon_2).
+colon(nom_colon_3).
+ressource(nom_ressource_1).
+ressource(nom_ressource_2).
+ressource(nom_ressource_3).
+deteste(nom_colon_1,nom_colon_2).
+deteste(nom_colon_2,nom_colon_3).
+preferences(nom_colon_1,nom_ressource_1,nom_ressource_2,nom_ressource_3).
+preferences(nom_colon_2,nom_ressource_2,nom_ressource_1,nom_ressource_3).
+preferences(nom_colon_3,nom_ressource_3,nom_ressource_1,nom_ressource_2).
