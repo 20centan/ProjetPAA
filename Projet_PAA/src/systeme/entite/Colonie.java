@@ -16,22 +16,20 @@ public class Colonie {
         ressources = new ArrayList<>();
     }
 
-    //public Colon ajouterColon(nom)
-    //  return new Colon(nom);
-
-    //public void initialiserColonie
-    //  for i in range nbColon:
-    //      colons.add(ajouterColon(nom))
-
-    //public void ajoutRessources
+    public void ajouterColon(String nomColon){
+        colons.add(new Colon(nomColon));
+    }
+    public void ajoutRessources(String nomRessource){
+        ressources.add(new Ressource(nomRessource));
+    }
 
     public void initialisationColonie(int nbColons){
         this.nbColons = nbColons;
 
         for(int i = 0; i < nbColons; i++){
-            colons.add(new Colon(String.valueOf((char) ('A' + i))));
+            ajouterColon(String.valueOf((char) ('A' + i)));
 
-            ressources.add(new Ressource(String.valueOf(i + 1)));
+            ajoutRessources(String.valueOf(i + 1));
         }
     }
 
