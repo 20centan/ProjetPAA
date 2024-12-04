@@ -2,7 +2,7 @@ package Projet_PAA;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-
+import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -212,5 +212,14 @@ class FileManager {
 
 public class test {
     public static void main(String [] args){
+
+        String data = "colon(aa,jjj).";
+
+        StringTokenizer st = new StringTokenizer(data, "(,).");
+
+        while(st.hasMoreTokens()){
+            System.out.println(st.nextToken());
+        }
+
     }    
 }

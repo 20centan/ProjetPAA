@@ -89,8 +89,8 @@ public abstract class Saisir{
                 continue;
             }
         
-            // Permet de retirer les espaces inutils (ex input:" B 1   3   2  " -> {B, 1, 3, 2})
-            trim_input = Stream.of(input.split(" ")).filter(w -> !w.isEmpty()).toArray(String[]::new);
+            // Permet de retirer les espaces inutils (ex input:"B 1   3   2" -> {B, 1, 3, 2})
+            trim_input = input.split("\\s+");
         
             break;
         }
