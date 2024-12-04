@@ -1,7 +1,6 @@
 package graphique;
 
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 
 public abstract class Saisir{
