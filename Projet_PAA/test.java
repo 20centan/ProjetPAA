@@ -100,7 +100,7 @@ class FileChecker{
     }
     
     public void checkColonRessource(String line) throws FileException{
-        if(nbColon != nbRessource){
+        if(currentState == State.DETESTE && nbColon != nbRessource){
             throw new FileException("Nombre de Colon et ressource incorrect" + "\n" 
                                 + "Ligne " + currentPosition + ": " + line);
         }
@@ -128,7 +128,7 @@ class FileChecker{
             case State.DETESTE:
                 currentState = State.PREFERENCE;
                 break;
-                
+
             default:
                 break;
         }
