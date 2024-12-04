@@ -114,6 +114,25 @@ class FileChecker{
                                 + "Ligne " + currentPosition + ": " + line);
         }
     }
+
+    public void changeState(){
+        switch(currentState) {
+            case State.COLON:
+                currentState = State.RESSOURCE;
+                break;
+            
+            case State.RESSOURCE:
+                currentState = State.DETESTE;
+                break;
+            
+            case State.DETESTE:
+                currentState = State.PREFERENCE;
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 class FileManager {
