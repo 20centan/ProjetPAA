@@ -14,7 +14,7 @@ enum State{
     PREFERENCE("preference", "preference\\(([^\\s,]+)(,[^\\s,]+)+\\)\\.");
 
     private String name;
-    private String regex;
+    private String regex; //Respect du pattern
 
     private State(String name, String regex){
         this.name = name;
@@ -76,6 +76,7 @@ class FileChecker{
 
     public void checkColon(String line) throws FileException{
         // verifier que le nom est unique
+
     }
 
     public void checkRessource(String line) throws FileException{

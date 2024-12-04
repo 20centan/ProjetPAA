@@ -1,14 +1,14 @@
-package systeme.operation;
+package systeme.operation.manuel;
 
-
-import java.util.Arrays;
-import java.util.List;
 
 import graphique.Menu;
 import graphique.MenuSaisir;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
 import systeme.entite.Ressource;
+
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class ConstructionColonie {
     public static void run(Colonie colonie, Menu menu){
@@ -54,11 +54,11 @@ public abstract class ConstructionColonie {
         Ressource objet;
         
         for(String nomRessource : preference){
-            objet = colonieRessource.stream().filter(ressource -> nomRessource.equals(ressource.getNom()))
-            .findFirst()
-            .orElse(null);
+            //objet = colonieRessource.stream().filter(ressource -> nomRessource.equals(ressource.getNom()))
+            //.findFirst()
+            //.orElse(null);
             
-            colon.ajoutPreference(objet);
+            colon.ajoutPreference(nomRessource);
         }
 	}
 
