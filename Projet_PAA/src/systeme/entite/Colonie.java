@@ -81,6 +81,16 @@ public class Colonie {
         return ressources;
     }
 
+    public Ressource getRessource(String nomRessource){
+        for(Ressource ressource : ressources){
+            if(ressource.getNom().equals(nomRessource)){
+                return ressource;
+            }
+        }
+
+        return null;
+    }
+
     public int getNbColons(){
         return nbColons;
     }

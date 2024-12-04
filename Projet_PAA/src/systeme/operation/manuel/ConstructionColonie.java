@@ -7,8 +7,6 @@ import systeme.entite.Colon;
 import systeme.entite.Colonie;
 import systeme.entite.Ressource;
 
-import java.util.Arrays;
-import java.util.List;
 
 public abstract class ConstructionColonie {
     public static void run(Colonie colonie, Menu menu){
@@ -41,23 +39,21 @@ public abstract class ConstructionColonie {
             colon.viderPreference();
         }
 
-        String [] preference = Arrays.copyOfRange(colon_preferences, 1, colon_preferences.length);
+        Ressource [] preferences = new Ressource[colon_preferences.length - 1];
 
-        ajoutPreferences(colon, preference, colonie.getRessources());
+        for(int i = 0; i < colon_preferences.length - 1; i++){
+            preferences[i] = colonie.getRessource(colon_preferences[i + 1]); 
+        }
+
+        ajoutPreferences(colon, preferences);
     }
 
     public static void ajoutRelation(Colon colon1, Colon colon2) {
         colon1.ajoutEnnemi(colon2);
 	}
 	
-	public static void ajoutPreferences(Colon colon, String [] preference, List<Ressource>colonieRessource) {
-        Ressource objet;
-        
-        for(String nomRessource : preference){
-            //objet = colonieRessource.stream().filter(ressource -> nomRessource.equals(ressource.getNom()))
-            //.findFirst()
-            //.orElse(null);
-            
+	public static void ajoutPreferences(Colon colon, Ressource [] preference) {
+        for(Ressource nomRessource : preference){
             colon.ajoutPreference(nomRessource);
         }
 	}

@@ -20,7 +20,7 @@ public abstract class Saisir{
 
             // ça vérifie si l'utilisateur a bien écrit un nombre
             try {
-                input = Integer.parseInt(sc.nextLine());
+                input = Integer.parseInt(sc.nextLine().trim());
                 break;
     
             } catch (NumberFormatException e) {
