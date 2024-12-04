@@ -36,9 +36,7 @@ public class FichierManager {
 
             if(line == null){return null;}
             
-            if(!runCheck(line)){
-                // fichier corrompu: afficher le problème et sortir du programme 
-            }
+            
 
             return line;
         }
