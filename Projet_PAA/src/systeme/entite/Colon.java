@@ -16,20 +16,20 @@ public class Colon {
         this.preference = new ArrayList<Ressource>();
     }
 
-    public void ajoutEnnemi(Colon c){
+    public void ajouterEnnemi(Colon c){
         if(!ennemis.contains(c)){
             ennemis.add(c);
             
-            c.ajoutEnnemi(this);
+            c.ajouterEnnemi(this);
         }
     }
 
-    public void ajoutRessource(Ressource ressource){
+    public void ajouterRessource(Ressource ressource){
         this.ressource = ressource;
     }
     
     
-    public void ajoutPreference(Ressource ressource) {
+    public void ajouterPreference(Ressource ressource) {
     	preference.add(ressource);
     }
 

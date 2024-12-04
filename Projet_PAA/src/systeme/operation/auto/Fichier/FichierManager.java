@@ -16,7 +16,7 @@ public class FichierManager {
 
     public FichierManager(String chemin){
         fichier = Path.of(chemin);
-        
+
         fileColonie = new FichierChecker();
     }
 
@@ -31,9 +31,13 @@ public class FichierManager {
 
     public String getNextData(){
         try{
-            String line = reader.readLine();
+            String line;
+
+            if((line = reader.readLine()) == null){
+                return null;
+            }
             
-            if(!checkLine(line)){
+            if(!runCheck(line)){
                 // fichier corrompu: afficher le problème et sortir du programme 
             }
 
@@ -43,12 +47,12 @@ public class FichierManager {
             System.out.println(e.getMessage());
         }
 
-        return "";
+        return null;
     }
 
-    public boolean checkLine(String line){
+    public boolean runCheck(String line){
         try{
-            fileColonie.runCheck(line);
+            fileColonie.check(line);
 
             return true;
         }

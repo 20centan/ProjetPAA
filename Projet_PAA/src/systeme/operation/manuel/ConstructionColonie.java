@@ -23,7 +23,7 @@ public abstract class ConstructionColonie {
         Colon colon1 = colonie.getColon(relation[0]);
         Colon colon2 = colonie.getColon(relation[1]);
 
-        ajoutRelation(colon1, colon2);
+        ajouterRelation(colon1, colon2);
     }
 
     public static void optionPreference(Menu menu, MenuSaisir ms, Colonie colonie){
@@ -45,16 +45,16 @@ public abstract class ConstructionColonie {
             preferences[i] = colonie.getRessource(colon_preferences[i + 1]); 
         }
 
-        ajoutPreferences(colon, preferences);
+        ajouterPreferences(colon, preferences);
     }
 
-    public static void ajoutRelation(Colon colon1, Colon colon2) {
-        colon1.ajoutEnnemi(colon2);
+    public static void ajouterRelation(Colon colon1, Colon colon2) {
+        colon1.ajouterEnnemi(colon2);
 	}
 	
-	public static void ajoutPreferences(Colon colon, Ressource [] preference) {
+	public static void ajouterPreferences(Colon colon, Ressource [] preference) {
         for(Ressource nomRessource : preference){
-            colon.ajoutPreference(nomRessource);
+            colon.ajouterPreference(nomRessource);
         }
 	}
 

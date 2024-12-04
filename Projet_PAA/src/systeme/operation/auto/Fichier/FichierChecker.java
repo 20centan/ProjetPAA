@@ -31,7 +31,7 @@ public class FichierChecker{
     };
 
     // appel tous les vérifications pour une ligne
-    public void runCheck(String line) throws FichierException{
+    public void check(String line) throws FichierException{
         for(CheckSomething checkMethod : checkSomething){
             checkMethod.check(line);
         }

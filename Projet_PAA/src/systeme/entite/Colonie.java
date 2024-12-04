@@ -19,7 +19,7 @@ public class Colonie {
     public void ajouterColon(String nomColon){
         colons.add(new Colon(nomColon));
     }
-    public void ajoutRessources(String nomRessource){
+    public void ajouterRessources(String nomRessource){
         ressources.add(new Ressource(nomRessource));
     }
 
@@ -29,7 +29,7 @@ public class Colonie {
         for(int i = 0; i < nbColons; i++){
             ajouterColon(String.valueOf((char) ('A' + i)));
 
-            ajoutRessources(String.valueOf(i + 1));
+            ajouterRessources(String.valueOf(i + 1));
         }
     }
 

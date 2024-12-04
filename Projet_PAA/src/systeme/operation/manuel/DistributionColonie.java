@@ -19,8 +19,8 @@ public abstract class DistributionColonie {
         Colon colon2 = ms.saisirColon(colonie);
         
         Ressource tmp = colon1.getRessource();
-        colon1.ajoutRessource(colon2.getRessource());
-        colon2.ajoutRessource(tmp);
+        colon1.ajouterRessource(colon2.getRessource());
+        colon2.ajouterRessource(tmp);
 
 	}
 
