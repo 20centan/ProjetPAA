@@ -45,16 +45,16 @@ public abstract class Construction {
                     break;
     
                 case "preferences":
-                Colon colon = colonie.getColon(st.nextToken());
+                    Colon colon = colonie.getColon(st.nextToken());
 
-                Ressource [] preference = new Ressource[st.countTokens()];
-                
-                int i = 0;
-                while(st.hasMoreTokens()){
-                    preference[i++] = colonie.getRessource(st.nextToken());
-                }
+                    Ressource [] preference = new Ressource[st.countTokens()];
                     
-                    ajouterPreferences(colon, preference);
+                    int i = 0;
+                    while(st.hasMoreTokens()){
+                        preference[i++] = colonie.getRessource(st.nextToken());
+                    }
+                        
+                        ajouterPreferences(colon, preference);
             }
         }
     }

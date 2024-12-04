@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class FichierManager {
     private Path fichier;
+
     private BufferedReader reader;
 
     private FichierChecker fileColonie;
@@ -31,11 +32,9 @@ public class FichierManager {
 
     public String getNextData(){
         try{
-            String line;
+            String line = reader.readLine();
 
-            if((line = reader.readLine()) == null){
-                return null;
-            }
+            if(line == null){return null;}
             
             if(!runCheck(line)){
                 // fichier corrompu: afficher le problème et sortir du programme 
