@@ -62,6 +62,24 @@ public class Colonie {
         return true;
     }
 
+    public void afficherColonie(){
+        // afficher colon
+        System.out.println(colons);
+
+        // afficher ressource
+        System.out.println(ressources);
+
+        // afficher relation
+        for(Colon colon : colons){
+            System.out.println(colon + " " + colon.getEnnemis());
+        }
+
+        // afficher ressource (rien de base)
+        for(Colon colon : colons){
+            System.out.println(colon + " " + colon.getRessource());
+        }
+    }
+
     public Colon getColon(String nom){ //Vérifie si le colon existe dans la colonie
         for(Colon colon : colons){
             if(colon.getNom().equals(nom)) {
