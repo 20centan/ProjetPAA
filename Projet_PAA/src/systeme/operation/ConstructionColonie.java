@@ -7,7 +7,7 @@ import graphique.MenuSaisir;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
 import systeme.entite.Ressource;
-import systeme.operation.Fichier.FichierManager;
+import systeme.operation.fichier.FichierManager;
 
 
 public abstract class ConstructionColonie {

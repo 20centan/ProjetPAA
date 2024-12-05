@@ -1,4 +1,4 @@
-package systeme.operation.Fichier;
+package systeme.operation.fichier;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
