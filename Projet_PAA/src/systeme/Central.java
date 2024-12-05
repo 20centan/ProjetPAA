@@ -31,7 +31,7 @@ public class Central {
     }
 
     public void distribuerColonie(Menu menu, String fichier){
-        DistributionColonie.run(colonie, menu);
+        DistributionColonie.run(colonie, menu, "sauvegarde.txt");
     }
 
     public Colonie getColonie() {
