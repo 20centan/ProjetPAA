@@ -13,6 +13,11 @@ public class Central {
         colonie = new Colonie();
     }
 
+    public Central(String fichier){
+        colonie = new Colonie();
+        
+    }
+
     public void construireColonie(Menu menu){
         ConstructionColonie.run(colonie, menu);
     }

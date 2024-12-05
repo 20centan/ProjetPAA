@@ -5,15 +5,14 @@ public class Application {
     private Menu menu;
     private Central central;
 
-    private String fichier;
-
     public Application(String [] args){
-        if(args.length == 0){
-            menu = new Menu();
-            central = new Central();
+        menu = new Menu();
+
+        if(args.length != 0){
+            central = new Central(args[0]);
         }
         else{
-            fichier = args[0];
+            central = new Central();
         }
     }
 

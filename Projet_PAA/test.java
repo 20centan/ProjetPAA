@@ -213,13 +213,9 @@ class FileManager {
 public class test {
     public static void main(String [] args){
 
-        String data = "colon(aa,jjj).";
+        String [] test = {"a"};
 
-        StringTokenizer st = new StringTokenizer(data, "(,).");
 
-        while(st.hasMoreTokens()){
-            System.out.println(st.nextToken());
-        }
-
+        System.out.println(test[0]);
     }    
 }
