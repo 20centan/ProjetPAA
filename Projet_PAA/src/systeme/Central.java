@@ -26,6 +26,14 @@ public class Central {
         DistributionColonie.run(colonie, menu);
     }
 
+    public void construireColonie(String fichier){
+        ConstructionColonie.run(colonie, fichier);
+    }
+
+    public void distribuerColonie(Menu menu, String fichier){
+        DistributionColonie.run(colonie, menu);
+    }
+
     public Colonie getColonie() {
         return colonie;
     }

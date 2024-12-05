@@ -14,6 +14,10 @@ public abstract class DistributionColonie {
         distribution(colonie, menu);
     }
 
+    public static void run(Colonie colonie, Menu menu, String fichier){
+        distribution(colonie, menu, fichier);
+    }
+
     public static void echangeRessource(Colonie colonie, MenuSaisir ms) {
         Colon colon1 = ms.saisirColon(colonie);
         Colon colon2 = ms.saisirColon(colonie);
@@ -129,4 +133,9 @@ public abstract class DistributionColonie {
             tour++;
         }
     } 
+
+    public static void distribution(Colonie colonie, Menu menu, String fichier){
+
+    }
+
 }
