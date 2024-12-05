@@ -162,29 +162,4 @@ public abstract class ConstructionColonie {
         manager.closeReader();
     }
 
-    public static void main(String [] args){
-        String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/test.txt";
-
-        Colonie colonie = new Colonie();
-
-        run(colonie, fichier);
-
-        // afficher colon
-        for(Colon colon : colonie.getColons()){
-            System.out.println(colon);
-        }
-
-        // afficher ressource
-        System.out.println(colonie.getRessources());
-
-        // afficher relation
-        for(Colon colon : colonie.getColons()){
-            System.out.println(colon + " " + colon.getEnnemis());
-        }
-
-        // afficher ressource (rien de base)
-        for(Colon colon : colonie.getColons()){
-            System.out.println(colon + " " + colon.getRessource());
-        }
-    }
 }
