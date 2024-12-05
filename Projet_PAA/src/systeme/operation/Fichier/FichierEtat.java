@@ -1,4 +1,4 @@
-package systeme.operation.auto.Fichier;
+package systeme.operation.Fichier;
 
 public enum FichierEtat{
     COLON("colon", "colon\\([^\\s]+\\)\\."), 

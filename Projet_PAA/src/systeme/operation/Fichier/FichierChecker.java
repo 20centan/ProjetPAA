@@ -1,4 +1,4 @@
-package systeme.operation.auto.Fichier;
+package systeme.operation.Fichier;
 
 
 public class FichierChecker{

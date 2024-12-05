@@ -3,8 +3,8 @@ package systeme;
 
 import graphique.Menu;
 import systeme.entite.Colonie;
-import systeme.operation.manuel.ConstructionColonie;
-import systeme.operation.manuel.DistributionColonie;
+import systeme.operation.ConstructionColonie;
+import systeme.operation.DistributionColonie;
 
 public class Central {
     private Colonie colonie;
