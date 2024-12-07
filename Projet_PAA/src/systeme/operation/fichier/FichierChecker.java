@@ -73,9 +73,11 @@ public class FichierChecker{
         }
         
         StringTokenizer st = new StringTokenizer(ligne, "()."); 
-        // st = [ressource, valeur]
+        // st = [colon, valeur]
 
-        st.nextToken(); // pour vider le premier tokken 
+        // pour vider le premier tokken 
+        st.nextToken(); 
+         
         String valeur = st.nextToken();
         
         if(memoire.get(valeur) == FichierEtat.COLON){
@@ -94,7 +96,9 @@ public class FichierChecker{
         StringTokenizer st = new StringTokenizer(ligne, "()."); 
         // st = [ressource, valeur]
 
-        st.nextToken(); // pour vider le premier tokken 
+        // pour vider le premier tokken 
+        st.nextToken();
+
         String valeur = st.nextToken();
         
         if(memoire.get(valeur) == FichierEtat.RESSOURCE){
@@ -111,6 +115,34 @@ public class FichierChecker{
     public void checkDeteste(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un deteste(...).
         if(etat != FichierEtat.DETESTE){
+            return;
+        }
+        
+        StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
+        // st = [detest, colon1, colon2]
+
+        // pour vider le premier tokken 
+        st.nextToken(); 
+
+        String colon1 = st.nextToken();
+        String colon2 = st.nextToken();
+        
+        if(memoire.get(colon1) != FichierEtat.COLON){
+            throw new FichierException(colon1 + " n'est pas un colon.", positionFichier, ligne);
+        }
+
+        if(memoire.get(colon2) != FichierEtat.COLON){
+            throw new FichierException(colon2 + " n'est pas un colon.", positionFichier, ligne);
+        }
+
+        if(colon1.equals(colon2)){
+            throw new FichierException("Le nom des deux colons est identique.", positionFichier, ligne);
+        }
+    }
+
+    public void checkPreference(String ligne) throws FichierException{
+        // ne lance pas la vérification si la ligne n'est pas un deteste(...).
+        if(etat != FichierEtat.PREFERENCES){
             return;
         }
         
@@ -132,9 +164,6 @@ public class FichierChecker{
         if(colon1.equals(colon2)){
             throw new FichierException("Le nom des deux colons est identique.", positionFichier, ligne);
         }
-    }
-
-    public void checkPreference(String ligne) throws FichierException{
         // vérifier le bon nombre de paramètre
         // vérifier que le premier nom est un colon et que le reste c'est des ressources existantes
     }
