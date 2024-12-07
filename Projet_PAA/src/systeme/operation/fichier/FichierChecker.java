@@ -1,6 +1,8 @@
 package systeme.operation.fichier;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class FichierChecker{
@@ -35,6 +37,7 @@ public class FichierChecker{
         new CheckLigne() {public void check(String ligne) throws FichierException {checkColon(ligne);}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkRessource(ligne);}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkDeteste(ligne);}},
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkPreference(ligne);}},
     };
 
     // appel tous les vérifications pour une ligne
@@ -75,17 +78,23 @@ public class FichierChecker{
         // st = [colon, valeur]
         StringTokenizer st = new StringTokenizer(ligne, "()."); 
 
-        // pour vider le premier tokken 
+        // vider le premier tokken 
         st.nextToken(); 
 
-        checkColonExiste(st.nextToken(), ligne);
+        checkColonExistePas(st.nextToken(), ligne);
 
         nbColon++;
     }
 
     public void checkColonExiste(String nomColon, String ligne) throws FichierException{
-        if(memoire.get(nomColon) == FichierEtat.COLON){
-            throw new FichierException("Le colon existe déjà.", positionFichier, ligne);
+        if(!memoire.containsKey(nomColon)){
+            throw new FichierException("Le colon n'existe pas.", positionFichier, ligne);
+        }
+    }
+
+    public void checkColonExistePas(String nomColon, String ligne) throws FichierException{
+        if(memoire.get(nomColon) != FichierEtat.COLON){
+            throw new FichierException(nomColon + " existe déjà.", positionFichier, ligne);
         }
     }
 
@@ -105,24 +114,30 @@ public class FichierChecker{
         // st = [ressource, valeur]
         StringTokenizer st = new StringTokenizer(ligne, "()."); 
 
-        // pour vider le premier tokken 
+        // vider le premier tokken 
         st.nextToken();
 
         String nomRessource = st.nextToken();
         
-        checkRessourceExiste(nomRessource, ligne);
-        checkRessourceEstRessource(nomRessource, ligne);
+        checkRessourceExistePas(nomRessource, ligne);
+        checkRessourceEstPasColon(nomRessource, ligne);
 
         nbRessource++;
     }
-
+    
     public void checkRessourceExiste(String nomRessource, String ligne) throws FichierException{
+        if(!memoire.containsKey(nomRessource)){
+            throw new FichierException("La ressource n'existe pas.", positionFichier, ligne);
+        }
+    }
+    
+    public void checkRessourceExistePas(String nomRessource, String ligne) throws FichierException{
         if(memoire.get(nomRessource) == FichierEtat.RESSOURCE){
             throw new FichierException("La ressource existe déjà.", positionFichier, ligne);
         }
     }
-
-    public void checkRessourceEstRessource(String nomRessource, String ligne) throws FichierException{
+    
+    public void checkRessourceEstPasColon(String nomRessource, String ligne) throws FichierException{
         if(memoire.get(nomRessource) == FichierEtat.COLON){
             throw new FichierException("Le nom de la ressource est un colon.", positionFichier, ligne);
         }
@@ -138,14 +153,14 @@ public class FichierChecker{
         // st = [deteste, colon1, colon2]
         StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
 
-        // pour vider le premier tokken 
+        // vider le premier tokken 
         st.nextToken(); 
 
         String colon1 = st.nextToken();
         String colon2 = st.nextToken();
 
-        checkDetesteColonExiste(colon1, ligne);
-        checkDetesteColonExiste(colon2, ligne);
+        checkColonExiste(colon1, ligne);
+        checkColonExiste(colon2, ligne);
        
         checkColonEstColon(colon1, ligne);
         checkColonEstColon(colon2, ligne);
@@ -155,11 +170,6 @@ public class FichierChecker{
         }
     }
 
-    public void checkDetesteColonExiste(String nomColon, String ligne) throws FichierException{
-        if(!memoire.containsKey(nomColon)){
-            throw new FichierException(nomColon + " n'existe pas.", positionFichier, ligne);
-        }
-    }
 
 
     public void checkPreference(String ligne) throws FichierException{
@@ -171,30 +181,48 @@ public class FichierChecker{
         // st = [preference, colon, ressource1, ressource2, ...]
         StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
 
-        // pour vider le premier tokken 
+        // vider le premier tokken 
         st.nextToken(); 
 
-        String colon = st.nextToken();
-        
-        if(memoire.get(colon) != FichierEtat.COLON){
-            throw new FichierException(colon + " n'est pas un colon.", positionFichier, ligne);
-        }
+        String nomColon = st.nextToken();
+        checkColonExiste(nomColon, ligne);
+        checkColonEstColon(nomColon, ligne);
         
         if(st.countTokens() != nbRessource){
             throw new FichierException("Une ressource est manquante.", positionFichier, ligne);
         }
         
-        while(st.hasMoreTokens()) {
-            
-        }
-        
+        String nomRessource;
+        String [] ressources = new String[st.countTokens()];
+        int i = 0;
 
-        if(colon1.equals(colon2)){
-            throw new FichierException("Le nom des deux colons est identique.", positionFichier, ligne);
+        while(st.hasMoreTokens()) {
+            nomRessource = st.nextToken();
+
+            checkRessourceExiste(nomRessource, ligne);
+            checkRessourceEstPasColon(nomRessource, ligne);
+
+            ressources[i++] = nomRessource;
         }
-        // vérifier le bon nombre de paramètre
-        // vérifier que le premier nom est un colon et que le reste c'est des ressources existantes
+
+        checkPreferenceRessourceUnique(ressources, ligne);
     }
+
+    public void checkPreferenceRessourceUnique(String [] ressources, String ligne) throws FichierException{
+        Set<String> ressourceRedondant = new HashSet<>(); 
+        Set<String> ressourceSet = new HashSet<>();
+            
+        for (String ressource : ressources) {
+            if(!ressourceSet.add(ressource)) {
+                ressourceRedondant.add(ressource);
+            }
+        }
+
+        if(!ressourceSet.isEmpty()){
+            throw new FichierException("Les ressources " + ressourceRedondant.toString() + " sont redondantes.", positionFichier, ligne);
+        }
+    }
+
 
     public void checkColonPreference(){
         // vérifier le bon nombre de préférence/ tous les colons ont une préférence
