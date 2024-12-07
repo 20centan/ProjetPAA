@@ -66,7 +66,25 @@ public class FichierChecker{
     }
 
     public void checkRessource(String ligne) throws FichierException{
-        // vérifier que le nom est unique
+        if(etat != FichierEtat.RESSOURCE){
+            return;
+        }
+        
+        StringTokenizer st = new StringTokenizer(ligne, "()."); 
+        // st = [ressource, valeur]
+
+        st.nextToken(); // pour vider le premier tokken 
+        String valeur = st.nextToken();
+        
+        if(memoire.get(valeur) == FichierEtat.RESSOURCE){
+            throw new FichierException("Ressource redondant" + "\n"
+                                    + "Ligne " + positionFichier + ": " + ligne);
+        }
+
+        if(memoire.get(valeur) == FichierEtat.COLON){
+            throw new FichierException("Ressource est un Colon" + "\n"
+                                    + "Ligne " + positionFichier + ": " + ligne);
+        }
 
     }
 
