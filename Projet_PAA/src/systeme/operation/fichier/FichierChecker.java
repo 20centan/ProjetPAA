@@ -120,7 +120,7 @@ public class FichierChecker{
             return;
         }
         
-        // st = [detest, colon1, colon2]
+        // st = [deteste, colon1, colon2]
         StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
 
         // pour vider le premier tokken 
@@ -149,12 +149,12 @@ public class FichierChecker{
             return;
         }
         
-        // st = [ressource, valeur]
+        // st = [preference, colon, ressource1, ressource2, ...]
         StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
 
         // pour vider le premier tokken 
         st.nextToken(); 
-        
+
         String colon1 = st.nextToken();
         String colon2 = st.nextToken();
         
