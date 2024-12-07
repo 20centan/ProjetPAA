@@ -128,7 +128,7 @@ public class FichierChecker{
                     break;
     
                 default:
-                    etat = null;
+                    etat = FichierEtat.FINFICHIER;
                     break;
             }
         }
