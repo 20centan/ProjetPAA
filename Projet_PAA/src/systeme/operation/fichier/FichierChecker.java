@@ -32,18 +32,20 @@ public class FichierChecker{
 
         new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkColon(ligne);}},
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkRessource(ligne);}},
     };
 
     // appel tous les vérifications pour une ligne
     public void check(String ligne) throws FichierException{
+        changerEtat(ligne);
+
         for(CheckLigne checker : checkLigne){
-            changerEtat(ligne);
-
             checker.check(ligne);
-
-            ajouterEnMemoire(ligne);
-
         }
+
+        ajouterEnMemoire(ligne);
+
         positionFichier++;
     }
 
@@ -64,8 +66,19 @@ public class FichierChecker{
 
 
     public void checkColon(String ligne) throws FichierException{
-        // verifier que le nom est unique
+        if(etat != FichierEtat.COLON){
+            return;
+        }
+        
+        StringTokenizer st = new StringTokenizer(ligne, "()."); 
+        // st = [ressource, valeur]
 
+        st.nextToken(); // pour vider le premier tokken 
+        String valeur = st.nextToken();
+        
+        if(memoire.get(valeur) == FichierEtat.COLON){
+            throw new FichierException("Le colon existe déjà.", positionFichier, ligne);
+        }
     }
 
     public void checkRessource(String ligne) throws FichierException{
@@ -84,7 +97,7 @@ public class FichierChecker{
         }
 
         if(memoire.get(valeur) == FichierEtat.COLON){
-            throw new FichierException("Le nom de la ressource est un Colon.", positionFichier, ligne);
+            throw new FichierException("Le nom de la ressource est un colon.", positionFichier, ligne);
         }
     }
 
