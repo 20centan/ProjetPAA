@@ -95,7 +95,7 @@ public class FichierChecker{
         }
     }
 
-    
+
     public void checkRessource(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un ressource(...).
         if(etat != FichierEtat.RESSOURCE){
@@ -143,17 +143,21 @@ public class FichierChecker{
 
         String colon1 = st.nextToken();
         String colon2 = st.nextToken();
-        
-        if(memoire.get(colon1) != FichierEtat.COLON){
-            throw new FichierException(colon1 + " n'est pas un colon.", positionFichier, ligne);
-        }
 
-        if(memoire.get(colon2) != FichierEtat.COLON){
-            throw new FichierException(colon2 + " n'est pas un colon.", positionFichier, ligne);
-        }
+        checkDetesteColonExiste(colon1, ligne);
+        checkDetesteColonExiste(colon2, ligne);
+       
+        checkColonEstColon(colon1, ligne);
+        checkColonEstColon(colon2, ligne);
 
         if(colon1.equals(colon2)){
             throw new FichierException("Le nom des deux colons est identique.", positionFichier, ligne);
+        }
+    }
+
+    public void checkDetesteColonExiste(String nomColon, String ligne) throws FichierException{
+        if(!memoire.containsKey(nomColon)){
+            throw new FichierException(nomColon + " n'existe pas.", positionFichier, ligne);
         }
     }
 
