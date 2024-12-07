@@ -27,21 +27,35 @@ public class FichierChecker{
         void check(String ligne) throws FichierException;
     }
     
-    private CheckLigne[] checkSomething = new CheckLigne[] {
+    private CheckLigne[] checkLigne = new CheckLigne[] {
 
         new CheckLigne() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
-        new CheckLigne() {public void check(String ligne) throws FichierException {checkColonRessource(ligne);}}
     };
 
     // appel tous les vérifications pour une ligne
     public void check(String ligne) throws FichierException{
-        for(CheckLigne checkLigne : checkSomething){
+        for(CheckLigne checker : checkLigne){
             changerEtat(ligne);
 
-            checkLigne.check(ligne);
+            checker.check(ligne);
 
             ajouterEnMemoire(ligne);
+        }
+    }
+
+    private interface CheckManquant{
+        void check() throws FichierException;
+    }
+
+    private CheckManquant[] checkManquant = new CheckManquant[]{
+        new CheckManquant() {public void check() throws FichierException {checkColonRessource();}}
+    };
+
+
+    public void check() throws FichierException{
+        for(CheckManquant checker : checkManquant){
+            checker.check();
         }
     }
 
@@ -65,6 +79,11 @@ public class FichierChecker{
         // vérifier que le premier nom est un colon et que le reste c'est des ressources existantes
     }
 
+    public void checkNbPreference(){
+        // vérifier le bon nombre de préférence/ tous les colons ont une préférence
+        
+    }
+
     public void checkSyntaxe(String ligne, String regex) throws FichierException{
         if(!ligne.matches(regex)){
             throw new FichierException("Syntaxe incorrect" + "\n" 
@@ -72,10 +91,10 @@ public class FichierChecker{
         }
     }
     
-    public void checkColonRessource(String ligne) throws FichierException{
+    public void checkColonRessource() throws FichierException{
         if(etat == FichierEtat.DETESTE && nbColon != nbRessource){
             throw new FichierException("Nombre de Colon et ressource incorrect" + "\n" 
-                                + "Ligne " + positionFichier + ": " + ligne);
+                                + "Ligne " + positionFichier);
         }
     }
 
