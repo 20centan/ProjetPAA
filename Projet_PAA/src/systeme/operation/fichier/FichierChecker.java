@@ -72,12 +72,12 @@ public class FichierChecker{
             return;
         }
         
-        StringTokenizer st = new StringTokenizer(ligne, "()."); 
         // st = [colon, valeur]
+        StringTokenizer st = new StringTokenizer(ligne, "()."); 
 
         // pour vider le premier tokken 
         st.nextToken(); 
-         
+
         String valeur = st.nextToken();
         
         if(memoire.get(valeur) == FichierEtat.COLON){
@@ -87,14 +87,15 @@ public class FichierChecker{
         nbColon++;
     }
 
+
     public void checkRessource(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un ressource(...).
         if(etat != FichierEtat.RESSOURCE){
             return;
         }
         
-        StringTokenizer st = new StringTokenizer(ligne, "()."); 
         // st = [ressource, valeur]
+        StringTokenizer st = new StringTokenizer(ligne, "()."); 
 
         // pour vider le premier tokken 
         st.nextToken();
@@ -112,14 +113,15 @@ public class FichierChecker{
         nbRessource++;
     }
 
+
     public void checkDeteste(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un deteste(...).
         if(etat != FichierEtat.DETESTE){
             return;
         }
         
-        StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
         // st = [detest, colon1, colon2]
+        StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
 
         // pour vider le premier tokken 
         st.nextToken(); 
@@ -140,6 +142,7 @@ public class FichierChecker{
         }
     }
 
+    
     public void checkPreference(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un deteste(...).
         if(etat != FichierEtat.PREFERENCES){
