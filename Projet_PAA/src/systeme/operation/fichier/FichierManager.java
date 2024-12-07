@@ -36,6 +36,7 @@ public class FichierManager {
 
             if(line == null){return null;}
             
+            runCheck(line);
             
 
             return line;
@@ -55,6 +56,7 @@ public class FichierManager {
         }
         catch(FichierException e){
             System.out.println(e.getMessage());
+            System.exit(0);
         }
         
         return false;
