@@ -89,6 +89,13 @@ public class FichierChecker{
         }
     }
 
+    public void checkColonEstColon(String nomColon, String ligne) throws FichierException{
+        if(memoire.get(nomColon) == FichierEtat.RESSOURCE){
+            throw new FichierException("Le nom du colon est une ressource.", positionFichier, ligne);
+        }
+    }
+
+    
     public void checkRessource(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un ressource(...).
         if(etat != FichierEtat.RESSOURCE){
@@ -104,7 +111,7 @@ public class FichierChecker{
         String nomRessource = st.nextToken();
         
         checkRessourceExiste(nomRessource, ligne);
-        checkRessourceCorrect(nomRessource, ligne);
+        checkRessourceEstRessource(nomRessource, ligne);
 
         nbRessource++;
     }
@@ -115,7 +122,7 @@ public class FichierChecker{
         }
     }
 
-    public void checkRessourceCorrect(String nomRessource, String ligne) throws FichierException{
+    public void checkRessourceEstRessource(String nomRessource, String ligne) throws FichierException{
         if(memoire.get(nomRessource) == FichierEtat.COLON){
             throw new FichierException("Le nom de la ressource est un colon.", positionFichier, ligne);
         }
