@@ -15,7 +15,7 @@ public class FichierChecker{
     public FichierChecker(){
         nbColon = 0;
         nbRessource = 0;
-        memoire = new HashMap<>(); // la mémoire permet de stocker les derniers lignes 
+        memoire = new HashMap<>(); // la mémoire permet de tracker les dernières lignes visitées, ça permet de vérifier que chaque ligne est unique. 
 
         // position de départ: ligne 1 du fichier
         positionFichier = 1;
