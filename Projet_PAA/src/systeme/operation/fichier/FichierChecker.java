@@ -77,15 +77,12 @@ public class FichierChecker{
         String valeur = st.nextToken();
         
         if(memoire.get(valeur) == FichierEtat.RESSOURCE){
-            throw new FichierException("Ressource redondant" + "\n"
-                                    + "Ligne " + positionFichier + ": " + ligne);
+            throw new FichierException("La ressource existe déjà.", positionFichier, ligne);
         }
 
         if(memoire.get(valeur) == FichierEtat.COLON){
-            throw new FichierException("Ressource est un Colon" + "\n"
-                                    + "Ligne " + positionFichier + ": " + ligne);
+            throw new FichierException("Le nom de la ressource est un Colon.", positionFichier, ligne);
         }
-
     }
 
     public void checkDesteste(String ligne) throws FichierException{
@@ -104,15 +101,13 @@ public class FichierChecker{
 
     public void checkSyntaxe(String ligne, String regex) throws FichierException{
         if(!ligne.matches(regex)){
-            throw new FichierException("Syntaxe incorrect" + "\n" 
-                                + "Ligne " + positionFichier + ": " + ligne);
+            throw new FichierException("La syntaxe incorrect.", positionFichier, ligne);
         }
     }
     
     public void checkColonRessource() throws FichierException{
         if(etat == FichierEtat.DETESTE && nbColon != nbRessource){
-            throw new FichierException("Nombre de Colon et ressource incorrect" + "\n" 
-                                + "Ligne " + positionFichier);
+            throw new FichierException("Nombre de Colon et ressource incorrect", positionFichier);
         }
     }
 
@@ -121,13 +116,11 @@ public class FichierChecker{
 
         // verifier si la 1ère ligne est un colon
         if(positionFichier == 1 && !ligneEtat.equals("colon")){
-            throw new FichierException("Ordre d'élément incorrect" + "\n" 
-                                + "Ligne " + positionFichier + ": " + ligne);
+            throw new FichierException("L'ordre d'élément incorrect", positionFichier, ligne);
         }
 
         if(!ligneEtat.equals(etat.toString())){
-            throw new FichierException("Ordre d'élément incorrect" + "\n" 
-                                + "Ligne " + positionFichier + ": " + ligne);
+            throw new FichierException("L'ordre d'élément incorrect", positionFichier, ligne);
         }
     }
 
