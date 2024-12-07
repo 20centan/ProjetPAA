@@ -8,30 +8,29 @@ import java.util.StringTokenizer;
 public class FichierChecker{
     private int nbColon;
     private int nbRessource;
-    private HashMap<String, FichierEtat> memoire; // permet de stocker les colons et les ressources pour les vérifications
+    private HashMap<String, FichierEtat> memoire; // la mémoire permet de tracker les dernières lignes visitées, ça permet de faire des vérifications. 
 
-    private int positionFichier;
+    private int positionFichier; // position du pointer du BufferedReader
     
-    private FichierEtat etat;
+    private FichierEtat etat; // état de la ligne (colon, ressource, deteste ou préférence)
 
     public FichierChecker(){
         nbColon = 0;
         nbRessource = 0;
-        memoire = new HashMap<>(); // la mémoire permet de tracker les dernières lignes visitées, ça permet de vérifier que chaque ligne est unique. 
+        memoire = new HashMap<>();
 
-        // position de départ: ligne 1 du fichier
-        positionFichier = 1;
+        positionFichier = 1; // ligne 1 du fichier
 
-        etat = FichierEtat.COLON;
+        etat = FichierEtat.COLON; 
     }
 
-    
+    // interface qui va stocker les fonctions de vérification
     private interface CheckLigne {
         void check(String ligne) throws FichierException;
     }
     
+    // permet de stocker des fonctions dans un array et de les appeller plus tard
     private CheckLigne[] checkLigne = new CheckLigne[] {
-
         new CheckLigne() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkColon(ligne);}},
@@ -40,7 +39,7 @@ public class FichierChecker{
         new CheckLigne() {public void check(String ligne) throws FichierException {checkPreference(ligne);}},
     };
 
-    // appel tous les vérifications pour une ligne
+    // itère dans la liste de fonctions et les appelle
     public void check(String ligne) throws FichierException{
         changerEtat(ligne);
 
@@ -53,15 +52,17 @@ public class FichierChecker{
         positionFichier++;
     }
 
+    // interface qui va stocker les fonctions de vérification
     private interface CheckManquant{
         void check() throws FichierException;
     }
 
+    // permet de stocker des fonctions dans un array et de les appeller plus tard
     private CheckManquant[] checkManquant = new CheckManquant[]{
         new CheckManquant() {public void check() throws FichierException {checkColonRessource();}}
     };
 
-
+    // itère dans la liste de fonctions et les appelle
     public void check() throws FichierException{
         for(CheckManquant checker : checkManquant){
             checker.check();
@@ -70,7 +71,7 @@ public class FichierChecker{
 
 
     public void checkColon(String ligne) throws FichierException{
-        // ne lance pas la vérification si la ligne n'est pas un colon(...).
+        // ne lance pas la vérification si la ligne n'est pas du type colon(...).
         if(etat != FichierEtat.COLON){
             return;
         }
@@ -86,18 +87,21 @@ public class FichierChecker{
         nbColon++;
     }
 
+    // sous fonction de checkColon
     public void checkColonExiste(String nomColon, String ligne) throws FichierException{
         if(!memoire.containsKey(nomColon)){
             throw new FichierException("Le colon " + nomColon + " n'existe pas.", positionFichier, ligne);
         }
     }
 
+    // sous fonction de checkColon
     public void checkColonExistePas(String nomColon, String ligne) throws FichierException{
         if(memoire.get(nomColon) == FichierEtat.COLON){
             throw new FichierException("Le colon " + nomColon + " existe déjà.", positionFichier, ligne);
         }
     }
 
+    // sous fonction de checkColon
     public void checkColonEstColon(String nomColon, String ligne) throws FichierException{
         if(memoire.get(nomColon) == FichierEtat.RESSOURCE){
             throw new FichierException("Le nom du colon est une ressource.", positionFichier, ligne);
@@ -106,7 +110,7 @@ public class FichierChecker{
 
 
     public void checkRessource(String ligne) throws FichierException{
-        // ne lance pas la vérification si la ligne n'est pas un ressource(...).
+        // ne lance pas la vérification si la ligne n'est pas du type ressource(...).
         if(etat != FichierEtat.RESSOURCE){
             return;
         }
@@ -125,18 +129,21 @@ public class FichierChecker{
         nbRessource++;
     }
     
+    // sous fonction de checkRessource
     public void checkRessourceExiste(String nomRessource, String ligne) throws FichierException{
         if(!memoire.containsKey(nomRessource)){
             throw new FichierException("La ressource " + nomRessource + " n'existe pas.", positionFichier, ligne);
         }
     }
     
+    // sous fonction de checkRessource
     public void checkRessourceExistePas(String nomRessource, String ligne) throws FichierException{
         if(memoire.get(nomRessource) == FichierEtat.RESSOURCE){
             throw new FichierException("La ressource " + nomRessource + " existe déjà.", positionFichier, ligne);
         }
     }
     
+    // sous fonction de checkRessource
     public void checkRessourceEstPasColon(String nomRessource, String ligne) throws FichierException{
         if(memoire.get(nomRessource) == FichierEtat.COLON){
             throw new FichierException("Le nom de la ressource est un colon.", positionFichier, ligne);
@@ -145,7 +152,7 @@ public class FichierChecker{
 
 
     public void checkDeteste(String ligne) throws FichierException{
-        // ne lance pas la vérification si la ligne n'est pas un deteste(...).
+        // ne lance pas la vérification si la ligne n'est pas du type deteste(...).
         if(etat != FichierEtat.DETESTE){
             return;
         }
@@ -171,9 +178,8 @@ public class FichierChecker{
     }
 
 
-
     public void checkPreference(String ligne) throws FichierException{
-        // ne lance pas la vérification si la ligne n'est pas un deteste(...).
+        // ne lance pas la vérification si la ligne n'est pas du type deteste(...).
         if(etat != FichierEtat.PREFERENCES){
             return;
         }
@@ -208,6 +214,7 @@ public class FichierChecker{
         checkPreferenceRessourceUnique(ressources, ligne);
     }
 
+    // sous fonction de checkPreference
     public void checkPreferenceRessourceUnique(String [] ressources, String ligne) throws FichierException{
         Set<String> ressourceRedondant = new HashSet<>(); 
         Set<String> ressourceSet = new HashSet<>();
