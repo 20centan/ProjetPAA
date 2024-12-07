@@ -30,8 +30,8 @@ public class FichierChecker{
     
     private CheckLigne[] checkLigne = new CheckLigne[] {
 
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
-        //new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
     };
 
     // appel tous les vérifications pour une ligne
