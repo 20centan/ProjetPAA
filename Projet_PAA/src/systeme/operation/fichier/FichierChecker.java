@@ -15,7 +15,7 @@ public class FichierChecker{
     public FichierChecker(){
         nbColon = 0;
         nbRessource = 0;
-        memoire = new HashMap<>();
+        memoire = new HashMap<>(); // la mémoire permet de stocker les derniers lignes 
 
         // position de départ: ligne 1 du fichier
         positionFichier = 1;
