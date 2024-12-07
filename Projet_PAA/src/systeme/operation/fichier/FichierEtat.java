@@ -1,9 +1,9 @@
 package systeme.operation.fichier;
 
 public enum FichierEtat{
-    COLON("colon", "colon\\([^\\s]+\\)\\."), 
-    RESSOURCE("ressource", "ressource\\([^\\s]+\\)\\."), 
-    DETESTE("deteste", "deteste\\([^\\s]+, [^\\s]+\\)\\."), 
+    COLON("colon", "colon\\([^\\s,]+\\)\\."), 
+    RESSOURCE("ressource", "ressource\\([^\\s,]+\\)\\."), 
+    DETESTE("deteste", "deteste\\([^\\s,]+,[^\\s,]+\\)."), 
     PREFERENCE("preference", "preference\\(([^\\s,]+)(,[^\\s,]+)+\\)\\.");
 
     private String name;
