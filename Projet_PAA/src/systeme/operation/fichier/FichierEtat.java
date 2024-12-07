@@ -4,7 +4,7 @@ public enum FichierEtat{
     COLON("colon", "colon\\([^\\s,]+\\)\\."), 
     RESSOURCE("ressource", "ressource\\([^\\s,]+\\)\\."), 
     DETESTE("deteste", "deteste\\([^\\s,]+,[^\\s,]+\\)."), 
-    PREFERENCE("preference", "preference\\(([^\\s,]+)(,[^\\s,]+)+\\)\\."),
+    PREFERENCES("preferences", "preferences\\(([^\\s,]+)(,[^\\s,]+)+\\)\\."),
 
     // (exceptionnel) pour marquer la fin du fichier
     FINFICHIER("fin", "");

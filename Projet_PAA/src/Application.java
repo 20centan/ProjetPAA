@@ -5,7 +5,7 @@ public class Application {
     private Menu menu;
     private Central central;
 
-    private String fichier;
+    private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config2.txt";
 
     public Application(String [] args){
         menu = new Menu();

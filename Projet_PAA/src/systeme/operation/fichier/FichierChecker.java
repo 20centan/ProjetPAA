@@ -15,6 +15,7 @@ public class FichierChecker{
     public FichierChecker(){
         nbColon = 0;
         nbRessource = 0;
+        memoire = new HashMap<>();
 
         // position de départ: ligne 1 du fichier
         positionFichier = 1;
@@ -30,7 +31,7 @@ public class FichierChecker{
     private CheckLigne[] checkLigne = new CheckLigne[] {
 
         new CheckLigne() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
-        new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
+        //new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
     };
 
     // appel tous les vérifications pour une ligne
@@ -41,7 +42,9 @@ public class FichierChecker{
             checker.check(ligne);
 
             ajouterEnMemoire(ligne);
+
         }
+        positionFichier++;
     }
 
     private interface CheckManquant{
@@ -101,7 +104,7 @@ public class FichierChecker{
 
     public void checkSyntaxe(String ligne, String regex) throws FichierException{
         if(!ligne.matches(regex)){
-            throw new FichierException("La syntaxe incorrect.", positionFichier, ligne);
+            throw new FichierException("La syntaxe incorrecte.", positionFichier, ligne);
         }
     }
     
@@ -116,11 +119,11 @@ public class FichierChecker{
 
         // verifier si la 1ère ligne est un colon
         if(positionFichier == 1 && !ligneEtat.equals("colon")){
-            throw new FichierException("L'ordre d'élément incorrect", positionFichier, ligne);
+            throw new FichierException("L'ordre d'élément est incorrect.", positionFichier, ligne);
         }
 
         if(!ligneEtat.equals(etat.toString())){
-            throw new FichierException("L'ordre d'élément incorrect", positionFichier, ligne);
+            throw new FichierException("L'ordre d'élément est incorrect.", positionFichier, ligne);
         }
     }
 
@@ -154,7 +157,7 @@ public class FichierChecker{
                     break;
                 
                 case FichierEtat.DETESTE:
-                    etat = FichierEtat.PREFERENCE;
+                    etat = FichierEtat.PREFERENCES;
                     break;
     
                 default:
