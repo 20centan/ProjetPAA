@@ -142,17 +142,19 @@ public class FichierChecker{
         }
     }
 
-    
+
     public void checkPreference(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un deteste(...).
         if(etat != FichierEtat.PREFERENCES){
             return;
         }
         
-        StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
         // st = [ressource, valeur]
+        StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
 
-        st.nextToken(); // pour vider le premier tokken 
+        // pour vider le premier tokken 
+        st.nextToken(); 
+        
         String colon1 = st.nextToken();
         String colon2 = st.nextToken();
         
