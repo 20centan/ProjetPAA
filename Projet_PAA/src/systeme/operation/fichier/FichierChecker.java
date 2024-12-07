@@ -79,9 +79,9 @@ public class FichierChecker{
         // vérifier que le premier nom est un colon et que le reste c'est des ressources existantes
     }
 
-    public void checkNbPreference(){
+    public void checkColonPreference(){
         // vérifier le bon nombre de préférence/ tous les colons ont une préférence
-        
+
     }
 
     public void checkSyntaxe(String ligne, String regex) throws FichierException{
