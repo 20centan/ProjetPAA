@@ -4,7 +4,10 @@ public enum FichierEtat{
     COLON("colon", "colon\\([^\\s,]+\\)\\."), 
     RESSOURCE("ressource", "ressource\\([^\\s,]+\\)\\."), 
     DETESTE("deteste", "deteste\\([^\\s,]+,[^\\s,]+\\)."), 
-    PREFERENCE("preference", "preference\\(([^\\s,]+)(,[^\\s,]+)+\\)\\.");
+    PREFERENCE("preference", "preference\\(([^\\s,]+)(,[^\\s,]+)+\\)\\."),
+
+    // (exceptionnel) pour marquer la fin du fichier
+    FINFICHIER("fin", "");
 
     private String name;
     private String regex; //Respect du pattern

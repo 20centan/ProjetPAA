@@ -128,6 +128,7 @@ public class FichierChecker{
                     break;
     
                 default:
+                    etat = null;
                     break;
             }
         }
