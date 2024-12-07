@@ -254,6 +254,7 @@ public class FichierChecker{
         }
     }
 
+    
     public void ajouterEnMemoire(String ligne){
         StringTokenizer st = new StringTokenizer(ligne, "()."); 
         
