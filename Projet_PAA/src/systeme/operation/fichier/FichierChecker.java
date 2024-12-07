@@ -5,17 +5,17 @@ public class FichierChecker{
     private int nbColon;
     private int nbRessource;
 
-    private int currentPosition;
+    private int positionFichier;
     
-    private FichierEtat currentState;
+    private FichierEtat etat;
 
     public FichierChecker(){
         nbColon = 0;
         nbRessource = 0;
 
-        currentPosition = 0;
+        positionFichier = 0;
 
-        currentState = FichierEtat.COLON;
+        etat = FichierEtat.COLON;
     }
 
     
@@ -25,7 +25,7 @@ public class FichierChecker{
     
     private CheckSomething[] checkSomething = new CheckSomething[] {
 
-        new CheckSomething() {public void check(String line) throws FichierException {checkSyntax(line, currentState.getRegex());}},
+        new CheckSomething() {public void check(String line) throws FichierException {checkSyntax(line, etat.getRegex());}},
         new CheckSomething() {public void check(String line) throws FichierException {checkState(line);}},
         new CheckSomething() {public void check(String line) throws FichierException {checkColonRessource(line);}}
     };
@@ -60,38 +60,38 @@ public class FichierChecker{
     public void checkSyntax(String line, String regex) throws FichierException{
         if(!line.matches(regex)){
             throw new FichierException("Syntaxe incorrect" + "\n" 
-                                + "Ligne " + currentPosition + ": " + line);
+                                + "Ligne " + positionFichier + ": " + line);
         }
     }
     
     public void checkColonRessource(String line) throws FichierException{
-        if(currentState == FichierEtat.DETESTE && nbColon != nbRessource){
+        if(etat == FichierEtat.DETESTE && nbColon != nbRessource){
             throw new FichierException("Nombre de Colon et ressource incorrect" + "\n" 
-                                + "Ligne " + currentPosition + ": " + line);
+                                + "Ligne " + positionFichier + ": " + line);
         }
     }
 
     public void checkState(String line) throws FichierException{
-        String lineState = line.substring(0 , line.indexOf("("));
+        String lineState = line.substring(0, line.indexOf("("));
 
-        if(!lineState.equals(currentState.toString())){
+        if(!lineState.equals(etat.toString())){
             throw new FichierException("Ordre d'élément incorrect" + "\n" 
-                                + "Ligne " + currentPosition + ": " + line);
+                                + "Ligne " + positionFichier + ": " + line);
         }
     }
 
     public void changeState(){
-        switch(currentState) {
+        switch(etat) {
             case FichierEtat.COLON:
-                currentState = FichierEtat.RESSOURCE;
+                etat = FichierEtat.RESSOURCE;
                 break;
             
             case FichierEtat.RESSOURCE:
-                currentState = FichierEtat.DETESTE;
+                etat = FichierEtat.DETESTE;
                 break;
             
             case FichierEtat.DETESTE:
-                currentState = FichierEtat.PREFERENCE;
+                etat = FichierEtat.PREFERENCE;
                 break;
 
             default:
