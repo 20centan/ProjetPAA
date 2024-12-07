@@ -34,6 +34,7 @@ public class FichierChecker{
         new CheckLigne() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkColon(ligne);}},
         new CheckLigne() {public void check(String ligne) throws FichierException {checkRessource(ligne);}},
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkDeteste(ligne);}},
     };
 
     // appel tous les vérifications pour une ligne
@@ -101,8 +102,29 @@ public class FichierChecker{
         }
     }
 
-    public void checkDesteste(String ligne) throws FichierException{
-        // vérifier que les deux noms sont des noms de colon
+    public void checkDeteste(String ligne) throws FichierException{
+        if(etat != FichierEtat.DETESTE){
+            return;
+        }
+        
+        StringTokenizer st = new StringTokenizer(ligne, "(,)."); 
+        // st = [ressource, valeur]
+
+        st.nextToken(); // pour vider le premier tokken 
+        String colon1 = st.nextToken();
+        String colon2 = st.nextToken();
+        
+        if(memoire.get(colon1) != FichierEtat.COLON){
+            throw new FichierException(colon1 + " n'est pas un colon.", positionFichier, ligne);
+        }
+
+        if(memoire.get(colon2) != FichierEtat.COLON){
+            throw new FichierException(colon2 + " n'est pas un colon.", positionFichier, ligne);
+        }
+
+        if(colon1.equals(colon2)){
+            throw new FichierException("Le nom des deux colons est identique.", positionFichier, ligne);
+        }
     }
 
     public void checkPreference(String ligne) throws FichierException{
