@@ -88,13 +88,13 @@ public class FichierChecker{
 
     public void checkColonExiste(String nomColon, String ligne) throws FichierException{
         if(!memoire.containsKey(nomColon)){
-            throw new FichierException("Le colon n'existe pas.", positionFichier, ligne);
+            throw new FichierException("Le colon " + nomColon + " n'existe pas.", positionFichier, ligne);
         }
     }
 
     public void checkColonExistePas(String nomColon, String ligne) throws FichierException{
-        if(memoire.get(nomColon) != FichierEtat.COLON){
-            throw new FichierException(nomColon + " existe déjà.", positionFichier, ligne);
+        if(memoire.get(nomColon) == FichierEtat.COLON){
+            throw new FichierException("Le colon " + nomColon + " existe déjà.", positionFichier, ligne);
         }
     }
 
@@ -127,13 +127,13 @@ public class FichierChecker{
     
     public void checkRessourceExiste(String nomRessource, String ligne) throws FichierException{
         if(!memoire.containsKey(nomRessource)){
-            throw new FichierException("La ressource n'existe pas.", positionFichier, ligne);
+            throw new FichierException("La ressource " + nomRessource + " n'existe pas.", positionFichier, ligne);
         }
     }
     
     public void checkRessourceExistePas(String nomRessource, String ligne) throws FichierException{
         if(memoire.get(nomRessource) == FichierEtat.RESSOURCE){
-            throw new FichierException("La ressource existe déjà.", positionFichier, ligne);
+            throw new FichierException("La ressource " + nomRessource + " existe déjà.", positionFichier, ligne);
         }
     }
     
@@ -218,7 +218,7 @@ public class FichierChecker{
             }
         }
 
-        if(!ressourceSet.isEmpty()){
+        if(!ressourceRedondant.isEmpty()){
             throw new FichierException("Les ressources " + ressourceRedondant.toString() + " sont redondantes.", positionFichier, ligne);
         }
     }
