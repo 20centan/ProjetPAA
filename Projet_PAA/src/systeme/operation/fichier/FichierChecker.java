@@ -216,10 +216,12 @@ public class FichierChecker{
 
     // sous fonction de checkPreference
     public void checkPreferenceRessourceUnique(String [] ressources, String ligne) throws FichierException{
+        // ensemble des éléments uniques
         Set<String> ressourceRedondant = new HashSet<>(); 
         Set<String> ressourceSet = new HashSet<>();
-            
+        
         for (String ressource : ressources) {
+            // si un élément est ré ajouté alors c'est True
             if(!ressourceSet.add(ressource)) {
                 ressourceRedondant.add(ressource);
             }
