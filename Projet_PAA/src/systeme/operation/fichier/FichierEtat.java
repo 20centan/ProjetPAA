@@ -21,4 +21,8 @@ public enum FichierEtat{
     public String getRegex(){
         return regex;
     }
+
+    public String getName() {
+        return name;
+    }
 }
