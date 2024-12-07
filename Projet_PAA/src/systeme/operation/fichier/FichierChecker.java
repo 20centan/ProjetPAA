@@ -78,15 +78,16 @@ public class FichierChecker{
         // pour vider le premier tokken 
         st.nextToken(); 
 
-        String valeur = st.nextToken();
-        
-        if(memoire.get(valeur) == FichierEtat.COLON){
-            throw new FichierException("Le colon existe déjà.", positionFichier, ligne);
-        }
+        checkColonExiste(st.nextToken(), ligne);
 
         nbColon++;
     }
 
+    public void checkColonExiste(String nomColon, String ligne) throws FichierException{
+        if(memoire.get(nomColon) == FichierEtat.COLON){
+            throw new FichierException("Le colon existe déjà.", positionFichier, ligne);
+        }
+    }
 
     public void checkRessource(String ligne) throws FichierException{
         // ne lance pas la vérification si la ligne n'est pas un ressource(...).
@@ -100,17 +101,24 @@ public class FichierChecker{
         // pour vider le premier tokken 
         st.nextToken();
 
-        String valeur = st.nextToken();
+        String nomRessource = st.nextToken();
         
-        if(memoire.get(valeur) == FichierEtat.RESSOURCE){
-            throw new FichierException("La ressource existe déjà.", positionFichier, ligne);
-        }
-
-        if(memoire.get(valeur) == FichierEtat.COLON){
-            throw new FichierException("Le nom de la ressource est un colon.", positionFichier, ligne);
-        }
+        checkRessourceExiste(nomRessource, ligne);
+        checkRessourceCorrect(nomRessource, ligne);
 
         nbRessource++;
+    }
+
+    public void checkRessourceExiste(String nomRessource, String ligne) throws FichierException{
+        if(memoire.get(nomRessource) == FichierEtat.RESSOURCE){
+            throw new FichierException("La ressource existe déjà.", positionFichier, ligne);
+        }
+    }
+
+    public void checkRessourceCorrect(String nomRessource, String ligne) throws FichierException{
+        if(memoire.get(nomRessource) == FichierEtat.COLON){
+            throw new FichierException("Le nom de la ressource est un colon.", positionFichier, ligne);
+        }
     }
 
 
@@ -155,16 +163,20 @@ public class FichierChecker{
         // pour vider le premier tokken 
         st.nextToken(); 
 
-        String colon1 = st.nextToken();
-        String colon2 = st.nextToken();
+        String colon = st.nextToken();
         
-        if(memoire.get(colon1) != FichierEtat.COLON){
-            throw new FichierException(colon1 + " n'est pas un colon.", positionFichier, ligne);
+        if(memoire.get(colon) != FichierEtat.COLON){
+            throw new FichierException(colon + " n'est pas un colon.", positionFichier, ligne);
         }
-
-        if(memoire.get(colon2) != FichierEtat.COLON){
-            throw new FichierException(colon2 + " n'est pas un colon.", positionFichier, ligne);
+        
+        if(st.countTokens() != nbRessource){
+            throw new FichierException("Une ressource est manquante.", positionFichier, ligne);
         }
+        
+        while(st.hasMoreTokens()) {
+            
+        }
+        
 
         if(colon1.equals(colon2)){
             throw new FichierException("Le nom des deux colons est identique.", positionFichier, ligne);
