@@ -23,23 +23,23 @@ public class FichierChecker{
     }
 
     
-    private interface CheckSomething {
+    private interface CheckLigne {
         void check(String ligne) throws FichierException;
     }
     
-    private CheckSomething[] checkSomething = new CheckSomething[] {
+    private CheckLigne[] checkSomething = new CheckLigne[] {
 
-        new CheckSomething() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
-        new CheckSomething() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
-        new CheckSomething() {public void check(String ligne) throws FichierException {checkColonRessource(ligne);}}
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkSyntaxe(ligne, etat.getRegex());}},
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkEtat(ligne);}},
+        new CheckLigne() {public void check(String ligne) throws FichierException {checkColonRessource(ligne);}}
     };
 
     // appel tous les vérifications pour une ligne
     public void check(String ligne) throws FichierException{
-        for(CheckSomething checkMethod : checkSomething){
+        for(CheckLigne checkLigne : checkSomething){
             changerEtat(ligne);
 
-            checkMethod.check(ligne);
+            checkLigne.check(ligne);
 
             ajouterEnMemoire(ligne);
         }
