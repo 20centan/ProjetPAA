@@ -135,7 +135,40 @@ public abstract class DistributionColonie {
     } 
 
     public static void distribution(Colonie colonie, Menu menu, String fichier){
+        MenuSaisir ms = menu.getMs();
 
+        System.out.println("Construction de la colonie depuis un fichier texte terminée");
+        System.out.println("Voici les options qui vous sont maintenant proposés: \n");
+
+        boolean lancer = true;
+        while(lancer){
+            switch(ms.saisirInt("Choisir une option: \n" +
+                    "[1] Résolution automatique de la distribution de la colonie\n"+
+                    "[2] Sauvegarder la solution actuelle \n" +
+                    "[3] Fin","Erreur - Commande invalide")){
+                case 1:
+                    menu.afficherRessource(colonie);
+                    calculJalouxAmeliore(colonie);
+                    break;
+
+                case 2:
+                    //sauvegarde();
+                    break;
+
+                case 3:
+                    lancer = false;
+                    break;
+
+                default:
+                    break;
+
+            }
+            lancer = false;
+        }
+    }
+
+    private static void calculJalouxAmeliore(Colonie colonie){
+        //recherche sur Monte-Carlo
     }
 
 }
