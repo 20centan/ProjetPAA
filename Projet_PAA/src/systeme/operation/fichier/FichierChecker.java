@@ -1,6 +1,6 @@
 package systeme.operation.fichier;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class FichierChecker{
     private int nbColon;
     private int nbRessource;
-    private HashMap<String, FichierEtat> memoire; // la mémoire permet de tracker les dernières lignes visitées, ça permet de faire des vérifications. 
+    private LinkedHashMap<String, FichierEtat> memoire; // la mémoire permet de tracker les dernières lignes visitées, ça permet de faire des vérifications. 
 
     private int positionFichier; // position du pointer du BufferedReader
     
@@ -17,13 +17,14 @@ public class FichierChecker{
     public FichierChecker(){
         nbColon = 0;
         nbRessource = 0;
-        memoire = new HashMap<>();
+        memoire = new LinkedHashMap<>();
 
         positionFichier = 1; // ligne 1 du fichier
 
         etat = FichierEtat.COLON; 
     }
 
+    // FONCTIONS VERIFICATION LIGNE
     // interface qui va stocker les fonctions de vérification
     private interface CheckLigne {
         void check(String ligne) throws FichierException;
@@ -39,7 +40,7 @@ public class FichierChecker{
         new CheckLigne() {public void check(String ligne) throws FichierException {checkPreference(ligne);}},
     };
 
-    // itère dans la liste de fonctions et les appelle
+    // pour itérer dans la liste de fonctions et les appelle
     public void check(String ligne) throws FichierException{
         changerEtat(ligne);
 
@@ -52,20 +53,24 @@ public class FichierChecker{
         positionFichier++;
     }
 
-    // interface qui va stocker les fonctions de vérification
-    private interface CheckManquant{
-        void check() throws FichierException;
+
+    public void checkSyntaxe(String ligne, String regex) throws FichierException{
+        if(!ligne.matches(regex)){
+            throw new FichierException("La syntaxe incorrecte.", positionFichier, ligne);
+        }
     }
 
-    // permet de stocker des fonctions dans un array et de les appeller plus tard
-    private CheckManquant[] checkManquant = new CheckManquant[]{
-        new CheckManquant() {public void check() throws FichierException {checkColonRessource();}}
-    };
 
-    // itère dans la liste de fonctions et les appelle
-    public void check() throws FichierException{
-        for(CheckManquant checker : checkManquant){
-            checker.check();
+    public void checkEtat(String ligne) throws FichierException{
+        String ligneEtat = ligne.substring(0, ligne.indexOf("("));
+
+        // verifier si la 1ère ligne est un colon
+        if(positionFichier == 1 && !ligneEtat.equals("colon")){
+            throw new FichierException("L'ordre d'élément est incorrect.", positionFichier, ligne);
+        }
+
+        if(!ligneEtat.equals(etat.toString())){
+            throw new FichierException("L'ordre d'élément est incorrect.", positionFichier, ligne);
         }
     }
 
@@ -233,15 +238,28 @@ public class FichierChecker{
     }
 
 
+    // FONCTIONS VERICATION GLOBALE
+    // interface qui va stocker les fonctions de vérification
+    private interface CheckManquant{
+        void check() throws FichierException;
+    }
+
+    // pour permettre de stocker des fonctions dans un array et de les appeller plus tard
+    private CheckManquant[] checkManquant = new CheckManquant[]{
+        new CheckManquant() {public void check() throws FichierException {checkColonRessource();}}
+    };
+
+    // pour itérer dans la liste de fonctions et les appelle
+    public void check() throws FichierException{
+        for(CheckManquant checker : checkManquant){
+            checker.check();
+        }
+    }
+
     public void checkColonPreference(){
         // vérifier que tous les colons ont une préférence
     }
 
-    public void checkSyntaxe(String ligne, String regex) throws FichierException{
-        if(!ligne.matches(regex)){
-            throw new FichierException("La syntaxe incorrecte.", positionFichier, ligne);
-        }
-    }
     
     public void checkColonRessource() throws FichierException{
         if(etat == FichierEtat.DETESTE && nbColon != nbRessource){
@@ -249,24 +267,11 @@ public class FichierChecker{
         }
     }
 
-    public void checkEtat(String ligne) throws FichierException{
-        String ligneEtat = ligne.substring(0, ligne.indexOf("("));
-
-        // verifier si la 1ère ligne est un colon
-        if(positionFichier == 1 && !ligneEtat.equals("colon")){
-            throw new FichierException("L'ordre d'élément est incorrect.", positionFichier, ligne);
-        }
-
-        if(!ligneEtat.equals(etat.toString())){
-            throw new FichierException("L'ordre d'élément est incorrect.", positionFichier, ligne);
-        }
-    }
-
     
     public void ajouterEnMemoire(String ligne){
         StringTokenizer st = new StringTokenizer(ligne, "()."); 
         
-        //cherche [colon, nomColon] ou [ressource, nomRessource]
+        // ajouter colon: nomColon ou ressource: nomRessource
         FichierEtat ligneEtat = switch(st.nextToken()){
             case "colon" -> FichierEtat.COLON;
             case "ressource" -> FichierEtat.RESSOURCE;
