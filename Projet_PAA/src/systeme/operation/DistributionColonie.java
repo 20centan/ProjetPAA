@@ -28,7 +28,7 @@ public abstract class DistributionColonie {
 
 	}
 
-    public static void distribuer(Colonie colonie, MenuSaisir ms) {
+    public static void distribuer(Colonie colonie) { //solutionNaive
         for (Colon colon : colonie.getColons()) {
             boolean attribuer = false;
             int i = 0;
@@ -95,7 +95,7 @@ public abstract class DistributionColonie {
         MenuSaisir ms = menu.getMs();
         
         System.out.println("\nDébut de la distribution des ressources dans la colonie...");        
-        distribuer(colonie, ms);
+        distribuer(colonie);
         System.out.println("Fin de la distribution des ressources dans la colonie.");
 
         int tour = 0;
@@ -137,7 +137,10 @@ public abstract class DistributionColonie {
     public static void distribution(Colonie colonie, Menu menu, String fichier){
         MenuSaisir ms = menu.getMs();
 
-        System.out.println("Construction de la colonie depuis un fichier texte terminée");
+        System.out.println("\nDébut de la distribution des ressources dans la colonie...");
+        distribuer(colonie);
+        System.out.println("Fin de la distribution des ressources dans la colonie.");
+
         System.out.println("Voici les options qui vous sont maintenant proposés: \n");
 
         boolean lancer = true;
@@ -148,7 +151,7 @@ public abstract class DistributionColonie {
                     "[3] Fin","Erreur - Commande invalide")){
                 case 1:
                     menu.afficherRessource(colonie);
-                    calculJalouxAmeliore(colonie);
+                    resolutionAutomatique(colonie);
                     break;
 
                 case 2:
@@ -167,7 +170,7 @@ public abstract class DistributionColonie {
         }
     }
 
-    private static void calculJalouxAmeliore(Colonie colonie){
+    private static void resolutionAutomatique(Colonie colonie){
         //recherche sur Monte-Carlo
     }
 
