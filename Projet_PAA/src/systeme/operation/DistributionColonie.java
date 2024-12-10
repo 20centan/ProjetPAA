@@ -8,6 +8,7 @@ import graphique.MenuSaisir;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
 import systeme.entite.Ressource;
+import systeme.operation.fichier.FichierManager;
 
 public abstract class DistributionColonie {
     public static void run(Colonie colonie, Menu menu){
@@ -155,7 +156,8 @@ public abstract class DistributionColonie {
                     break;
 
                 case 2:
-                    //sauvegarde();
+                    String nomFichier = ms.saisirString("Rentrer le nom du fichier:","Nom de fichier invalide");
+                    sauvegardeSolution(colonie,nomFichier);
                     break;
 
                 case 3:
@@ -172,6 +174,19 @@ public abstract class DistributionColonie {
 
     private static void resolutionAutomatique(Colonie colonie){
         //recherche sur Monte-Carlo
+    }
+
+    private static void sauvegardeSolution(Colonie colonie,String fichier){
+        FichierManager fichierManager = new FichierManager(fichier);
+
+        fichierManager.openWriter();
+
+        for(Colon c : colonie.getColons()){
+            String data = c.toString() + ":" + c.getRessource() + "\n";
+            fichierManager.save(data);
+        }
+
+        fichierManager.closeWriter();
     }
 
 }
