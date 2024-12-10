@@ -1,10 +1,10 @@
 package systeme.operation;
 
-import java.util.Iterator;
-import java.util.List;
-
 import graphique.Menu;
 import graphique.MenuSaisir;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
 import systeme.entite.Ressource;
@@ -23,6 +23,13 @@ public abstract class DistributionColonie {
         Colon colon1 = ms.saisirColon(colonie);
         Colon colon2 = ms.saisirColon(colonie);
         
+        Ressource tmp = colon1.getRessource();
+        colon1.ajouterRessource(colon2.getRessource());
+        colon2.ajouterRessource(tmp);
+
+	}
+
+    public static void echangeRessource(Colon colon1,Colon colon2) {
         Ressource tmp = colon1.getRessource();
         colon1.ajouterRessource(colon2.getRessource());
         colon2.ajouterRessource(tmp);
@@ -173,7 +180,37 @@ public abstract class DistributionColonie {
     }
 
     private static void resolutionAutomatique(Colonie colonie){
-        //recherche sur Monte-Carlo
+        int max = 5; //Nombre de tours
+        Colon colon1,colon2 = null;
+        int solution1 = calculJaloux(colonie);
+        boolean memeColon = true;
+
+        for(int i = 0; i<max;i++){
+            //Choix aléatoire d'un colon
+            colon1 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(0,colonie.getNbColons()));
+
+            //Vérification qu'on ne prends pas 2 fois le meme colon
+            while(memeColon){
+                colon2 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(0,colonie.getNbColons()));
+
+                if(!(colon1.equals(colon2))){
+                    memeColon = false;
+                }
+            }
+
+            //Echange des ressources puis de nouveau on calcul nbJaloux
+            echangeRessource(colon1,colon2);
+            int solution2 = calculJaloux(colonie);
+
+            //si inf on laisse alors la colonie comme ca sinon on réechange pour remettre comme avant
+            if(solution2<solution1){
+                solution1=solution2;
+            }else{
+                echangeRessource(colon1,colon2);
+            }
+
+        }
+        System.out.println("Le nombre de jaloux est de "+solution1);
     }
 
     private static void sauvegardeSolution(Colonie colonie,String fichier){
