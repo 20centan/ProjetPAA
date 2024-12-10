@@ -262,8 +262,8 @@ public class FichierChecker{
 
     
     public void checkColonRessource() throws FichierException{
-        if(etat == FichierEtat.DETESTE && nbColon != nbRessource){
-            throw new FichierException("Nombre de colon et ressource incorrect", positionFichier);
+        if(nbColon != nbRessource){
+            throw new FichierException("Le nombre de colon et ressource est inégal.", positionFichier);
         }
     }
 
