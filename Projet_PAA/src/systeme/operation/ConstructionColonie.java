@@ -160,6 +160,8 @@ public abstract class ConstructionColonie {
         }
 
         manager.closeReader();
+
+        System.out.println("Construction de la colonie depuis un fichier texte terminée");
     }
 
 }

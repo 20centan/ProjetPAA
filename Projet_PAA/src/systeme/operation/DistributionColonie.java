@@ -8,6 +8,7 @@ import graphique.MenuSaisir;
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
 import systeme.entite.Ressource;
+import systeme.operation.fichier.FichierManager;
 
 public abstract class DistributionColonie {
     public static void run(Colonie colonie, Menu menu){
@@ -28,7 +29,7 @@ public abstract class DistributionColonie {
 
 	}
 
-    public static void distribuer(Colonie colonie, MenuSaisir ms) {
+    public static void distribuer(Colonie colonie) { //solutionNaive
         for (Colon colon : colonie.getColons()) {
             boolean attribuer = false;
             int i = 0;
@@ -95,7 +96,7 @@ public abstract class DistributionColonie {
         MenuSaisir ms = menu.getMs();
         
         System.out.println("\nDébut de la distribution des ressources dans la colonie...");        
-        distribuer(colonie, ms);
+        distribuer(colonie);
         System.out.println("Fin de la distribution des ressources dans la colonie.");
 
         int tour = 0;
@@ -135,7 +136,57 @@ public abstract class DistributionColonie {
     } 
 
     public static void distribution(Colonie colonie, Menu menu, String fichier){
+        MenuSaisir ms = menu.getMs();
 
+        System.out.println("\nDébut de la distribution des ressources dans la colonie...");
+        distribuer(colonie);
+        System.out.println("Fin de la distribution des ressources dans la colonie.");
+
+        System.out.println("Voici les options qui vous sont maintenant proposés: \n");
+
+        boolean lancer = true;
+        while(lancer){
+            switch(ms.saisirInt("Choisir une option: \n" +
+                    "[1] Résolution automatique de la distribution de la colonie\n"+
+                    "[2] Sauvegarder la solution actuelle \n" +
+                    "[3] Fin","Erreur - Commande invalide")){
+                case 1:
+                    menu.afficherRessource(colonie);
+                    resolutionAutomatique(colonie);
+                    break;
+
+                case 2:
+                    String nomFichier = ms.saisirString("Rentrer le nom du fichier:","Nom de fichier invalide");
+                    sauvegardeSolution(colonie,nomFichier);
+                    break;
+
+                case 3:
+                    lancer = false;
+                    break;
+
+                default:
+                    break;
+
+            }
+            lancer = false;
+        }
+    }
+
+    private static void resolutionAutomatique(Colonie colonie){
+        //recherche sur Monte-Carlo
+    }
+
+    private static void sauvegardeSolution(Colonie colonie,String fichier){
+        FichierManager fichierManager = new FichierManager(fichier);
+
+        fichierManager.openWriter();
+
+        for(Colon c : colonie.getColons()){
+            String data = c.toString() + ":" + c.getRessource() + "\n";
+            fichierManager.save(data);
+        }
+
+        fichierManager.closeWriter();
     }
 
 }

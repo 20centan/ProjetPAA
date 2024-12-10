@@ -13,6 +13,8 @@ public class FichierManager {
 
     private BufferedReader reader;
 
+    private BufferedWriter writer;
+
     private FichierChecker fileColonie;
 
     public FichierManager(String chemin){
@@ -24,6 +26,15 @@ public class FichierManager {
     public void openReader(){
         try{
             reader = Files.newBufferedReader(fichier);
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void openWriter(){
+        try{
+            writer = Files.newBufferedWriter(fichier);
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -63,14 +74,9 @@ public class FichierManager {
     }
     
 
-    public void save(String data, String dataPath){
+    public void save(String data){
         try{
-            BufferedWriter writer = Files.newBufferedWriter(Path.of(dataPath));
-            
             writer.write(data);
-
-            writer.close();
-
         }
         catch(IOException e){
             e.printStackTrace();
@@ -80,6 +86,15 @@ public class FichierManager {
     public void closeReader(){
         try{
             reader.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void closeWriter(){
+        try{
+            writer.close();
         }
         catch(IOException e){
             e.printStackTrace();
