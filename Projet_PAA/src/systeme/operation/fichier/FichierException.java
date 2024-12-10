@@ -2,7 +2,7 @@ package systeme.operation.fichier;
 
 public class FichierException extends Exception{
     public FichierException(String messageErreur){
-        super(messageErreur);
+        super("Erreur fichier: " + messageErreur);
     }
     
     public FichierException(String messageErreur, int ligne){

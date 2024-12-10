@@ -45,7 +45,11 @@ public class FichierManager {
         try{
             String line = reader.readLine();
 
-            if(line == null){return null;}
+            if(line == null){
+                runCheck();
+
+                return null;
+            }
             
             runCheck(line);
             
@@ -59,18 +63,24 @@ public class FichierManager {
         return null;
     }
 
-    public boolean runCheck(String line){
+    public void runCheck(String line){
         try{
             fileColonie.check(line);
-
-            return true;
         }
         catch(FichierException e){
             System.out.println(e.getMessage());
             System.exit(0);
         }
-        
-        return false;
+    }
+
+    public void runCheck(){
+        try{
+            fileColonie.check();
+        }
+        catch(FichierException e){
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
     }
     
 

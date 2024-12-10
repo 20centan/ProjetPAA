@@ -5,9 +5,8 @@ public class Application {
     private Menu menu;
     private Central central;
 
-    //private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config_error11.txt";
+    private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config_error14.txt";
     //private String fichier = "/Users/vincenttan/FAC/test.txt";
-    private String fichier; //Test pour voir si la construction manuelle fonctione ( oui )
 
     public Application(String [] args){
         menu = new Menu();

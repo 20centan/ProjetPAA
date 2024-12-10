@@ -1,6 +1,7 @@
 package systeme.operation.fichier;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -199,8 +200,11 @@ public class FichierChecker{
         checkColonExiste(nomColon, ligne);
         checkColonEstColon(nomColon, ligne);
         
-        if(st.countTokens() != nbRessource){
+        if(st.countTokens() < nbRessource){
             throw new FichierException("Une ressource est manquante.", positionFichier, ligne);
+        }
+        else if(nbRessource < st.countTokens()){
+            throw new FichierException("Une ressource est en trop.", positionFichier, ligne);
         }
         
         String nomRessource;
@@ -246,7 +250,8 @@ public class FichierChecker{
 
     // pour permettre de stocker des fonctions dans un array et de les appeller plus tard
     private CheckManquant[] checkManquant = new CheckManquant[]{
-        new CheckManquant() {public void check() throws FichierException {checkColonRessource();}}
+        new CheckManquant() {public void check() throws FichierException {checkColonRessource();}},
+        new CheckManquant() {public void check() throws FichierException {checkColonPreference();}}
     };
 
     // pour itérer dans la liste de fonctions et les appelle
@@ -256,14 +261,29 @@ public class FichierChecker{
         }
     }
 
-    public void checkColonPreference(){
-        // vérifier que tous les colons ont une préférence
+    public void checkColonPreference() throws FichierException{
+        Set<String> nomColonSet = new HashSet<>();
+        String nomColon;
+
+
+        for(Map.Entry<String, FichierEtat> entree : memoire.reversed().entrySet()){
+            if(entree.getValue() != FichierEtat.PREFERENCES){
+                break;
+            }
+            nomColon = entree.getKey().substring(FichierEtat.PREFERENCES.getName().length() + 1, entree.getKey().indexOf(","));
+        
+            nomColonSet.add(nomColon);
+        }
+
+        if(nomColonSet.size() != nbColon){
+            throw new FichierException("Les préférences d'un colon sont manquantes.");
+        }
     }
 
     
     public void checkColonRessource() throws FichierException{
         if(nbColon != nbRessource){
-            throw new FichierException("Le nombre de colon et ressource est inégal.", positionFichier);
+            throw new FichierException("Le nombre de colon et ressource est inégal.");
         }
     }
 
@@ -289,15 +309,15 @@ public class FichierChecker{
 
         if(!ligneEtat.equals(etat.getName())){
             switch(etat) {
-                case COLON:
+                case FichierEtat.COLON:
                     etat = FichierEtat.RESSOURCE;
                     break;
                 
-                case RESSOURCE:
+                case FichierEtat.RESSOURCE:
                     etat = FichierEtat.DETESTE;
                     break;
                 
-                case DETESTE:
+                case FichierEtat.DETESTE:
                     etat = FichierEtat.PREFERENCES;
                     break;
     

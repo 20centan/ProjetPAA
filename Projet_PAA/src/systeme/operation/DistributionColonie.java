@@ -168,7 +168,6 @@ public abstract class DistributionColonie {
                     break;
 
             }
-            lancer = false;
         }
     }
 
