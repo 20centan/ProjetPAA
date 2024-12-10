@@ -24,9 +24,9 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 - Java
 
 ## <a name="fonctionnalité">🔋 Fonctionnalités<a/> 
-👉 ... <br>
+👉 Construction automatique d'une colonie. <br>
 
-👉 ... <br>
+👉 Distribution optimale des ressources. <br>
 
 👉 ... 
 
