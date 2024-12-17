@@ -5,7 +5,7 @@ public class Application {
     private Menu menu;
     private Central central;
 
-    private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config_error14.txt";
+    private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config1.txt";
     //private String fichier = "/Users/vincenttan/FAC/test.txt";
 
     public Application(String [] args){
@@ -27,7 +27,7 @@ public class Application {
             }
             else{
                 central.construireColonie(fichier);
-                //central.distribuerColonie(menu,fichier);
+                central.distribuerColonie(menu,fichier);
             }
 
             running = false;
