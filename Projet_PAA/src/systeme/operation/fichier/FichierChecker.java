@@ -309,15 +309,15 @@ public class FichierChecker{
 
         if(!ligneEtat.equals(etat.getName())){
             switch(etat) {
-                case FichierEtat.COLON:
+                case COLON:
                     etat = FichierEtat.RESSOURCE;
                     break;
                 
-                case FichierEtat.RESSOURCE:
+                case RESSOURCE:
                     etat = FichierEtat.DETESTE;
                     break;
                 
-                case FichierEtat.DETESTE:
+                case DETESTE:
                     etat = FichierEtat.PREFERENCES;
                     break;
     
