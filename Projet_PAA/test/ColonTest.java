@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 import systeme.entite.Colon;
@@ -71,11 +72,17 @@ public class ColonTest {
     }
 
     @Test
-    public void getEnnemis(){
+    public void getEnnemisTest(){
         List<Colon> listeEnemis = new ArrayList<>();
         listeEnemis.add(colon2);
         listeEnemis.add(colon3);
 
         assertEquals(listeEnemis, colon1.getEnnemis());
+    }
+
+    @Test
+    public void viderPreferenceTest(){
+        colon1.viderPreference();
+        assertEquals(new ArrayList<>(), colon1.getPreference());
     }
 }
