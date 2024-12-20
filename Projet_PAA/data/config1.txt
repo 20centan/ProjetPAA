@@ -10,5 +10,5 @@ deteste(Thomas,Valentin).
 deteste(Ali,Valentin).
 preferences(Thomas,Ballon,Chaussure,Panier,Gateau).
 preferences(Valentin,Ballon,Panier,Chaussure,Gateau).
-preferences(Ali,Panier,Chaussure,Ballon, Gateau).
+preferences(Ali,Panier,Chaussure,Ballon,Gateau).
 preferences(Francoise,Gateau,Panier,Chaussure,Ballon).

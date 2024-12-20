@@ -16,6 +16,8 @@ public abstract class DistributionColonie {
     }
 
     public static void run(Colonie colonie, Menu menu, String fichier){
+        System.out.println("aaaa");
+        colonie.afficherColonie();
         distribution(colonie, menu, fichier);
     }
 

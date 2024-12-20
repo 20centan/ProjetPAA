@@ -4,8 +4,6 @@ import systeme.Central;
 public class Application {
     private Menu menu;
     private Central central;
-
-    //private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config_error14.txt";
     //private String fichier = "/Users/vincenttan/FAC/test.txt";
     private String fichier = "users/vincenttan/FAC/paa/projet_paa/projet_paa/equipage1.txt";
 
@@ -28,7 +26,7 @@ public class Application {
             }
             else{
                 central.construireColonie(fichier);
-                //central.distribuerColonie(menu,fichier);
+                central.distribuerColonie(menu,fichier);
             }
 
             running = false;

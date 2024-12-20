@@ -28,20 +28,25 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 
 👉 Distribution optimale des ressources. <br>
 
-👉 ... 
-
 ## <a name="essaie">🤸 Essayer dès maintenant<a/> 
 **Prérequis**<br>
 ...
 
 **Cloner le Projet**<br>
-...
+```bash
+git clone https://github.com/20centan/ProjetPAA.git
+cd ProjetPAA
+```
 
 **Compiler le Code**<br>
-...
+```bash
+javac -d bin -sourcepath src $(find src -name "*.java")
+```
 
 **Lancer le Projet**<br>
-...
+```bash
+java -cp bin Main
+```
 
 ## Droits
 Les principaux contributeurs: Roland CHEN, Vincent TAN, Ismaël BOUARFA

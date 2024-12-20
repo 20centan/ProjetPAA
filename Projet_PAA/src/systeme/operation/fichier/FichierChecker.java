@@ -270,7 +270,7 @@ public class FichierChecker{
             if(entree.getValue() != FichierEtat.PREFERENCES){
                 break;
             }
-            nomColon = entree.getKey().substring(FichierEtat.PREFERENCES.getName().length() + 1, entree.getKey().indexOf(","));
+            nomColon = entree.getKey().substring(0, entree.getKey().indexOf(","));
         
             nomColonSet.add(nomColon);
         }
@@ -295,12 +295,12 @@ public class FichierChecker{
         FichierEtat ligneEtat = switch(st.nextToken()){
             case "colon" -> FichierEtat.COLON;
             case "ressource" -> FichierEtat.RESSOURCE;
+            case "deteste" -> FichierEtat.DETESTE;
+            case "preferences" -> FichierEtat.PREFERENCES;
             default -> null;
         };
 
-        if(ligneEtat == FichierEtat.COLON || ligneEtat == FichierEtat.RESSOURCE){
-            memoire.put(st.nextToken(), ligneEtat);
-        }
+        memoire.put(st.nextToken(), ligneEtat);
     }
 
 
