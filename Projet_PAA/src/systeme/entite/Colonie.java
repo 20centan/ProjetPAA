@@ -16,9 +16,18 @@ public class Colonie {
         ressources = new ArrayList<>();
     }
 
+    public void ajouterColon(Colon colon){
+        colons.add(colon);
+    }
+
     public void ajouterColon(String nomColon){
         colons.add(new Colon(nomColon));
     }
+
+    public void ajouterRessources(Ressource ressource){
+        ressources.add(ressource);
+    }
+
     public void ajouterRessources(String nomRessource){
         ressources.add(new Ressource(nomRessource));
     }
