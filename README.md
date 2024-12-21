@@ -30,7 +30,7 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 
 ## <a name="essaie">🤸 Essayer dès maintenant<a/> 
 **Prérequis**<br>
-Installer un Java Developement Kit (JDK) sur le site Oracle. 
+Installer un Java Developement Kit (JDK) sur le site Oracle. <br>
 Ce kit contient le compilateur de java (javac), des l'environnement de java (JRE) et d'autres outils de java.
 
 **Cloner le Projet**<br>
