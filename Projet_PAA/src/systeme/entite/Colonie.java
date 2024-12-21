@@ -16,9 +16,18 @@ public class Colonie {
         ressources = new ArrayList<>();
     }
 
+    public void ajouterColon(Colon colon){
+        colons.add(colon);
+    }
+
     public void ajouterColon(String nomColon){
         colons.add(new Colon(nomColon));
     }
+
+    public void ajouterRessources(Ressource ressource){
+        ressources.add(ressource);
+    }
+
     public void ajouterRessources(String nomRessource){
         ressources.add(new Ressource(nomRessource));
     }
@@ -48,6 +57,18 @@ public class Colonie {
             }
         }
         return false;
+    }
+
+    public boolean preferenceValide(List<Ressource> preferences) {
+        Set<Ressource> setPreference = new HashSet<>(preferences);
+
+        for(Ressource ressource : ressources){
+            if(!setPreference.contains(ressource)){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean preferenceValide(String [] preferences) {
