@@ -59,6 +59,18 @@ public class Colonie {
         return false;
     }
 
+    public boolean preferenceValide(List<Ressource> preferences) {
+        Set<Ressource> setPreference = new HashSet<>(preferences);
+
+        for(Ressource ressource : ressources){
+            if(!setPreference.contains(ressource)){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public boolean preferenceValide(String [] preferences) {
         Set<String> setPreference = new HashSet<>(Arrays.asList(preferences));
 
