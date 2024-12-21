@@ -25,20 +25,20 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 
 👉 Distribution optimale des ressources.
 
-👉 ... 
-
 ## 🤸 Essayer dès maintenant 
 Prérequis
-...
+Installer un Java Developement Kit (JDK) sur le site Oracle.
+Ce kit contient le compilateur de java (javac), des l'environnement de java (JRE) et d'autres outils de java.
 
 Cloner le Projet
-...
+git clone https://github.com/20centan/ProjetPAA.git
+cd ProjetPAA/Projet_PAA
 
 Compiler le Code
-...
+javac -d bin -sourcepath src $(find src -name "*.java")
 
 Lancer le Projet
-...
+java -cp bin src/Main
 
 ## Droits
 Les principaux contributeurs: Roland CHEN, Vincent TAN, Ismaël BOUARFA
