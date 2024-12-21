@@ -36,7 +36,7 @@ Ce kit contient le compilateur de java (javac), des l'environnement de java (JRE
 **Cloner le Projet**<br>
 ```bash
 git clone https://github.com/20centan/ProjetPAA.git
-cd ProjetPAA/Projet_PAA
+cd Projet_PAA
 ```
 
 **Compiler le Code**<br>
