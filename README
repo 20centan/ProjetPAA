@@ -21,13 +21,16 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 - Java
 
 ## 🔋 Fonctionnalités 
-👉 Construction automatique d'une colonie.
+👉 Construction automatique d'une colonie. <br>
 
-👉 Distribution optimale des ressources.
+👉 Distribution optimale des ressources. <br>
+
+👉 Distribution basé sur le concept de recuit simulé (méthode heuristique). <br>
+(expliqué dans le code)<br>
 
 ## 🤸 Essayer dès maintenant 
 Prérequis
-Installer un Java Developement Kit (JDK) sur le site Oracle.
+Installer un Java Developement Kit (JDK21+) sur le site Oracle. <br>
 Ce kit contient le compilateur de java (javac), des l'environnement de java (JRE) et d'autres outils de java.
 
 Cloner le Projet
