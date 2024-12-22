@@ -1,5 +1,9 @@
 package systeme.operation.fichier;
 
+
+/**
+ * Classe exception qui permet de renvoyer un message d'erreur si le fichier est invalide
+ */
 public class FichierException extends Exception{
     public FichierException(String messageErreur){
         super("Erreur fichier: " + messageErreur);
