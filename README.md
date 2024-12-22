@@ -28,6 +28,9 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 
 👉 Distribution optimale des ressources. <br>
 
+👉 Distribution basé sur le concept de recuit simulé (méthode heuristique). <br>
+(expliqué dans le code)<br>
+
 ## <a name="essaie">🤸 Essayer dès maintenant<a/> 
 **Prérequis**<br>
 Installer un Java Developement Kit (JDK) sur le site Oracle. <br>

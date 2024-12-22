@@ -8,9 +8,9 @@ import java.util.Set;
 
 public class Colonie {
 
-    private int nbColons;
     private List<Colon> colons;
     private List<Ressource> ressources; 
+    private int nbJaloux;
 
     public Colonie(){
         colons = new ArrayList<>();
@@ -56,7 +56,6 @@ public class Colonie {
      * @param nbColons
      */
     public void initialisationColonie(int nbColons){
-        this.nbColons = nbColons;
 
         for(int i = 0; i < nbColons; i++){
             ajouterColon(String.valueOf((char) ('A' + i)));
@@ -205,5 +204,13 @@ public class Colonie {
      */
     public int getNbColons(){
         return colons.size();
+    }
+
+    public int getNbJaloux(){
+        return nbJaloux;
+    }
+
+    public void setNbJaloux(int nbJaloux){
+        this.nbJaloux = nbJaloux;
     }
 }
