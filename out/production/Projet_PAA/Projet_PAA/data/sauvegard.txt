@@ -1,4 +1,0 @@
-Thomas:Ballon
-Valentin:Chaussure
-Ali:Panier
-Francoise:Gateau
