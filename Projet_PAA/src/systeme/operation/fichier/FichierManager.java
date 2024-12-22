@@ -23,6 +23,9 @@ public class FichierManager {
         fileColonie = new FichierChecker();
     }
 
+    /**
+     * Ouvre un Buffer pour la lecture
+     */    
     public void openReader(){
         try{
             reader = Files.newBufferedReader(fichier);
@@ -32,6 +35,9 @@ public class FichierManager {
         }
     }
 
+    /**
+     * Ouvre un Buffer pour l'écriture
+     */    
     public void openWriter(){
         try{
             writer = Files.newBufferedWriter(fichier);
@@ -41,6 +47,9 @@ public class FichierManager {
         }
     }
 
+    /**
+     * Retourne la prochaine ligne du fichier en lecture après avoir tester 
+     */    
     public String getNextData(){
         try{
             String line = reader.readLine();
@@ -63,6 +72,9 @@ public class FichierManager {
         return null;
     }
 
+    /**
+     * Appelle les méthodes de check
+     */    
     public void runCheck(String line){
         try{
             fileColonie.check(line);
@@ -73,6 +85,9 @@ public class FichierManager {
         }
     }
 
+    /**
+     * Appelle les méthodes de check
+     */    
     public void runCheck(){
         try{
             fileColonie.check();
@@ -84,6 +99,9 @@ public class FichierManager {
     }
     
 
+    /**
+     * Ecrit les données dans le fichier sauvegarde
+     */    
     public void save(String data){
         try{
             writer.write(data);
@@ -93,6 +111,9 @@ public class FichierManager {
         }
     }
 
+    /**
+     * Ferme le Buffer pour la lecture
+     */    
     public void closeReader(){
         try{
             reader.close();
@@ -102,6 +123,9 @@ public class FichierManager {
         }
     }
 
+    /**
+     * Ferme le Buffer pour l'écriture
+     */    
     public void closeWriter(){
         try{
             writer.close();
@@ -110,5 +134,4 @@ public class FichierManager {
             e.printStackTrace();
         }
     }
-    
 }

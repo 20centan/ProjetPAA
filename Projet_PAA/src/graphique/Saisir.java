@@ -10,6 +10,12 @@ public abstract class Saisir{
         this.sc = sc;
     }
 
+    /**
+     * Permet de saisir un entier
+     * @param message
+     * @param messageErreur
+     * @return int
+     */
     public int saisirInt(String message, String messageErreur){
         int input;
 
@@ -30,6 +36,12 @@ public abstract class Saisir{
         return input;
     }
 
+    /**
+     * Permet de saisir un caractère
+     * @param message
+     * @param messageErreur
+     * @return char
+     */
     public char saisirChar(String message, String messageErreur){
         String input;
 
@@ -49,6 +61,12 @@ public abstract class Saisir{
         return input.charAt(0);
     }
 
+    /**
+     * Permet de saisir une chaîne de caractères
+     * @param message
+     * @param messageErreur
+     * @return String
+     */
     public String saisirString(String message, String messageErreur){
         String input;
         
@@ -71,6 +89,13 @@ public abstract class Saisir{
         return input;
     }
 
+    /**
+     * Permet de saisir une suite de caractères ( int ou char )
+     * @param format
+     * @param message
+     * @param messageErreur
+     * @return String[]
+     */
     public String [] saisirSuite(String format, String message, String messageErreur){
         String input;
         String [] trim_input;
@@ -97,7 +122,9 @@ public abstract class Saisir{
         return trim_input;
     }
 
-    // permet de fermer le Scanner
+    /**
+     * Ferme le scanner
+     */
     public void closeSaisir(){
         sc.close();
     }

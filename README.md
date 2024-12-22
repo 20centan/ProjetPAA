@@ -30,12 +30,13 @@ Ainsi, le but est de trouver une distribution de ressources qui permet de minimi
 
 ## <a name="essaie">🤸 Essayer dès maintenant<a/> 
 **Prérequis**<br>
-...
+Installer un Java Developement Kit (JDK) sur le site Oracle. <br>
+Ce kit contient le compilateur de java (javac), des l'environnement de java (JRE) et d'autres outils de java.
 
 **Cloner le Projet**<br>
 ```bash
 git clone https://github.com/20centan/ProjetPAA.git
-cd ProjetPAA
+cd Projet_PAA
 ```
 
 **Compiler le Code**<br>
