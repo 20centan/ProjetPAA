@@ -5,8 +5,10 @@ public class Application {
     private Menu menu;
     private Central central;
 
-    private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config1.txt";
+    //private String fichier;
+    //private String fichier = "/home/roland/Documents/projets/2024-PAA/Projet_PAA/data/config1.txt";
     //private String fichier = "/Users/vincenttan/FAC/test.txt";
+    private String fichier = "C:\\Users\\test2\\Documents\\L3 info\\PAA\\ProjetPAA\\Projet_PAA\\data\\equipage2.txt";
 
     public Application(String [] args){
         menu = new Menu();

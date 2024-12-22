@@ -161,7 +161,7 @@ public abstract class DistributionColonie {
                     "[3] Fin","Erreur - Commande invalide")){
                 case 1:
                     menu.afficherRessource(colonie);
-                    resolutionAutomatique(colonie);
+                    resolutionAutoRecuitSimule(colonie);
                     break;
 
                 case 2:
@@ -180,19 +180,24 @@ public abstract class DistributionColonie {
         }
     }
 
+    //Cette algorithme est l'implémentation du pseudocode donné dans le sujet
+    //Je le mets en commentaire pour garder une archive
+    /**
     private static void resolutionAutomatique(Colonie colonie){
         int max = 5; //Nombre de tours
         Colon colon1,colon2 = null;
         int solution1 = calculJaloux(colonie);
         boolean memeColon = true;
 
+        System.out.println("Nombre de jaloux avant résolution : "+solution1);
+
         for(int i = 0; i<max;i++){
             //Choix aléatoire d'un colon
-            colon1 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(0,colonie.getNbColons()));
+            colon1 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(colonie.getNbColons()));
 
             //Vérification qu'on ne prends pas 2 fois le meme colon
             while(memeColon){
-                colon2 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(0,colonie.getNbColons()));
+                colon2 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(colonie.getNbColons()));
 
                 if(!(colon1.equals(colon2))){
                     memeColon = false;
@@ -211,7 +216,80 @@ public abstract class DistributionColonie {
             }
 
         }
-        System.out.println("Le nombre de jaloux est de "+solution1);
+        System.out.println("Le nombre de jaloux est maintenant de "+solution1);
+    }
+    */
+
+    private  static void resolutionAutoRecuitSimule(Colonie colonie){
+        Colon colon1,colon2 = null;
+        boolean memeColon = true;
+
+        int solutionOpti = calculJaloux(colonie);
+        int solutionLocal = solutionOpti;
+
+        if(solutionOpti==0){
+            System.out.println("Aucun colons n'est jaloux, annulation de la résolution automatique...");
+        }else{
+            
+            double temp = 100.0; //Initialisation de la température
+            double cool = 0.99; //Facteur de refroidissement
+
+            System.out.println("Nombre de jaloux avant résolution : "+solutionOpti);
+            
+            //tant que la temperature n'a pas atteint le seuil 0.001
+            while(0.0001<temp){
+                //10 est un choix arbitraire pour la boucle for
+                for(int i = 0; i<10 ; i++){
+                    //Choix aléatoire d'un colon
+                    colon1 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(colonie.getNbColons()));
+
+                    //Vérification qu'on ne prends pas 2 fois le meme colon
+                    while(memeColon){
+                        colon2 = colonie.getColons().get(ThreadLocalRandom.current().nextInt(colonie.getNbColons()));
+
+                        if(!(colon1.equals(colon2))){
+                            memeColon = false;
+                        }
+                    }
+
+                    //Echange des ressources puis de nouveau on calcul le nombre de jaloux
+                    echangeRessource(colon1,colon2);
+                    int solution2 = calculJaloux(colonie);
+
+                    double delta = solutionLocal - solution2; //différence de coût entre les deux solutions
+                    
+                    //Si solution2<solution1 la solution2 devient solution1
+                    if(0<=delta){
+                        solutionLocal = solution2; //On recupère un minimum local
+
+                        if(solutionLocal<=solutionOpti){
+                            solutionOpti=solutionLocal;
+                        }
+
+                    }else{
+                        double r = (double)(ThreadLocalRandom.current().nextLong(100))/100; //Variable aléatoire (compris entre 0 et 1 (exclus) qui servira de facteur d'influence pour la suite)
+
+                        double facBoltz = Math.exp((delta)/temp); //Facteur de Boltzmann utilisant la règle de metropolis
+                        
+                        /**
+                         * Si le chiffre aléatoire r est inférieur au facteur de Boltzmann
+                         * bien qu'il y est plus de jaloux dans la solution2,
+                         * la solution2 devient solutionLocal
+                         * Cela permet d'explorer plus de possibilité et de ne pas
+                         * s'enfermer dans un optimum local
+                         */
+                        if(r<facBoltz){
+                            solutionLocal = solution2;
+                        }else{
+                            echangeRessource(colon1,colon2);
+                        }
+                    }
+                }
+                temp*=cool;
+            }
+            System.out.println("Le nombre de jaloux est maintenant de "+solutionOpti);
+
+        }
     }
 
     private static void sauvegardeSolution(Colonie colonie,String fichier){

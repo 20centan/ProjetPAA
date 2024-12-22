@@ -1,12 +1,13 @@
 package systeme.entite;
 
-import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Colonie {
+
     private int nbColons;
     private List<Colon> colons;
     private List<Ressource> ressources; 
@@ -110,6 +111,6 @@ public class Colonie {
     }
 
     public int getNbColons(){
-        return nbColons;
+        return colons.size();
     }
 }
