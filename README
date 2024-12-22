@@ -37,6 +37,9 @@ Cloner le Projet
 git clone https://github.com/20centan/ProjetPAA.git
 cd ProjetPAA/Projet_PAA
 
+ou sur zip
+cd CHEN_TAN_BOUARFA/Projet_PAA
+
 Compiler le Code
 javac -d bin -sourcepath src $(find src -name "*.java")
 
