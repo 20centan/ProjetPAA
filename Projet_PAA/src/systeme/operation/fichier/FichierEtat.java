@@ -1,5 +1,8 @@
 package systeme.operation.fichier;
 
+/**
+ * Enum qui permet de tracker l'état de la lecture du fichier (colon(), ressource(), deteste() ou preference())
+ */
 public enum FichierEtat{
     COLON("colon", "colon\\([^\\s,]+\\)\\."), 
     RESSOURCE("ressource", "ressource\\([^\\s,]+\\)\\."), 
