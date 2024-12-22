@@ -11,14 +11,30 @@ import systeme.operation.fichier.FichierManager;
 
 
 public abstract class ConstructionColonie {
+    /**
+     * Lance la constuction de la colonie manuellement grâce au menu
+     * @param colonie
+     * @param menu
+     */
     public static void run(Colonie colonie, Menu menu){
         construction(colonie, menu);
     }
 
+    /**
+     * Lance la construction de la colonie depuis un fichier
+     * @param colonie
+     * @param fichier
+     */
     public static void run(Colonie colonie, String fichier){
         construction(colonie, fichier);
     }
 
+    /**
+     * Méthode qui permet d'ajouter une relation entre 2 colons depuis l'interface textuelle
+     * @param menu
+     * @param ms
+     * @param colonie
+     */
     public static void optionRelation(Menu menu, MenuSaisir ms, Colonie colonie){
         menu.afficherRelation(colonie);
 
@@ -32,6 +48,12 @@ public abstract class ConstructionColonie {
         ajouterRelation(colon1, colon2);
     }
 
+    /**
+     * Méthode qui permet d'ajouter les préférences d'un colon depuis l'interface textuelle
+     * @param menu
+     * @param ms
+     * @param colonie
+     */
     public static void optionPreference(Menu menu, MenuSaisir ms, Colonie colonie){
         menu.afficherPreference(colonie);
 
@@ -54,17 +76,31 @@ public abstract class ConstructionColonie {
         ajouterPreferences(colon, preferences);
     }
 
+    /**
+     * Ajoute une relation entre 2 colons passés en paramètre
+     * @param colon1
+     * @param colon2
+     */
     public static void ajouterRelation(Colon colon1, Colon colon2) {
         colon1.ajouterEnnemi(colon2);
 	}
-	
+
+    /**
+     * Ajoute les préférences d'un colon passé en paramètre
+     * @param colon
+     * @param preference
+     */
 	public static void ajouterPreferences(Colon colon, Ressource [] preference) {
         for(Ressource nomRessource : preference){
             colon.ajouterPreference(nomRessource);
         }
 	}
 
-
+    /**
+     * Menu des options de la construction manuelle de colonie
+     * @param colonie
+     * @param menu
+     */
 	public static void construction(Colonie colonie, Menu menu){
         MenuSaisir ms = menu.getMs();
 
@@ -121,7 +157,11 @@ public abstract class ConstructionColonie {
         System.out.println("\nFin de la construction.");
     }
 
-
+    /**
+     * Construit la colonie depuis un fichier
+     * @param colonie
+     * @param fichier
+     */
     public static void construction(Colonie colonie, String fichier){
         FichierManager manager = new FichierManager(fichier);
         

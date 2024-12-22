@@ -11,16 +11,31 @@ import systeme.entite.Ressource;
 import systeme.operation.fichier.FichierManager;
 
 public abstract class DistributionColonie {
+    /**
+     * Lance la distribution de la colonie à partir de la construction manuelle
+     * @param colonie
+     * @param menu
+     */
     public static void run(Colonie colonie, Menu menu){
         distribution(colonie, menu);
     }
 
+    /**
+     * Lance la distribution de la colonie à partir de sa construction automatique depuis un fichier
+     * @param colonie
+     * @param menu
+     * @param fichier
+     */
     public static void run(Colonie colonie, Menu menu, String fichier){
-        System.out.println("aaaa");
         colonie.afficherColonie();
         distribution(colonie, menu, fichier);
     }
 
+    /**
+     * Méthode qui échange les ressources entre 2 colons depuis l'interface textuelle
+     * @param colonie
+     * @param ms
+     */
     public static void echangeRessource(Colonie colonie, MenuSaisir ms) {
         Colon colon1 = ms.saisirColon(colonie);
         Colon colon2 = ms.saisirColon(colonie);
@@ -31,6 +46,11 @@ public abstract class DistributionColonie {
 
 	}
 
+    /**
+     * Echange les ressources entre 2 colons passés en paramètre
+     * @param colon1
+     * @param colon2
+     */
     public static void echangeRessource(Colon colon1,Colon colon2) {
         Ressource tmp = colon1.getRessource();
         colon1.ajouterRessource(colon2.getRessource());
@@ -38,6 +58,10 @@ public abstract class DistributionColonie {
 
 	}
 
+    /**
+     * Distribution à partir de la solution naïve ( partie 1 )
+     * @param colonie
+     */
     public static void distribuer(Colonie colonie) { //solutionNaive
         for (Colon colon : colonie.getColons()) {
             boolean attribuer = false;
@@ -64,6 +88,11 @@ public abstract class DistributionColonie {
         }
     }
 
+    /**
+     * Calcule le nombre de colons jaloux dans la colonie
+     * @param colonie
+     * @return int
+     */
     public static int calculJaloux(Colonie colonie){
         int nbJaloux = 0;
 
@@ -97,10 +126,19 @@ public abstract class DistributionColonie {
         return nbJaloux;
     }
 
+    /**
+     * Affiche le nombre de jaloux dans la colonie
+     * @param colonie
+     */
     public static void afficheJaloux(Colonie colonie){
         System.out.println("\nLe nombre actuel de colons jaloux dans votre colonie est de " + calculJaloux(colonie) + ".");
     }
 
+    /**
+     * Menu des options après la distribution des ressources ( à partir de la construction manuelle )
+     * @param colonie
+     * @param menu
+     */
     public static void distribution(Colonie colonie, Menu menu){
         MenuSaisir ms = menu.getMs();
         
@@ -142,8 +180,14 @@ public abstract class DistributionColonie {
 
             tour++;
         }
-    } 
+    }
 
+    /**
+     * Menu des options après la construction automatique depuis un fichier
+     * @param colonie
+     * @param menu
+     * @param fichier
+     */
     public static void distribution(Colonie colonie, Menu menu, String fichier){
         MenuSaisir ms = menu.getMs();
 
@@ -180,6 +224,10 @@ public abstract class DistributionColonie {
         }
     }
 
+    /**
+     * Automatisation de la recherche de solution ( algorithme amélioré )
+     * @param colonie
+     */
     private static void resolutionAutomatique(Colonie colonie){
         int max = 5; //Nombre de tours
         Colon colon1,colon2 = null;
@@ -214,6 +262,11 @@ public abstract class DistributionColonie {
         System.out.println("Le nombre de jaloux est de "+solution1);
     }
 
+    /**
+     * Sauvegarde la solution actuelle dans un fichier texte
+     * @param colonie
+     * @param fichier
+     */
     private static void sauvegardeSolution(Colonie colonie,String fichier){
         FichierManager fichierManager = new FichierManager(fichier);
 

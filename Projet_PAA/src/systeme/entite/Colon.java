@@ -16,6 +16,10 @@ public class Colon {
         this.preference = new ArrayList<Ressource>();
     }
 
+    /**
+     * Permet d'ajouter un ennemi au colon
+     * @param c //c le Colon ennemi
+     */
     public void ajouterEnnemi(Colon c){
         if(!ennemis.contains(c)){
             ennemis.add(c);
@@ -24,32 +28,57 @@ public class Colon {
         }
     }
 
+    /**
+     * Ajoute une ressource au colon
+     * @param ressource
+     */
     public void ajouterRessource(Ressource ressource){
         this.ressource = ressource;
     }
-    
-    
+
+    /**
+     * Ajoute une préférence au colon
+     * @param ressource
+     */
     public void ajouterPreference(Ressource ressource) {
     	preference.add(ressource);
     }
 
+    /**
+     * Vide la liste de préférences du colon
+     */
     public void viderPreference(){
         preference.clear();
     }
 
-
+    /**
+     * Getter du nom du colon
+     * @return String
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Getter de la ressource du colon
+     * @return Ressource
+     */
     public Ressource getRessource(){
         return ressource;
     }
 
+    /**
+     * Getter des ennemis du colon
+     * @return liste de Colons
+     */
     public List<Colon> getEnnemis() {
         return ennemis;
     }
 
+    /**
+     * Getter des préférences du colon
+     * @return liste de Ressource
+     */
     public List<Ressource> getPreference() {
         return preference;
     }
@@ -59,6 +88,10 @@ public class Colon {
         return String.valueOf(nom);
     }
 
+    /**
+     * Setter d'une ressource
+     * @param r
+     */
     public void setRessource(Ressource r){
         this.ressource = r;
     }

@@ -12,6 +12,11 @@ public class MenuSaisir extends Saisir{
         super(sc);
     }
 
+    /**
+     * Permet de saisir le nom d'un colon et le retourne si il existe
+     * @param colonie
+     * @return Colon
+     */
     public Colon saisirColon(Colonie colonie){
         String character;
         
@@ -30,6 +35,11 @@ public class MenuSaisir extends Saisir{
         return colonie.getColon(character);
     }
 
+    /**
+     * Permet de rentrer les préférences d'un colon
+     * @param colonie
+     * @return String[]
+     */
     public String [] saisirPreferences(Colonie colonie){
         String [] colon_preferences;
     
@@ -56,6 +66,11 @@ public class MenuSaisir extends Saisir{
         return colon_preferences;
     }
 
+    /**
+     * Permet de saisir une relation entre 2 colons existants dans la colonie
+     * @param colonie
+     * @return String[]
+     */
     public String [] saisirRelation(Colonie colonie){
         String [] colon_colon;
 

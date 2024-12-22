@@ -5,7 +5,8 @@ public class Application {
     private Menu menu;
     private Central central;
     //private String fichier = "/Users/vincenttan/FAC/test.txt";
-    private String fichier = "users/vincenttan/FAC/paa/projet_paa/projet_paa/equipage1.txt";
+    //private String fichier = "users/vincenttan/FAC/paa/projet_paa/projet_paa/equipage1.txt";
+    private String fichier;
 
     public Application(String [] args){
         menu = new Menu();
@@ -16,6 +17,9 @@ public class Application {
         }
     }
 
+    /**
+     * Permet de lancer l'application
+     */
     public void run(){
         boolean running = true;
         
