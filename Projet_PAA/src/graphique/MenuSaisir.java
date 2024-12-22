@@ -1,7 +1,9 @@
 package graphique;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import systeme.entite.Colon;
 import systeme.entite.Colonie;
@@ -48,14 +50,27 @@ public class MenuSaisir extends Saisir{
                                             "Entrez les préférences d'une colon (format: A 1 2 ...)", 
                                             "Erreur - Veuillez entrer le bon format.\n");
 
+            String[] preferences = Arrays.copyOfRange(colon_preferences,1,colon_preferences.length);
             // ça vérifie si colon existe
             if(!colonie.appartientColonie(colon_preferences[0])){
                 System.out.println("Erreur - Entrez un colon existant. \n");
                 continue;
             }
+            //vérifie les doublons
+            Set<String> uniquePreferences = new HashSet<>(Arrays.asList(preferences));
+            if(uniquePreferences.size() != preferences.length){
+                System.out.println("Erreur - Les préférences contiennent des doublons");
+                continue;
+            }
+            //vérifie la limite du nb de ressources autorisées
+            int nbColons = colonie.getNbColons();
+            if(preferences.length > nbColons){
+                System.out.println("Erreur - Trop de ressources dans le préférences du colon ");
+                continue;
+            }
 
             //ça vérifie préférence
-            if(!colonie.preferenceValide(Arrays.copyOfRange(colon_preferences, 1, colon_preferences.length))){
+            if(!colonie.preferenceValide(preferences)){
                 System.out.println("Erreur - Entrez les bonnes préférences. \n");
                 continue;
             }
