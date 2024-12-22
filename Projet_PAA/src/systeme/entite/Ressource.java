@@ -20,7 +20,7 @@ public class Ressource {
     /**
      * Vérifie si le nom de cette ressource est égale au nom passée en paramètre
      * @param nomRessource
-     * @return
+     * @return boolean
      */
     public boolean equals(String nomRessource){
         return nom.equals(nomRessource);
@@ -34,6 +34,10 @@ public class Ressource {
         return nom;
     }
 
+    /**
+     * toString du nom de la ressource
+     * @return String
+     */
     public String toString(){
         return nom;
     }
