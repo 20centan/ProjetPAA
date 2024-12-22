@@ -9,22 +9,6 @@ public class Ressource {
     }
 
     /**
-     * Getter du nom de la ressource
-     * @return String
-     */
-    public String getNom() {
-        return nom;
-    }
-
-    /**
-     * Setter du nom de la ressource
-     * @param nom
-     */
-    public void setNom(String nom){
-        this.nom = nom;
-    }
-
-    /**
      * Vérifie si cette ressource est égale à la ressource passée en paramètre
      * @param ressource
      * @return boolean
@@ -40,6 +24,14 @@ public class Ressource {
      */
     public boolean equals(String nomRessource){
         return nom.equals(nomRessource);
+    }
+
+    /**
+     * Getter du nom de la ressource
+     * @return String
+     */
+    public String getNom() {
+        return nom;
     }
 
     public String toString(){
