@@ -199,8 +199,11 @@ public abstract class DistributionColonie {
 
         colonie.setNbJaloux(calculJaloux(colonie));
 
+        int tour = 0;
         boolean lancer = true;
         while(lancer){
+            menu.afficherSeparateur(tour);
+
             switch(ms.saisirInt("Choisir une option: \n" +
                     "[1] Résolution automatique de la distribution de la colonie\n"+
                     "[2] Sauvegarder la solution actuelle \n" +
@@ -224,6 +227,8 @@ public abstract class DistributionColonie {
                     break;
 
             }
+
+            tour++;
         }
     }
 

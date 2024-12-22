@@ -135,17 +135,28 @@ public class Colonie {
      */
     public void afficherColonie(){
         // afficher colon
+        System.out.println("Colon:");
         System.out.println(colons);
 
+        System.out.println();
+
         // afficher ressource
+        System.out.println("Ressource:");
         System.out.println(ressources);
 
+        System.out.println();
+
+
         // afficher relation
+        System.out.println("Colon - colon détesté:");
         for(Colon colon : colons){
             System.out.println(colon + " " + colon.getEnnemis());
         }
 
+        System.out.println();
+
         // afficher ressource (rien de base)
+        System.out.println("Colon - ressource:");
         for(Colon colon : colons){
             System.out.println(colon + " " + colon.getRessource());
         }
