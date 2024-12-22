@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class Colonie {
 
-    private int nbColons;
     private List<Colon> colons;
     private List<Ressource> ressources; 
 
@@ -56,8 +55,6 @@ public class Colonie {
      * @param nbColons
      */
     public void initialisationColonie(int nbColons){
-        this.nbColons = nbColons;
-
         for(int i = 0; i < nbColons; i++){
             ajouterColon(String.valueOf((char) ('A' + i)));
 
