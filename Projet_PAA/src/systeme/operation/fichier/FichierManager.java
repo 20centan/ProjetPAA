@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-
+import java.io.File;
 import java.io.IOException;
 
 
@@ -18,7 +18,14 @@ public class FichierManager {
     private FichierChecker fileColonie;
 
     public FichierManager(String chemin){
-        fichier = Path.of(chemin);
+        File fichier_file = new File(chemin);
+
+        if(!fichier_file.isFile()){
+            System.out.println("Erreur fichier: le fichier n'existe pas.");
+            System.exit(0);
+        }
+
+        fichier = fichier_file.toPath();
 
         fileColonie = new FichierChecker();
     }
